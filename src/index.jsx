@@ -1,7 +1,7 @@
 // contains the code needed to create a small, working React app
 
 import React from 'react';
-import ReactDom from 'react-dom';
+import ReactDOM from 'react-dom';
 
 // Import statement to indicate that you need to bundle `./index.scss`
 import './index.scss';
