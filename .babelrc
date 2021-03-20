@@ -1,4 +1,4 @@
 {
-  "presets": ["env", "react"], //"env" transpiles ES2015+ into ES5 & "react" transpiles JSX into JS
-  "plugins": ["transform-class-properties"] //allows for arrow functions to be used in React
+  "presets": ["@babel/preset-env", "@babel/preset-react"],
+  "plugins": ["@babel/plugin-proposal-class-properties"]
 }
