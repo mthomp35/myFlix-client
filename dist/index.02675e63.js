@@ -26702,6 +26702,13 @@ try {
         });
       }
     }, {
+      key: "onHomeClick",
+      value: function onHomeClick() {
+        this.setState({
+          selectedMovie: null
+        });
+      }
+    }, {
       key: "onMovieClick",
       value: function onMovieClick(movie) {
         this.setState({
@@ -26725,7 +26732,10 @@ try {
           /*#__PURE__*/_react["default"].createElement("div", {
             className: "main-view"
           }, selectedMovie ? /*#__PURE__*/_react["default"].createElement(_movieView.MovieView, {
-            movie: selectedMovie
+            movie: selectedMovie,
+            onClick: function onClick() {
+              return _this3.onHomeClick();
+            }
           }) : movies.map(function (movie) {
             return (
               /*#__PURE__*/_react["default"].createElement(_movieCard.MovieCard, {
@@ -28917,7 +28927,7 @@ try {
     _createClass(MovieView, [{
       key: "render",
       value: function render() {
-        var _this$props = this.props, movie = _this$props.movie, onClick = _this$props.onClick;
+        var _this$props = this.props, movie = _this$props.movie, _onClick = _this$props.onClick;
         if (!movie) return null;
         return (
           /*#__PURE__*/_react["default"].createElement("div", {
@@ -28949,12 +28959,12 @@ try {
             className: "label"
           }, "Director: "), /*#__PURE__*/_react["default"].createElement("span", {
             className: "value"
-          }, movie.Director.Name)), /*#__PURE__*/_react["default"].createElement("button", {
+          }, movie.Director.Name)), /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("button", {
             className: "home-button",
             onClick: function onClick() {
-              return onCick(MovieView);
+              return _onClick();
             }
-          }, "Home"))
+          }, "Home")))
         );
       }
     }]);

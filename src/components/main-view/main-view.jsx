@@ -26,6 +26,13 @@ export class MainView extends React.Component {
       console.log(error);
     });
   }
+  
+  // when home button is clicked in movie-view, re-render DOM with selectedMovie set to "null", which brings you back to main-view
+  onHomeClick() {
+    this.setState({
+      selectedMovie: null
+    });
+  }
 
   onMovieClick(movie) {
     this.setState({
@@ -43,7 +50,7 @@ export class MainView extends React.Component {
     return (
       <div className='main-view'>
         { selectedMovie
-          ? <MovieView movie={selectedMovie}/>
+          ? <MovieView movie={selectedMovie} onClick={() => this.onHomeClick()}/>
           : movies.map(movie => (
             <MovieCard key={movie._id} movie={movie} onClick={movie => this.onMovieClick(movie)}/>
           ))
