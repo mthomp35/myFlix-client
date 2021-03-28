@@ -26678,12 +26678,13 @@ try {
   var MainView = /*#__PURE__*/(function (_React$Component) {
     _inherits(MainView, _React$Component);
     var _super = _createSuper(MainView);
+    // code executed right when the component is created in the memory, happens before "rendering" the component
     function MainView() {
       var _this;
       _classCallCheck(this, MainView);
       _this = _super.call(this);
       _this.state = {
-        movies: null,
+        movies: [],
         selectedMovie: null
       };
       return _this;
@@ -26703,14 +26704,16 @@ try {
       }
     }, {
       key: "onHomeClick",
-      value: function onHomeClick() {
+      value: // when home button is clicked, this function sets selectedMovie state back to "null", re-rendering the DOM and bringing user back to main-view
+      function onHomeClick() {
         this.setState({
           selectedMovie: null
         });
       }
     }, {
       key: "onMovieClick",
-      value: function onMovieClick(movie) {
+      value: // when movie is clicked, this function sets selectedMovie state "movie", re-rendering the DOM and bringing up movie-view
+      function onMovieClick(movie) {
         this.setState({
           selectedMovie: movie
         });

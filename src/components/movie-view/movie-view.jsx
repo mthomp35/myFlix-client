@@ -1,6 +1,8 @@
 import React from 'react';
 import { MainView } from '../main-view/main-view';
 
+import './movie-view.scss';
+
 export class MovieView extends React.Component {
 
   constructor() {
