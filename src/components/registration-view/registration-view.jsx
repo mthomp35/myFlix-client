@@ -1,24 +1,26 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 import './registration-view.scss';
 
 export function RegistrationView(props) {
   const [ firstName, setFirstName ] = useState('');
   const [ lastName, setLastName ] = useState('');
+  const [ email, setEmail ] = useState('');
+  const [ birthday , setBirthday ] = useState('');
   const [ username, setUsername ] = useState('');
   const [ password, setPassword ] = useState('');
   const [ confirmPassword, setConfirmPassword ] = useState('');
-  const [ email, setEmail ] = useState('');
-  const [ birthday , setBirthday ] = useState('');
+ 
 
   const handleRegistration = () => {
     e.preventDefault();
     console.log(firstName, lastName, username, password, email, birthday);
-    props.onRegistration(register);
+    props.onRegister(register);
   };
 
   return (
-    <form>
+    <form className='registration'>
       <label>
         First Name:
         <input type='text' value={firstName} onChange={e => setFirstName(e.target.value)} />
@@ -51,3 +53,16 @@ export function RegistrationView(props) {
     </form>
   );
 }
+
+RegistrationView.propTypes = {
+  register: PropTypes.shape({
+    firstName: PropTypes.string.isRequired,
+    lastName: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    birthday: PropTypes.date.isRequired, //note - this might need to be considered a string
+    username: PropTypes.string.isRequired,
+    password: PropTypes.string.isRequired,
+    confirmPassword: PropTypes.string.isRequired
+  }).isRequired,
+  onRegister: PropTypes.func.isRequired
+};
