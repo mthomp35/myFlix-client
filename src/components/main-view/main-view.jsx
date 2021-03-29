@@ -1,16 +1,21 @@
 import React from 'react';
 import axios from 'axios';
 
+import { RegistrationView } from '../registration-view/registration-view';
+import { LoginView } from '../login-view/login-view';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
+import './main-view.scss';
 
 export class MainView extends React.Component {
+  // code executed right when the component is created in the memory, happens before "rendering" the component
   constructor() {
     super();
 
     this.state = {
-      movies: null,
-      selectedMovie: null
+      movies: [],
+      selectedMovie: null,
+      user: null
     };
   }
 
@@ -22,28 +27,48 @@ export class MainView extends React.Component {
         movies: response.data
       });
     })
-    .catch(function (error) {
+    .catch(error => {
       console.log(error);
     });
   }
   
-  // when home button is clicked in movie-view, re-render DOM with selectedMovie set to "null", which brings you back to main-view
+  // when home button is clicked, this function sets selectedMovie state back to "null", re-rendering the DOM and bringing user back to main-view
   onHomeClick() {
     this.setState({
       selectedMovie: null
     });
   }
 
+  // when movie is clicked, this function sets selectedMovie state "movie", re-rendering the DOM and bringing up movie-view
   onMovieClick(movie) {
     this.setState({
       selectedMovie: movie
     });
   }
 
+  // When a user successfully logs in, this function updates the `user` property in state to that particular user
+  onLoggedIn(user) {
+    this.setState({
+      user
+    });
+  }
+
+  // 
+  onRegister(register) {
+    this.setState({
+      register
+    });
+  }
+
   render() {
     //If the state isn't initialized, this will throw on runtime
     //before the data is initially loaded
-    const { movies, selectedMovie } = this.state;
+    const { movies, selectedMovie, user, register } = this.state;
+
+    /* If there is no user, the LoginView is rendered. If there is a user logged in, the user details are passed as a prop to the LoginView*/
+    if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
+
+    if (!register) return <RegistrationView onRegister={register => this.onRegister(register)} />;
 
     //before the movies have been loaded
     if (!movies) return <div className='main-view'/>;
