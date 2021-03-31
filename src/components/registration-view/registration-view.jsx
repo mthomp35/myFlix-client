@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { Form, Button } from 'react-bootstrap';
 
 import './registration-view.scss';
 
@@ -20,37 +21,83 @@ export function RegistrationView(props) {
   };
 
   return (
-    <form className='registration'>
-      <label>
-        First Name:
-        <input type='text' value={firstName} onChange={e => setFirstName(e.target.value)} />
-      </label>
-      <label>
-        Last Name:
-        <input type='text' value={lastName} onChange={e => setLastName(e.target.value)} />
-      </label>
-      <label>
-        Email:
-        <input type='text' value={email} onChange={e => setEmail(e.target.value)} />
-      </label>
-      <label>
-        Birthday:
-        <input type='text' value={birthday} onChange={e => setBirthday(e.target.value)} />
-      </label>
-      <label>
-        Username:
-        <input type='text' value={username} onChange={e => setUsername(e.target.value)} />
-      </label>
-      <label>
-        Password:
-        <input type='text' value={password} onChange={e => setPassword(e.target.value)} />
-      </label>
-      <label>
-        Confirm Password:
-        <input type='text' value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} />
-      </label>
-      <button type='submit' onClick={handleRegistration}>Submit</button>
-    </form>
+    <Form className='registration'>
+      <Form.Group controlId='formFirstName'>
+        <Form.Label>First Name:</Form.Label>
+        <Form.Control
+          type='text'
+          value={firstName}
+          onChange={e => setFirstName(e.target.value)}
+          placeholder='Enter First Name'
+        />
+      </Form.Group>
+      
+      <Form.Group controlId='formLastName'>
+        <Form.Label>Last Name:</Form.Label>
+        <Form.Control
+          type='text'
+          value={lastName}
+          onChange={e => setLastName(e.target.value)}
+          placeholder='Enter Last Name'
+        />
+      </Form.Group>
+      
+      <Form.Group controlId='formEmail'>
+        <Form.Label>Email:</Form.Label>
+        <Form.Control
+          type='email'
+          value={email}
+          onChange={e => setEmail(e.target.value)}
+          placeholder='Enter Email'
+        />
+      </Form.Group>
+      
+      <Form.Group controlId='formBirthday'>
+        <Form.Label>Birthday:</Form.Label>
+        <Form.Control
+          type='text'
+          value={birthday}
+          onChange={e => setBirthday(e.target.value)}
+          placeholder='Enter Date of Birth'/>
+      </Form.Group>
+
+      <Form.Group controlId='formUsername'>
+        <Form.Label>Username:</Form.Label>
+        <Form.Control
+          type='text'
+          value={username}
+          onChange={e => setUsername(e.target.value)}
+          placeholder='Enter Username'
+        />
+      </Form.Group>
+
+      <Form.Group controlId='formPassword'>
+        <Form.Label>Password:</Form.Label>
+        <Form.Control
+          type='password'
+          value={password}
+          aria-describedby='passwordHelpBlock'
+          onChange={e => setPassword(e.target.value)}
+          placeholder='Enter Password'
+        />
+        <Form.Text id='passwordHelpBlock' muted>
+          Password must contain: At least 10 characters, a combination of uppercase and lowercase letters (A-z), 
+          numbers (0-9), and special characters (e.g. ! @ # ? ]
+        </Form.Text>
+      </Form.Group>
+
+      <Form.Group controlId='formConfirmPassword'>
+        <Form.Label>Confirm Password:</Form.Label>
+        <Form.Control
+          type='password'
+          value={confirmPassword}
+          onChange={e => setConfirmPassword(e.target.value)}
+          placeholder='Confirm Password'
+        />
+      </Form.Group>
+
+      <Button type='submit' variant='secondary' onClick={handleRegistration}>Submit</Button>
+    </Form>
   );
 }
 
@@ -59,10 +106,10 @@ RegistrationView.propTypes = {
     firstName: PropTypes.string.isRequired,
     lastName: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
-    birthday: PropTypes.date.isRequired, //note - this might need to be considered a string
+    birthday: PropTypes.string.isRequired, //note - this might need to be considered a string
     username: PropTypes.string.isRequired,
     password: PropTypes.string.isRequired,
     confirmPassword: PropTypes.string.isRequired
-  }).isRequired,
+  }),
   onRegister: PropTypes.func.isRequired
 };
