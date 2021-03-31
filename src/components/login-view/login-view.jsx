@@ -8,32 +8,32 @@ export function LoginView(props) {
   const [ username, setUsername ] = useState('');
   const [ password, setPassword ] = useState('');
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     console.log(username, password);
-    props.onLoggedIn(username);
+    props.onLoggedIn(username, password);
   };
 
   return (
-    <Form>
-      <Form.Group controlID='formUsername'>
+    <Form className='login'>
+      <Form.Group controlId='formUsername'>
         <Form.Label>Username:</Form.Label>
         <Form.Control 
           type='text' 
           value={username}
           onChange={e => setUsername(e.target.value)} 
-          placeholder='Enter username'
+          placeholder='Enter Username'
         />
       </Form.Group>
       
-      <Form.Group controlID='formPassword'>
+      <Form.Group controlId='formPassword'>
         <Form.Label>Password:</Form.Label>
         <Form.Control 
-          type='text'
+          type='password'
           value={password}
           aria-describedby='passwordHelpBlock'
           onChange={e => setPassword(e.target.value)}
-          placeholder='Enter password'
+          placeholder='Enter Password'
         />
         <Form.Text id='passwordHelpBlock' muted>
           Password must contain: At least 10 characters, a combination of uppercase and lowercase letters (A-z), numbers (0-9), and special characters (e.g. ! @ # ? ]
@@ -46,6 +46,9 @@ export function LoginView(props) {
 }
 
 LoginView.propTypes = {
-  username: PropTypes.string.isRequired,
-  password: PropTypes.string.isRequired
+  user: PropTypes.shape({
+    username: PropTypes.string.isRequired,
+    password: PropTypes.string.isRequired
+  }),
+  onLoggedIn: PropTypes.func.isRequired
 };
