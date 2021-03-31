@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { Row, Col } from 'react-bootstrap';
 
 import { RegistrationView } from '../registration-view/registration-view';
 import { LoginView } from '../login-view/login-view';
@@ -68,7 +69,7 @@ export class MainView extends React.Component {
     /* If there is no user, the LoginView is rendered. If there is a user logged in, the user details are passed as a prop to the LoginView*/
     if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
 
-    if (!register) return <RegistrationView onRegister={register => this.onRegister(register)} />;
+   //if (!register) return <RegistrationView onRegister={register => this.onRegister(register)} />;
 
     //before the movies have been loaded
     if (!movies) return <div className='main-view'/>;
@@ -77,7 +78,7 @@ export class MainView extends React.Component {
         { selectedMovie
           ? (
             <Col md={8}>
-              <MovieView movie={selectedMovie} onClick={() => this.onHomeClick()} onBackClick={movie => this.onMovieClick(null)}/>
+              <MovieView movie={selectedMovie} onClick={() => this.onHomeClick()}/>
             </Col>
           )
           : movies.map(movie => (
