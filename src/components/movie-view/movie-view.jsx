@@ -19,36 +19,35 @@ export class MovieView extends React.Component {
     if (!movie) return null;
 
     return (
+     
       <Card className='movie-view'>
-        <Card.Header>
-          <Button variant='light' onClick={() => onClick()}>Return Home</Button>
-        </Card.Header>
-        <Card.Img className='movie-poster' src={movie.ImagePath} />
-        <Card.Title className='movie-title'>{movie.Title}</Card.Title>
-        <Card.Text className='movie-year'>
-          <span className='label'>Release Year: </span>
-          <span className='value'>{movie.Year}</span>
-        </Card.Text>
-        <Card.Text className='movie-description'>
-          <span className='label'>Description: </span>
-          <span className='value'>{movie.Description}</span>
-        </Card.Text>
+        <Button className='text-left' onClick={() => onClick()} variant='light' block>Return Home</Button>
+        <Card.Img className='movie-poster left' src={movie.ImagePath} />
+        <Card.Body>
+          <Card.Title className='movie-title'>{movie.Title}</Card.Title>
+          <Card.Text className='movie-year'>
+            <span className='label'>Release Year: </span>
+            <span className='value'>{movie.Year}</span>
+          </Card.Text>
+          <Card.Text className='movie-description'>
+            <span className='label'>Description: </span>
+            <span className='value'>{movie.Description}</span>
+          </Card.Text>
 
-        <Card.Text className='movie-genre'>
-          <span className='label'>Genre: </span>
-          <span className='value'>{movie.Genre.Name}</span>
-        </Card.Text>
-        <Card.Text className='movie-director'>
-          <span className='label'>Director: </span>
-          <span className='value'>{movie.Director.Name}</span>
-        </Card.Text>
-        <Card.Text className='movie-director-bio'>
-          <span className='label'>Director Bio: </span>
-          <span className='value'>{movie.Director.Bio}</span>
-        </Card.Text>
-        <Card.Footer>
-          <Button variant='light' onClick={() => onClick()}>Return Home</Button>
-        </Card.Footer>
+          <Card.Text className='movie-genre'>
+            <span className='label'>Genre: </span>
+            <span className='value'>{movie.Genre.Name}</span>
+          </Card.Text>
+          <Card.Text className='movie-director'>
+            <span className='label'>Director: </span>
+            <span className='value'>{movie.Director.Name}</span>
+          </Card.Text>
+          <Card.Text className='movie-director-bio'>
+            <span className='label'>Director Bio: </span>
+            <span className='value'>{movie.Director.Bio}</span>
+          </Card.Text>
+        </Card.Body>
+          <Button className='text-left' onClick={() => onClick()} variant='light' block>Return Home</Button>
       </Card>
     );
   }
