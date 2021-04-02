@@ -1164,7 +1164,9 @@ try {
       key: "render",
       value: function render() {
         return (
-          /*#__PURE__*/_react["default"].createElement(_Container["default"], null, /*#__PURE__*/_react["default"].createElement(_mainView.MainView, null))
+          /*#__PURE__*/_react["default"].createElement(_Container["default"], {
+            className: "my-flix"
+          }, /*#__PURE__*/_react["default"].createElement(_mainView.MainView, null))
         );
       }
     }]);
@@ -27038,7 +27040,13 @@ try {
             }
           })
         );
-        // if (!register) return <RegistrationView onRegister={register => this.onRegister(register)} />;
+        if (!register) return (
+          /*#__PURE__*/_react["default"].createElement(_registrationView.RegistrationView, {
+            onRegister: function onRegister(register) {
+              return _this3.onRegister(register);
+            }
+          })
+        );
         // before the movies have been loaded
         if (!movies) return (
           /*#__PURE__*/_react["default"].createElement("div", {
@@ -27058,7 +27066,7 @@ try {
           })) : movies.map(function (movie) {
             return (
               /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Col, {
-                md: 3
+                md: 4
               }, /*#__PURE__*/_react["default"].createElement(_movieCard.MovieCard, {
                 key: movie._id,
                 movie: movie,
@@ -42619,7 +42627,7 @@ try {
     return (
       /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form, {
         className: "registration"
-      }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Group, {
+      }, /*#__PURE__*/_react["default"].createElement("h1", null, "Welcome to Movie Mania!"), /*#__PURE__*/_react["default"].createElement("p", null, "Please register here to gain access."), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Group, {
         controlId: "formFirstName"
       }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Label, null, "First Name:"), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Control, {
         type: "text",
@@ -42675,9 +42683,8 @@ try {
         },
         placeholder: "Enter Password"
       }), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Text, {
-        id: "passwordHelpBlock",
-        muted: true
-      }, "Password must contain: At least 10 characters, a combination of uppercase and lowercase letters (A-z), numbers (0-9), and special characters (e.g. ! @ # ? ]")), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Group, {
+        id: "passwordHelpBlock"
+      }, "Password must contain: At least 10 characters, a combination of uppercase and lowercase letters (A-z), numbers (0-9), and special characters (e.g. ! @ # ? ] ).")), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Group, {
         controlId: "formConfirmPassword"
       }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Label, null, "Confirm Password:"), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Control, {
         type: "password",
@@ -43005,7 +43012,7 @@ try {
     return (
       /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form, {
         className: "login"
-      }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Group, {
+      }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Row, null, /*#__PURE__*/_react["default"].createElement("h1", null, "Welcome to Movie Mania!")), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Row, null, /*#__PURE__*/_react["default"].createElement("p", null, "Please log in to to continue.")), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Group, {
         controlId: "formUsername"
       }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Label, null, "Username:"), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Control, {
         type: "text",
@@ -43025,13 +43032,19 @@ try {
         },
         placeholder: "Enter Password"
       }), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Text, {
-        id: "passwordHelpBlock",
-        muted: true
-      }, "Password must contain: At least 10 characters, a combination of uppercase and lowercase letters (A-z), numbers (0-9), and special characters (e.g. ! @ # ? ]")), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
+        id: "passwordHelpBlock"
+      }, "Password must contain: At least 10 characters, a combination of uppercase and lowercase letters (A-z), numbers (0-9), and special characters (e.g. ! @ # ? ] ).")), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Row, null, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Col, {
+        md: 6
+      }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
         type: "submit",
         variant: "secondary",
         onClick: handleSubmit
-      }, "Submit"))
+      }, "Submit")), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Col, {
+        md: 6
+      }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
+        type: "button",
+        variance: "link"
+      }, "New to Movie Mania? Click here to register (Reminder: link this to log in registration page)"))))
     );
   }
   _s2(LoginView, "9FY2cPL9VBDmuhjwpF2ik6flsHs=");
@@ -43179,18 +43192,21 @@ try {
         var _this$props = this.props, movie = _this$props.movie, _onClick = _this$props.onClick;
         return (
           /*#__PURE__*/_react["default"].createElement(_Card["default"], {
-            bg: "light"
+            bg: "light",
+            className: "movie-card"
           }, /*#__PURE__*/_react["default"].createElement(_Card["default"].Img, {
             variant: "top",
             src: movie.ImagePath
-          }), /*#__PURE__*/_react["default"].createElement(_Card["default"].Body, null, /*#__PURE__*/_react["default"].createElement(_Card["default"].Title, null, movie.Title), /*#__PURE__*/_react["default"].createElement(_Card["default"].Text, null, movie.Description)), /*#__PURE__*/_react["default"].createElement(_Card["default"].Footer, {
+          }), /*#__PURE__*/_react["default"].createElement(_Card["default"].Body, null, /*#__PURE__*/_react["default"].createElement(_Card["default"].Title, null, movie.Title), /*#__PURE__*/_react["default"].createElement(_Card["default"].Text, {
+            className: "movie-card_text"
+          }, movie.Description)), /*#__PURE__*/_react["default"].createElement(_Card["default"].Footer, {
             className: "text-center"
           }, /*#__PURE__*/_react["default"].createElement(_Button["default"], {
-            size: "sm",
             onClick: function onClick() {
               return _onClick(movie);
             },
-            variant: "link"
+            variant: "link",
+            block: true
           }, "Learn More")))
         );
       }
@@ -43345,53 +43361,58 @@ try {
         var _this$props = this.props, movie = _this$props.movie, _onClick = _this$props.onClick;
         if (!movie) return null;
         return (
-          /*#__PURE__*/_react["default"].createElement("div", {
+          /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card, {
             className: "movie-view"
-          }, /*#__PURE__*/_react["default"].createElement("img", {
-            className: "movie-poster",
+          }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
+            className: "text-left",
+            onClick: function onClick() {
+              return _onClick();
+            },
+            variant: "light",
+            block: true
+          }, "Return Home"), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card.Img, {
+            className: "movie-poster left",
             src: movie.ImagePath
-          }), /*#__PURE__*/_react["default"].createElement("div", {
+          }), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card.Title, {
             className: "movie-title"
-          }, /*#__PURE__*/_react["default"].createElement("span", {
-            className: "label"
-          }, "Title: "), /*#__PURE__*/_react["default"].createElement("span", {
-            className: "value"
-          }, movie.Title)), /*#__PURE__*/_react["default"].createElement("div", {
+          }, movie.Title), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card.Text, {
             className: "movie-year"
           }, /*#__PURE__*/_react["default"].createElement("span", {
             className: "label"
           }, "Release Year: "), /*#__PURE__*/_react["default"].createElement("span", {
             className: "value"
-          }, movie.Year)), /*#__PURE__*/_react["default"].createElement("div", {
+          }, movie.Year)), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card.Text, {
             className: "movie-description"
           }, /*#__PURE__*/_react["default"].createElement("span", {
             className: "label"
           }, "Description: "), /*#__PURE__*/_react["default"].createElement("span", {
             className: "value"
-          }, movie.Description)), /*#__PURE__*/_react["default"].createElement("div", {
+          }, movie.Description)), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card.Text, {
             className: "movie-genre"
           }, /*#__PURE__*/_react["default"].createElement("span", {
             className: "label"
           }, "Genre: "), /*#__PURE__*/_react["default"].createElement("span", {
             className: "value"
-          }, movie.Genre.Name)), /*#__PURE__*/_react["default"].createElement("div", {
+          }, movie.Genre.Name)), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card.Text, {
             className: "movie-director"
           }, /*#__PURE__*/_react["default"].createElement("span", {
             className: "label"
           }, "Director: "), /*#__PURE__*/_react["default"].createElement("span", {
             className: "value"
-          }, movie.Director.Name)), /*#__PURE__*/_react["default"].createElement("div", {
+          }, movie.Director.Name)), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card.Text, {
             className: "movie-director-bio"
           }, /*#__PURE__*/_react["default"].createElement("span", {
             className: "label"
           }, "Director Bio: "), /*#__PURE__*/_react["default"].createElement("span", {
             className: "value"
-          }, movie.Director.Bio)), /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
-            variant: "light",
+          }, movie.Director.Bio))), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
+            className: "text-left",
             onClick: function onClick() {
               return _onClick();
-            }
-          }, "Return Home")))
+            },
+            variant: "light",
+            block: true
+          }, "Return Home"))
         );
       }
     }]);
@@ -43421,6 +43442,6 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","prop-types":"4dfy5","./movie-view.scss":"4iZ2Z","../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6fW6i","react-bootstrap":"4n7hB"}],"4iZ2Z":[function() {},{}],"3X8QW":[function() {},{}],"5iJih":[function() {},{}]},["1j6wU","68WUB","1DVjT"], "1DVjT", "parcelRequire427e")
+},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","./movie-view.scss":"4iZ2Z","../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6fW6i"}],"4iZ2Z":[function() {},{}],"3X8QW":[function() {},{}],"5iJih":[function() {},{}]},["1j6wU","68WUB","1DVjT"], "1DVjT", "parcelRequire427e")
 
 //# sourceMappingURL=index.02675e63.js.map
