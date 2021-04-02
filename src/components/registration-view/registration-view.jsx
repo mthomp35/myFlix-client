@@ -22,6 +22,8 @@ export function RegistrationView(props) {
 
   return (
     <Form className='registration'>
+      <h1>Welcome to Movie Mania!</h1>
+      <p>Please register here to gain access.</p>
       <Form.Group controlId='formFirstName'>
         <Form.Label>First Name:</Form.Label>
         <Form.Control
@@ -39,6 +41,7 @@ export function RegistrationView(props) {
           value={lastName}
           onChange={e => setLastName(e.target.value)}
           placeholder='Enter Last Name'
+          //srOnly='Enter Last Name'
         />
       </Form.Group>
       
@@ -49,6 +52,7 @@ export function RegistrationView(props) {
           value={email}
           onChange={e => setEmail(e.target.value)}
           placeholder='Enter Email'
+          //srOnly='Enter email address'
         />
       </Form.Group>
       
@@ -58,7 +62,9 @@ export function RegistrationView(props) {
           type='text'
           value={birthday}
           onChange={e => setBirthday(e.target.value)}
-          placeholder='Enter Date of Birth'/>
+          placeholder='Enter Date of Birth'
+          //srOnly='Enter date of birth (month/day/year)'
+        />
       </Form.Group>
 
       <Form.Group controlId='formUsername'>
@@ -68,6 +74,7 @@ export function RegistrationView(props) {
           value={username}
           onChange={e => setUsername(e.target.value)}
           placeholder='Enter Username'
+          //srOnly='Enter username'
         />
       </Form.Group>
 
@@ -79,10 +86,11 @@ export function RegistrationView(props) {
           aria-describedby='passwordHelpBlock'
           onChange={e => setPassword(e.target.value)}
           placeholder='Enter Password'
+          //srOnly='Enter password'
         />
-        <Form.Text id='passwordHelpBlock' muted>
+        <Form.Text id='passwordHelpBlock'>
           Password must contain: At least 10 characters, a combination of uppercase and lowercase letters (A-z), 
-          numbers (0-9), and special characters (e.g. ! @ # ? ]
+          numbers (0-9), and special characters (e.g. ! @ # ? ] ).
         </Form.Text>
       </Form.Group>
 
@@ -93,6 +101,7 @@ export function RegistrationView(props) {
           value={confirmPassword}
           onChange={e => setConfirmPassword(e.target.value)}
           placeholder='Confirm Password'
+          //srOnly='Re-enter password to confirm'
         />
       </Form.Group>
 
