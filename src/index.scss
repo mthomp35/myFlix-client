@@ -1,5 +1,7 @@
-$color: steelblue;
+$bgcolor: rgb(9, 81, 139);
+$txtcolor: white;
 
-.my-flix {
-  color: $color;
+.app-container {
+  background-color: $bgcolor;
 }
+
