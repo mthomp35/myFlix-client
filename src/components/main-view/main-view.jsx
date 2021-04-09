@@ -59,6 +59,21 @@ export class MainView extends React.Component {
     this.getMovies(authData.token);
   }
 
+  getMovies(token) {
+    axios.get('https://best-flix-10922.herokuapp.com/movies', {
+      headers: { Authorization: 'Bearer ${token}'}
+    })
+    .then(response => {
+      // Assign the result to the state
+      this.setState({
+        movies: response.data
+      });
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
+
   // 
   onRegister(register) {
     this.setState({
