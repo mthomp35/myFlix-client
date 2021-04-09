@@ -14,7 +14,7 @@ export function LoginView(props) {
     e.preventDefault();
     // Send a request to the server for authentication
     console.log(username, password);
-    axios.post('https://best-flix-10922.herokuapp.com/login', {
+    axios.post('https://best-flix-10922.herokuapp.com/users', {
       Username: username,
       Password: password
     })

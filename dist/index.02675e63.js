@@ -27012,9 +27012,30 @@ try {
     }, {
       key: "onLoggedIn",
       value: // When a user successfully logs in, this function updates the `user` property in state to that particular user
-      function onLoggedIn(user) {
+      function onLoggedIn(authData) {
+        console.log(authData);
         this.setState({
-          user: user
+          user: authData.user.Username
+        });
+        localStorage.setItem('token', authData.token);
+        localStorage.setItem('user', authData.user.Username);
+        this.getMovies(authData.token);
+      }
+    }, {
+      key: "getMovies",
+      value: function getMovies(token) {
+        var _this3 = this;
+        _axios["default"].get('https://best-flix-10922.herokuapp.com/movies', {
+          headers: {
+            Authorization: 'Bearer ${token}'
+          }
+        }).then(function (response) {
+          // Assign the result to the state
+          _this3.setState({
+            movies: response.data
+          });
+        })["catch"](function (error) {
+          console.log(error);
         });
       }
     }, {
@@ -27028,7 +27049,7 @@ try {
     }, {
       key: "render",
       value: function render() {
-        var _this3 = this;
+        var _this4 = this;
         // If the state isn't initialized, this will throw on runtime
         // before the data is initially loaded
         var _this$state = this.state, movies = _this$state.movies, selectedMovie = _this$state.selectedMovie, user = _this$state.user, register = _this$state.register;
@@ -27036,14 +27057,14 @@ try {
         if (!user) return (
           /*#__PURE__*/_react["default"].createElement(_loginView.LoginView, {
             onLoggedIn: function onLoggedIn(user) {
-              return _this3.onLoggedIn(user);
+              return _this4.onLoggedIn(user);
             }
           })
         );
         if (!register) return (
           /*#__PURE__*/_react["default"].createElement(_registrationView.RegistrationView, {
             onRegister: function onRegister(register) {
-              return _this3.onRegister(register);
+              return _this4.onRegister(register);
             }
           })
         );
@@ -27061,7 +27082,7 @@ try {
           }, /*#__PURE__*/_react["default"].createElement(_movieView.MovieView, {
             movie: selectedMovie,
             onClick: function onClick() {
-              return _this3.onHomeClick();
+              return _this4.onHomeClick();
             }
           })) : movies.map(function (movie) {
             return (
@@ -27071,7 +27092,7 @@ try {
                 key: movie._id,
                 movie: movie,
                 onClick: function onClick(movie) {
-                  return _this3.onMovieClick(movie);
+                  return _this4.onMovieClick(movie);
                 }
               }))
             );
@@ -42905,6 +42926,7 @@ try {
   });
   exports.LoginView = LoginView;
   var _react = _interopRequireWildcard(require("react"));
+  var _axios = _interopRequireDefault(require("axios"));
   var _propTypes = _interopRequireDefault(require("prop-types"));
   var _reactBootstrap = require("react-bootstrap");
   require("./login-view.scss");
@@ -43005,9 +43027,19 @@ try {
     var _useState = (0, _react.useState)(''), _useState2 = _slicedToArray(_useState, 2), username = _useState2[0], setUsername = _useState2[1];
     var _useState3 = (0, _react.useState)(''), _useState4 = _slicedToArray(_useState3, 2), password = _useState4[0], setPassword = _useState4[1];
     var handleSubmit = function handleSubmit(e) {
+      // prevent default behavior when submitting a form
       e.preventDefault();
+      // Send a request to the server for authentication
       console.log(username, password);
-      props.onLoggedIn(username, password);
+      _axios["default"].post('https://best-flix-10922.herokuapp.com/users', {
+        Username: username,
+        Password: password
+      }).then(function (response) {
+        var data = response.data;
+        props.onLoggedIn(data);
+      })["catch"](function (e) {
+        console.log('User does not exist');
+      });
     };
     return (
       /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form, {
@@ -43064,7 +43096,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","./login-view.scss":"3ueKO","../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6fW6i"}],"3ueKO":[function() {},{}],"7v6h3":[function(require,module,exports) {
+},{"react":"3b2NM","axios":"7rA65","prop-types":"4dfy5","react-bootstrap":"4n7hB","./login-view.scss":"3ueKO","../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6fW6i"}],"3ueKO":[function() {},{}],"7v6h3":[function(require,module,exports) {
 "use strict";
 var helpers = require("../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
