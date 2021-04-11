@@ -26983,15 +26983,14 @@ try {
     _createClass(MainView, [{
       key: "componentDidMount",
       value: function componentDidMount() {
-        var _this2 = this;
-        _axios["default"].get('https://best-flix-10922.herokuapp.com/movies').then(function (response) {
+        var accessToken = localStorage.getItem('token');
+        if (accessToken !== null) {
           // Assign the result to the state
-          _this2.setState({
-            movies: response.data
+          this.setState({
+            user: localStorage.getItem('user')
           });
-        })["catch"](function (error) {
-          console.log(error);
-        });
+          this.getMovies(accessToken);
+        }
       }
     }, {
       key: "onHomeClick",
@@ -27024,14 +27023,14 @@ try {
     }, {
       key: "getMovies",
       value: function getMovies(token) {
-        var _this3 = this;
+        var _this2 = this;
         _axios["default"].get('https://best-flix-10922.herokuapp.com/movies', {
           headers: {
             Authorization: 'Bearer ${token}'
           }
         }).then(function (response) {
           // Assign the result to the state
-          _this3.setState({
+          _this2.setState({
             movies: response.data
           });
         })["catch"](function (error) {
@@ -27049,7 +27048,7 @@ try {
     }, {
       key: "render",
       value: function render() {
-        var _this4 = this;
+        var _this3 = this;
         // If the state isn't initialized, this will throw on runtime
         // before the data is initially loaded
         var _this$state = this.state, movies = _this$state.movies, selectedMovie = _this$state.selectedMovie, user = _this$state.user, register = _this$state.register;
@@ -27057,14 +27056,14 @@ try {
         if (!user) return (
           /*#__PURE__*/_react["default"].createElement(_loginView.LoginView, {
             onLoggedIn: function onLoggedIn(user) {
-              return _this4.onLoggedIn(user);
+              return _this3.onLoggedIn(user);
             }
           })
         );
         if (!register) return (
           /*#__PURE__*/_react["default"].createElement(_registrationView.RegistrationView, {
             onRegister: function onRegister(register) {
-              return _this4.onRegister(register);
+              return _this3.onRegister(register);
             }
           })
         );
@@ -27082,7 +27081,7 @@ try {
           }, /*#__PURE__*/_react["default"].createElement(_movieView.MovieView, {
             movie: selectedMovie,
             onClick: function onClick() {
-              return _this4.onHomeClick();
+              return _this3.onHomeClick();
             }
           })) : movies.map(function (movie) {
             return (
@@ -27092,7 +27091,7 @@ try {
                 key: movie._id,
                 movie: movie,
                 onClick: function onClick(movie) {
-                  return _this4.onMovieClick(movie);
+                  return _this3.onMovieClick(movie);
                 }
               }))
             );
@@ -43031,7 +43030,7 @@ try {
       e.preventDefault();
       // Send a request to the server for authentication
       console.log(username, password);
-      _axios["default"].post('https://best-flix-10922.herokuapp.com/users', {
+      _axios["default"].post('https://best-flix-10922.herokuapp.com/login', {
         Username: username,
         Password: password
       }).then(function (response) {
