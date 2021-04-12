@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Nav, div, Button } from 'react-bootstrap';
+import { Nav } from 'react-bootstrap';
 
 export class DirectorView extends React.Component {
   constructor() {
