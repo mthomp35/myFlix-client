@@ -46612,8 +46612,7 @@ try {
       Title: _propTypes["default"].string.isRequired,
       Description: _propTypes["default"].string.isRequired,
       ImagePath: _propTypes["default"].string.isRequired,
-      Year: _propTypes["default"].number.isRequired,
-      // note - this might need to be considered a string
+      Year: _propTypes["default"].string.isRequired,
       Genre: _propTypes["default"].shape({
         Name: _propTypes["default"].string.isRequired
       }),

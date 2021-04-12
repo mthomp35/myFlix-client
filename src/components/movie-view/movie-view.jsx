@@ -66,7 +66,7 @@ MovieView.propTypes = {
     Title: PropTypes.string.isRequired,
     Description: PropTypes.string.isRequired,
     ImagePath: PropTypes.string.isRequired,
-    Year: PropTypes.number.isRequired, //note - this might need to be considered a string
+    Year: PropTypes.string.isRequired,
     Genre: PropTypes.shape({
       Name: PropTypes.string.isRequired
     }),
