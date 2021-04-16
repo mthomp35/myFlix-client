@@ -26977,7 +26977,8 @@ try {
       _this = _super.call(this);
       _this.state = {
         movies: [],
-        user: null
+        user: null,
+        message: 'Loading'
       };
       return _this;
     }
@@ -27021,7 +27022,7 @@ try {
         var _this2 = this;
         _axios["default"].get('https://best-flix-10922.herokuapp.com/movies', {
           headers: {
-            Authorization: 'Bearer ${token}'
+            Authorization: ("Bearer ").concat(token)
           }
         }).then(function (response) {
           // Assign the result to the state
@@ -27030,6 +27031,9 @@ try {
           });
         })["catch"](function (error) {
           console.log(error);
+          this.setState({
+            message: 'Something went wrong'
+          });
         });
       }
     }, {
@@ -27038,13 +27042,13 @@ try {
         var _this3 = this;
         // If the state isn't initialized, this will throw on runtime
         // before the data is initially loaded
-        var _this$state = this.state, movies = _this$state.movies, user = _this$state.user;
+        var _this$state = this.state, movies = _this$state.movies, user = _this$state.user, message = _this$state.message;
         // before the movies have been loaded
         /*If there is no user, the LoginView is rendered. If there is a user logged in, the user details are passed as a prop to the LoginView*/
-        if (!movies) return (
+        if (!movies.length) return (
           /*#__PURE__*/_react["default"].createElement("div", {
             className: "main-view"
-          })
+          }, message)
         );
         return (
           /*#__PURE__*/_react["default"].createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_react["default"].createElement("div", {
@@ -27079,9 +27083,10 @@ try {
           }), /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Route, {
             path: "/movies/:movieId",
             render: function render(_ref) {
-              var match = _ref.match;
+              var match = _ref.match, history = _ref.history;
               return (
                 /*#__PURE__*/_react["default"].createElement(_movieView.MovieView, {
+                  history: history,
                   movie: movies.find(function (m) {
                     return m._id === match.params.movieId;
                   })
@@ -27092,10 +27097,10 @@ try {
             path: "/genre/:name",
             render: function render(_ref2) {
               var match = _ref2.match;
-              if (!movies) return (
+              if (!movies.length) return (
                 /*#__PURE__*/_react["default"].createElement("div", {
                   className: "main-view"
-                })
+                }, message)
               );
               return (
                 /*#__PURE__*/_react["default"].createElement(_genreView.GenreView, {
@@ -27109,13 +27114,16 @@ try {
             path: "/directors/:name",
             render: function render(_ref3) {
               var match = _ref3.match;
-              if (!movies) return (
+              if (!movies.length) return (
                 /*#__PURE__*/_react["default"].createElement("div", {
                   className: "main-view"
-                })
+                }, message)
               );
               return (
                 /*#__PURE__*/_react["default"].createElement(_directorView.DirectorView, {
+                  movies: movies.filter(function (m) {
+                    return m.Director.Name === match.params.name;
+                  }),
                   director: movies.find(function (m) {
                     return m.Director.Name === match.params.name;
                   }).Director
@@ -46383,7 +46391,7 @@ try {
           }, movie.Description)), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card.Footer, {
             className: "text-center"
           }, /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Link, {
-            to: '/movies/${movie._id'
+            to: ("/movies/").concat(movie._id)
           }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
             variant: "Link"
           }, "Learn More"))))
@@ -46401,8 +46409,7 @@ try {
       Genre: _propTypes["default"].shape({
         Name: _propTypes["default"].string.isRequired
       })
-    }).isRequired,
-    onClick: _propTypes["default"].func.isRequired
+    }).isRequired
   };
   helpers.postlude(module);
 } finally {
@@ -46538,7 +46545,7 @@ try {
     _createClass(MovieView, [{
       key: "render",
       value: function render() {
-        var _this$props = this.props, movie = _this$props.movie, _onClick = _this$props.onClick;
+        var _this$props = this.props, movie = _this$props.movie, history = _this$props.history;
         if (!movie) return null;
         return (
           /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card, {
@@ -46546,7 +46553,7 @@ try {
           }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
             className: "text-left",
             onClick: function onClick() {
-              return _onClick();
+              return history.push('/');
             },
             variant: "light",
             block: true
@@ -46596,7 +46603,7 @@ try {
           }, movie.Director.Bio))), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
             className: "text-left",
             onClick: function onClick() {
-              return _onClick();
+              return history.push('/');
             },
             variant: "light",
             block: true
@@ -46620,8 +46627,7 @@ try {
         Name: _propTypes["default"].string.isRequired,
         Bio: _propTypes["default"].string.isRequired
       })
-    }).isRequired,
-    onClick: _propTypes["default"].func.isRequired
+    }).isRequired
   };
   helpers.postlude(module);
 } finally {
@@ -46656,6 +46662,7 @@ try {
   var _react = _interopRequireDefault(require("react"));
   var _propTypes = _interopRequireDefault(require("prop-types"));
   var _reactBootstrap = require("react-bootstrap");
+  var _movieCard = require("../movie-card/movie-card");
   function _interopRequireDefault(obj) {
     return obj && obj.__esModule ? obj : {
       "default": obj
@@ -46755,10 +46762,8 @@ try {
     _createClass(DirectorView, [{
       key: "render",
       value: function render() {
-        var movie = this.props.movie;
-        var directedMovies = movies.filter(function (m) {
-          return m.Director.Name === movie.Director.Name;
-        });
+        var _this$props = this.props, director = _this$props.director, movies = _this$props.movies;
+        // const directedMovies = movies.filter(m => m.Director.Name === director.Name);
         return (
           /*#__PURE__*/_react["default"].createElement("div", {
             className: "director-view"
@@ -46766,31 +46771,31 @@ try {
             className: "dv"
           }, /*#__PURE__*/_react["default"].createElement("div", {
             className: "dv-name"
-          }, movie.Director.Name), /*#__PURE__*/_react["default"].createElement("div", {
+          }, director.Name), /*#__PURE__*/_react["default"].createElement("div", {
             className: "dv-bio"
           }, /*#__PURE__*/_react["default"].createElement("span", {
             className: "label"
           }, "Bio: "), /*#__PURE__*/_react["default"].createElement("span", {
             className: "value"
-          }, movie.Director.Bio)), /*#__PURE__*/_react["default"].createElement("div", {
+          }, director.Bio)), /*#__PURE__*/_react["default"].createElement("div", {
             className: "dv-birth"
           }, /*#__PURE__*/_react["default"].createElement("span", {
             className: "label"
           }, "Date of Birth: "), /*#__PURE__*/_react["default"].createElement("span", {
             className: "value"
-          }, movie.Director.Birth)), /*#__PURE__*/_react["default"].createElement("div", {
+          }, director.Birth)), /*#__PURE__*/_react["default"].createElement("div", {
             className: "dv-death"
           }, /*#__PURE__*/_react["default"].createElement("span", {
             className: "label"
           }, "Date of Death: "), /*#__PURE__*/_react["default"].createElement("span", {
             className: "value"
-          }, movie.Director.Death || '[N/A]')), /*#__PURE__*/_react["default"].createElement("div", {
+          }, director.Death || '[N/A]')), /*#__PURE__*/_react["default"].createElement("div", {
             className: "dv-movies"
           }, /*#__PURE__*/_react["default"].createElement("span", {
             className: "label"
-          }, "Movies directed by ", movie.Director.Name, ": "), /*#__PURE__*/_react["default"].createElement("div", null, directedMovies.map(function (movie) {
+          }, "Movies directed by ", director.Name, ": "), /*#__PURE__*/_react["default"].createElement("div", null, movies.map(function (movie) {
             return (
-              /*#__PURE__*/_react["default"].createElement(MovieCard, {
+              /*#__PURE__*/_react["default"].createElement(_movieCard.MovieCard, {
                 key: movie._id,
                 movie: movie
               })
@@ -46808,7 +46813,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6fW6i"}],"6FLqj":[function(require,module,exports) {
+},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6fW6i","../movie-card/movie-card":"7v6h3"}],"6FLqj":[function(require,module,exports) {
 "use strict";
 var helpers = require("../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
