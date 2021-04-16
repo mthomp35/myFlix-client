@@ -16,14 +16,14 @@ export class MovieView extends React.Component {
   }
 
   render() {
-    const { movie, onClick } = this.props;
-
+    const { movie, history } = this.props;
+    
     if (!movie) return null;
 
     return (
      
       <Card className='movie-view'>
-        <Button className='text-left' onClick={() => onClick()} variant='light' block>Return Home</Button>
+        <Button className='text-left' onClick={() => history.push('/')} variant='light' block>Return Home</Button>
         <Card.Img className='movie-poster left' src={movie.ImagePath} />
         <Card.Body>
           <Card.Title className='movie-title'>{movie.Title}</Card.Title>
@@ -55,7 +55,7 @@ export class MovieView extends React.Component {
             <span className='value'>{movie.Director.Bio}</span>
           </Card.Text>
         </Card.Body>
-          <Button className='text-left' onClick={() => onClick()} variant='light' block>Return Home</Button>
+          <Button className='text-left' onClick={() => history.push('/')} variant='light' block>Return Home</Button>
       </Card>
     );
   }
@@ -75,5 +75,5 @@ MovieView.propTypes = {
       Bio: PropTypes.string.isRequired
     })
   }).isRequired,
-  onClick: PropTypes.func.isRequired
+  //onClick: PropTypes.func.isRequired
 };
