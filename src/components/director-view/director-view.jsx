@@ -54,4 +54,4 @@ DirectorView.PropTypes = {
     Birth: PropTypes.string.isRequired,
     Death: PropTypes.string.isRequired
   })
-}
+};
