@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import { Form, Button, Col } from 'react-bootstrap';
+import { Form, Button, Col, Link } from 'react-bootstrap';
 
 import './login-view.scss';
 
@@ -63,7 +63,9 @@ export function LoginView(props) {
           <Button type='submit' variant='secondary' onClick={handleSubmit}>Submit</Button>
         </Col>
         <Col md={6}>
-          <Button type='button' variance='link'>New to Movie Mania? Click here to register (Reminder: link this to log in registration page)</Button>
+          <Link to={'/register'}>
+            <Button type='button' variance='link'>New to Movie Mania? Click here to register</Button>
+          </Link>
         </Col>
       </Form.Row>
     </Form>
