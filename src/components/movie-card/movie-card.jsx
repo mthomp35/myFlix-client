@@ -18,7 +18,7 @@ export class MovieCard extends React.Component {
           <Card.Text className='movie-card_text'>{movie.Description}</Card.Text>
         </Card.Body>
         <Card.Footer className='text-center'>
-          <Link to={'/movies/${movie._id'}>
+          <Link to={`/movies/${movie._id}`}>
             <Button variant='Link'>Learn More</Button>
           </Link>
         </Card.Footer>
@@ -35,6 +35,5 @@ MovieCard.propTypes = {
     Genre: PropTypes.shape({
       Name: PropTypes.string.isRequired
     })
-  }).isRequired,
-  onClick: PropTypes.func.isRequired
+  }).isRequired
 };
