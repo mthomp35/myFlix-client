@@ -15,7 +15,7 @@ export function RegistrationView(props) {
   const [ confirmPassword, setConfirmPassword ] = useState('');
  
 
-  const handleRegistration = () => {
+  const handleRegister = () => {
     e.preventDefault();
     console.log(firstName, lastName, username, password, email, birthday);
     axios.post('https://best-flix-10922.herokuapp.com/users', {
@@ -121,7 +121,7 @@ export function RegistrationView(props) {
         />
       </Form.Group>
 
-      <Button type='submit' variant='secondary' onClick={handleRegistration}>Submit</Button>
+      <Button type='submit' variant='secondary' onClick={handleRegister}>Submit</Button>
     </Form>
   );
 }
