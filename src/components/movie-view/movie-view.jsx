@@ -55,6 +55,7 @@ export class MovieView extends React.Component {
             <span className='value'>{movie.Director.Bio}</span>
           </Card.Text>
         </Card.Body>
+          <Button>Add movie to favorites</Button>
           <Button className='text-left' onClick={() => history.push('/')} variant='light' block>Return Home</Button>
       </Card>
     );
