@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-//import { Row, Col } from 'react-bootstrap';
+import { Nav, Row, Col } from 'react-bootstrap';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import { RegistrationView } from '../registration-view/registration-view';
@@ -76,8 +76,7 @@ export class MainView extends React.Component {
   }
 
   render() {
-    //If the state isn't initialized, this will throw on runtime
-    //before the data is initially loaded
+    //If the state isn't initialized, this will throw on runtime before the data is initially loaded
     const { movies, user, message } = this.state;
 
     //before the movies have been loaded
@@ -88,7 +87,7 @@ export class MainView extends React.Component {
         <div className='main-view'>
           <Route exact path='/' render={() => {
             if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
-            return movies.map(m => <MovieCard key={m._id} movie={m}/>)
+            return movies.map(m => <MovieCard key={m._id} movie={m} user={user}/>)
             }
           }/>
           <Route path='/register' render={() => <RegistrationView/>} />
@@ -101,7 +100,7 @@ export class MainView extends React.Component {
             if (!movies.length) return <div className='main-view'>{message}</div>;
             return <DirectorView movies={movies.filter(m => m.Director.Name === match.params.name)} director={movies.find(m => m.Director.Name === match.params.name).Director}/>}
           } />
-          <Route path='/users/:Username' render={() => <ProfileView/>} />
+          <Route path='/users/:Username' render={() => <ProfileView user={user}/>} />
         </div>
       </Router>
     );
