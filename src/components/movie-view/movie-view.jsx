@@ -1,9 +1,8 @@
 import React from 'react';
-//import { MainView } from '../main-view/main-view';
 import PropTypes from 'prop-types';
 import { Card, Button } from 'react-bootstrap';
-
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 import './movie-view.scss';
 
@@ -13,6 +12,24 @@ export class MovieView extends React.Component {
     super();
 
     this.state = {};
+  }
+
+  // add movie to favorites
+  addFav(movie) {
+    const token = localStorage.getItem('token');
+    axios.post('https://best-flix-10922.herokuapp.com/users/'+localStorage.getItem('user')+'/Movies/'+movie._id, {
+      headers: { Authorization: `Bearer ${token}`}
+    })
+    .then(response => {
+      console.log(response);
+      alert(`${movie.Title} has been successfully added to your favorites.`);
+    })
+    .catch(e => {
+      console.log(e + ' error adding movie')
+      /*this.setState({
+        message: 'Something went wrong'
+      });*/
+    });
   }
 
   render() {
@@ -55,7 +72,7 @@ export class MovieView extends React.Component {
             <span className='value'>{movie.Director.Bio}</span>
           </Card.Text>
         </Card.Body>
-          <Button>Add movie to favorites</Button>
+          <Button onClick={() => this.addFav(movie)}>Add movie to favorites</Button>
           <Button className='text-left' onClick={() => history.push('/')} variant='light' block>Return Home</Button>
       </Card>
     );
