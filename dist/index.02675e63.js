@@ -27091,6 +27091,7 @@ try {
               return (
                 /*#__PURE__*/_react["default"].createElement(_movieView.MovieView, {
                   history: history,
+                  token: token,
                   movie: movies.find(function (m) {
                     return m._id === match.params.movieId;
                   })
@@ -46564,6 +46565,7 @@ try {
       value: // add movie to favorites
       function addFav(movie) {
         var token = localStorage.getItem('token');
+        console.log(token);
         _axios["default"].post('https://best-flix-10922.herokuapp.com/users/' + localStorage.getItem('user') + '/Movies/' + movie._id, {
           headers: {
             Authorization: ("Bearer ").concat(token)
@@ -46572,7 +46574,7 @@ try {
           console.log(response);
           alert(("").concat(movie.Title, " has been successfully added to your favorites."));
         })["catch"](function (e) {
-          console.log(e + ' error adding movie');
+          console.log(e + ' error adding movie ' + token);
         });
       }
     }, {

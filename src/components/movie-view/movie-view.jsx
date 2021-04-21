@@ -17,6 +17,7 @@ export class MovieView extends React.Component {
   // add movie to favorites
   addFav(movie) {
     const token = localStorage.getItem('token');
+    console.log(token);
     axios.post('https://best-flix-10922.herokuapp.com/users/'+localStorage.getItem('user')+'/Movies/'+movie._id, {
       headers: { Authorization: `Bearer ${token}`}
     })
@@ -25,7 +26,7 @@ export class MovieView extends React.Component {
       alert(`${movie.Title} has been successfully added to your favorites.`);
     })
     .catch(e => {
-      console.log(e + ' error adding movie')
+      console.log(e + ' error adding movie ' + token)
       /*this.setState({
         message: 'Something went wrong'
       });*/
