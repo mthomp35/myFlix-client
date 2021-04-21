@@ -21,6 +21,7 @@ export class MainView extends React.Component {
     this.state = {
       movies: [],
       user: null,
+      token: null,
       message: 'Loading'
     };
   }
@@ -30,7 +31,8 @@ export class MainView extends React.Component {
     if (accessToken !== null) {
       //Assign the result to the state
       this.setState({
-        user: localStorage.getItem('user')
+        user: localStorage.getItem('user'),
+        token: accessToken
       });
       this.getMovies(accessToken);
     }
@@ -40,7 +42,7 @@ export class MainView extends React.Component {
   onLoggedIn(authData) {
     console.log(authData);
     this.setState({
-      user: authData.user.Username
+      user: authData.user.Username,
     });
 
     localStorage.setItem('token', authData.token);
@@ -77,7 +79,7 @@ export class MainView extends React.Component {
 
   render() {
     //If the state isn't initialized, this will throw on runtime before the data is initially loaded
-    const { movies, user, message } = this.state;
+    const { movies, user, token, message } = this.state;
 
     //before the movies have been loaded
     /* If there is no user, the LoginView is rendered. If there is a user logged in, the user details are passed as a prop to the LoginView*/
@@ -100,7 +102,7 @@ export class MainView extends React.Component {
             if (!movies.length) return <div className='main-view'>{message}</div>;
             return <DirectorView movies={movies.filter(m => m.Director.Name === match.params.name)} director={movies.find(m => m.Director.Name === match.params.name).Director}/>}
           } />
-          <Route path='/users/:Username' render={() => <ProfileView user={user}/>} />
+          <Route path='/users/:Username' render={() => <ProfileView user={user} token={token} movies={movies}/>}/>
         </div>
       </Router>
     );

@@ -26980,6 +26980,7 @@ try {
       _this.state = {
         movies: [],
         user: null,
+        token: null,
         message: 'Loading'
       };
       return _this;
@@ -26991,7 +26992,8 @@ try {
         if (accessToken !== null) {
           // Assign the result to the state
           this.setState({
-            user: localStorage.getItem('user')
+            user: localStorage.getItem('user'),
+            token: accessToken
           });
           this.getMovies(accessToken);
         }
@@ -27043,7 +27045,7 @@ try {
       value: function render() {
         var _this3 = this;
         // If the state isn't initialized, this will throw on runtime before the data is initially loaded
-        var _this$state = this.state, movies = _this$state.movies, user = _this$state.user, message = _this$state.message;
+        var _this$state = this.state, movies = _this$state.movies, user = _this$state.user, token = _this$state.token, message = _this$state.message;
         // before the movies have been loaded
         /*If there is no user, the LoginView is rendered. If there is a user logged in, the user details are passed as a prop to the LoginView*/
         if (!movies.length) return (
@@ -27137,7 +27139,9 @@ try {
             render: function render() {
               return (
                 /*#__PURE__*/_react["default"].createElement(_profileView.ProfileView, {
-                  user: user
+                  user: user,
+                  token: token,
+                  movies: movies
                 })
               );
             }
@@ -46389,7 +46393,7 @@ try {
           /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Nav, null, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Nav.Item, null, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Nav.Link, {
             href: "/"
           }, "Home")), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Nav.Item, null, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Nav.Link, {
-            href: ("/users/:").concat(user)
+            href: ("/users/").concat(user)
           }, "Profile")), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Nav.Item, null, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Nav.Link, {
             eventKey: "link-2"
           }, "Loggout"))), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card, {
@@ -46457,6 +46461,7 @@ try {
   var _propTypes = _interopRequireDefault(require("prop-types"));
   var _reactBootstrap = require("react-bootstrap");
   var _reactRouterDom = require("react-router-dom");
+  var _axios = _interopRequireDefault(require("axios"));
   require("./movie-view.scss");
   function _interopRequireDefault(obj) {
     return obj && obj.__esModule ? obj : {
@@ -46555,8 +46560,25 @@ try {
       return _this;
     }
     _createClass(MovieView, [{
+      key: "addFav",
+      value: // add movie to favorites
+      function addFav(movie) {
+        var token = localStorage.getItem('token');
+        _axios["default"].post('https://best-flix-10922.herokuapp.com/users/' + localStorage.getItem('user') + '/Movies/' + movie._id, {
+          headers: {
+            Authorization: ("Bearer ").concat(token)
+          }
+        }).then(function (response) {
+          console.log(response);
+          alert(("").concat(movie.Title, " has been successfully added to your favorites."));
+        })["catch"](function (e) {
+          console.log(e + ' error adding movie');
+        });
+      }
+    }, {
       key: "render",
       value: function render() {
+        var _this2 = this;
         var _this$props = this.props, movie = _this$props.movie, history = _this$props.history;
         if (!movie) return null;
         return (
@@ -46612,7 +46634,11 @@ try {
             className: "label"
           }, "Director Bio: "), /*#__PURE__*/_react["default"].createElement("span", {
             className: "value"
-          }, movie.Director.Bio))), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, null, "Add movie to favorites"), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
+          }, movie.Director.Bio))), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
+            onClick: function onClick() {
+              return _this2.addFav(movie);
+            }
+          }, "Add movie to favorites"), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
             className: "text-left",
             onClick: function onClick() {
               return history.push('/');
@@ -46647,7 +46673,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","react-router-dom":"1PMSK","./movie-view.scss":"4iZ2Z","../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6fW6i"}],"4iZ2Z":[function() {},{}],"7HF27":[function(require,module,exports) {
+},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","react-router-dom":"1PMSK","./movie-view.scss":"4iZ2Z","../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6fW6i","axios":"7rA65"}],"4iZ2Z":[function() {},{}],"7HF27":[function(require,module,exports) {
 "use strict";
 var helpers = require("../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
@@ -47211,6 +47237,7 @@ try {
   var _react = _interopRequireDefault(require("react"));
   var _propTypes = _interopRequireDefault(require("prop-types"));
   var _reactBootstrap = require("react-bootstrap");
+  var _axios = _interopRequireDefault(require("axios"));
   function _interopRequireDefault(obj) {
     return obj && obj.__esModule ? obj : {
       "default": obj
@@ -47305,35 +47332,113 @@ try {
       _classCallCheck(this, ProfileView);
       _this = _super.call(this);
       _this.state = {
-        user: user
+        firstName: null,
+        lastName: '',
+        email: '',
+        dob: '',
+        username: '',
+        password: '',
+        favoriteMovies: [],
+        movies: [],
+        message: 'Loading'
       };
       return _this;
     }
     _createClass(ProfileView, [{
-      key: "getProfile",
-      value: function getProfile() {
-        axios.get('https://best-flix-10922.herokuapp.com/users/:Username', {
-          FirstName: firstName,
-          LastName: lastName,
-          Email: email,
-          Birth: birthday,
-          Username: username,
-          Password: password,
-          FavoriteMovies: []
+      key: "componentDidMount",
+      value: function componentDidMount() {
+        var accessToken = localStorage.getItem('token');
+        if (accessToken !== null) {
+          // Assign the result to the state
+          /*this.setState({
+          user: localStorage.getItem('user'),
+          token: accessToken
+          });*/
+          this.getUser(accessToken);
+        }
+      }
+    }, {
+      key: "getUser",
+      value: /*When a user successfully logs in, this function updates the `user` property in state to that particular user
+      onLoggedIn(authData) {
+      console.log(authData);
+      this.setState({
+      user: authData.user.Username,
+      });
+      
+      localStorage.setItem('token', authData.token);
+      localStorage.setItem('user', authData.user.Username);
+      this.getMovies(authData.token);
+      }
+      
+      getMovies(token) {
+      axios.get('https://best-flix-10922.herokuapp.com/movies', {
+      headers: { Authorization: `Bearer ${token}`}
+      })
+      .then(response => {
+      // Assign the result to the state
+      this.setState({
+      movies: response.data
+      });
+      })
+      .catch(function (error) {
+      console.log(error);
+      this.setState({
+      message: 'Something went wrong'
+      });
+      });
+      }*/
+      // get user information based on username stored in local storage
+      function getUser(token) {
+        var _this2 = this;
+        var url = 'https://best-flix-10922.herokuapp.com/users/' + localStorage.getItem('user');
+        _axios["default"].get(url, {
+          headers: {
+            Authorization: ("Bearer ").concat(token)
+          }
         }).then(function (response) {
-          var data = response.data;
-          console.log(data);
-          window.open('/', '_self');
+          console.log(response);
+          _this2.setState({
+            firstName: response.data.FirstName,
+            lastName: response.data.LastName,
+            email: response.data.Email,
+            dob: response.data.Birth,
+            username: response.data.Username,
+            password: response.data.Password,
+            favoriteMovies: response.data.FavoriteMovies
+          });
         })["catch"](function (e) {
-          console.log('error getting user data');
+          (console.log(e + ' error getting user data'), _this2.setState({
+            message: 'Something went wrong'
+          }));
+        });
+      }
+    }, {
+      key: "removeFav",
+      value: // remove movie from favorites
+      function removeFav(movies) {
+        var _this3 = this;
+        var token = localStorage.getItem('token');
+        _axios["default"]["delete"]('https://best-flix-10922.herokuapp.com/users/' + localStorage.getItem('user') + '/Movies/' + movies._id, {
+          headers: {
+            Authorization: ("Bearer ").concat(token)
+          }
+        }).then(function (response) {
+          console.log(response);
+          alert(("").concat(movies.Title, " has been successfully removed from your favorites."));
+          _this3.componentDidMount();
+        })["catch"](function (e) {
+          (console.log(e + ' error deleting movie'), _this3.setState({
+            message: 'Something went wrong'
+          }));
         });
       }
     }, {
       key: "render",
       value: function render() {
-        var user = this.props.user;
+        var _this$state = this.state, firstName = _this$state.firstName, lastName = _this$state.lastName, email = _this$state.email, dob = _this$state.dob, username = _this$state.username, password = _this$state.password, favoriteMovies = _this$state.favoriteMovies, movies = _this$state.movies;
         return (
-          /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("span", null, "First Name: "), /*#__PURE__*/_react["default"].createElement("span", null, user.FirstName)), /*#__PURE__*/_react["default"].createElement("div", null, "Change your password", /*#__PURE__*/_react["default"].createElement("div", null, "Current password:"), /*#__PURE__*/_react["default"].createElement("div", null, "New password:"), /*#__PURE__*/_react["default"].createElement("div", null, "Re-enter new password:")))
+          /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("span", null, "First Name: ", firstName)), /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("span", null, "Username: ", username)), /*#__PURE__*/_react["default"].createElement("div", null, "Change your password", /*#__PURE__*/_react["default"].createElement("div", null, "Current password:"), /*#__PURE__*/_react["default"].createElement("div", null, "New password:"), /*#__PURE__*/_react["default"].createElement("div", null, "Re-enter new password:")), /*#__PURE__*/_react["default"].createElement("div", null, movies.ImagePath))
         );
       }
     }]);
@@ -47346,6 +47451,6 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6fW6i"}],"3X8QW":[function() {},{}],"5iJih":[function() {},{}]},["1j6wU","68WUB","1DVjT"], "1DVjT", "parcelRequire427e")
+},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","axios":"7rA65","../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6fW6i"}],"3X8QW":[function() {},{}],"5iJih":[function() {},{}]},["1j6wU","68WUB","1DVjT"], "1DVjT", "parcelRequire427e")
 
 //# sourceMappingURL=index.02675e63.js.map
