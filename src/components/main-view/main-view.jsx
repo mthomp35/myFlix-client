@@ -102,7 +102,7 @@ export class MainView extends React.Component {
             if (!movies.length) return <div className='main-view'>{message}</div>;
             return <DirectorView movies={movies.filter(m => m.Director.Name === match.params.name)} director={movies.find(m => m.Director.Name === match.params.name).Director}/>}
           } />
-          <Route path='/users/:Username' render={() => <ProfileView user={user} token={token} movies={movies}/>}/>
+          <Route path='/users/:Username' render={() => <ProfileView user={user} token={token} movies={movies} history={history}/>}/>
         </div>
       </Router>
     );

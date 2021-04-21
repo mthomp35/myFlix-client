@@ -1,0 +1,6 @@
+{
+  "diffEditor.wordWrap": "on",
+  "html.format.wrapLineLength": 80,
+  "editor.wordWrap": "on",
+  "editor.wrappingIndent": "indent"
+}

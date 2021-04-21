@@ -27142,7 +27142,8 @@ try {
                 /*#__PURE__*/_react["default"].createElement(_profileView.ProfileView, {
                   user: user,
                   token: token,
-                  movies: movies
+                  movies: movies,
+                  history: history
                 })
               );
             }
@@ -46573,6 +46574,7 @@ try {
         }).then(function (response) {
           console.log(response);
           alert(("").concat(movie.Title, " has been successfully added to your favorites."));
+          window.open('/', '_self');
         })["catch"](function (e) {
           console.log(e + ' error adding movie ' + token);
         });
@@ -46675,7 +46677,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","react-router-dom":"1PMSK","./movie-view.scss":"4iZ2Z","../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6fW6i","axios":"7rA65"}],"4iZ2Z":[function() {},{}],"7HF27":[function(require,module,exports) {
+},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","react-router-dom":"1PMSK","axios":"7rA65","./movie-view.scss":"4iZ2Z","../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6fW6i"}],"4iZ2Z":[function() {},{}],"7HF27":[function(require,module,exports) {
 "use strict";
 var helpers = require("../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
@@ -47245,6 +47247,33 @@ try {
       "default": obj
     };
   }
+  function _toConsumableArray(arr) {
+    return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();
+  }
+  function _nonIterableSpread() {
+    throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+  }
+  function _unsupportedIterableToArray(o, minLen) {
+    if (!o) return;
+    if (typeof o === "string") return _arrayLikeToArray(o, minLen);
+    var n = Object.prototype.toString.call(o).slice(8, -1);
+    if (n === "Object" && o.constructor) n = o.constructor.name;
+    if (n === "Map" || n === "Set") return Array.from(o);
+    if (n === "Arguments" || (/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/).test(n)) return _arrayLikeToArray(o, minLen);
+  }
+  function _iterableToArray(iter) {
+    if (typeof Symbol !== "undefined" && (Symbol.iterator in Object(iter))) return Array.from(iter);
+  }
+  function _arrayWithoutHoles(arr) {
+    if (Array.isArray(arr)) return _arrayLikeToArray(arr);
+  }
+  function _arrayLikeToArray(arr, len) {
+    if (len == null || len > arr.length) len = arr.length;
+    for (var i = 0, arr2 = new Array(len); i < len; i++) {
+      arr2[i] = arr[i];
+    }
+    return arr2;
+  }
   function _classCallCheck(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
       throw new TypeError("Cannot call a class as a function");
@@ -47326,14 +47355,30 @@ try {
     };
     return _getPrototypeOf(o);
   }
+  function _defineProperty(obj, key, value) {
+    if ((key in obj)) {
+      Object.defineProperty(obj, key, {
+        value: value,
+        enumerable: true,
+        configurable: true,
+        writable: true
+      });
+    } else {
+      obj[key] = value;
+    }
+    return obj;
+  }
   var ProfileView = /*#__PURE__*/(function (_React$Component) {
     _inherits(ProfileView, _React$Component);
     var _super = _createSuper(ProfileView);
     function ProfileView() {
       var _this;
       _classCallCheck(this, ProfileView);
-      _this = _super.call(this);
-      _this.state = {
+      for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
+      }
+      _this = _super.call.apply(_super, [this].concat(args));
+      _defineProperty(_assertThisInitialized(_this), "state", {
         firstName: null,
         lastName: '',
         email: '',
@@ -47341,14 +47386,14 @@ try {
         username: '',
         password: '',
         favoriteMovies: [],
-        movies: [],
         message: 'Loading'
-      };
+      });
       return _this;
     }
     _createClass(ProfileView, [{
       key: "componentDidMount",
-      value: function componentDidMount() {
+      value: // }
+      function componentDidMount() {
         var accessToken = localStorage.getItem('token');
         if (accessToken !== null) {
           // Assign the result to the state
@@ -47364,7 +47409,7 @@ try {
       value: // get user information based on username stored in local storage
       function getUser(token) {
         var _this2 = this;
-        var url = 'https://best-flix-10922.herokuapp.com/users/' + localStorage.getItem('user');
+        var url = ("https://best-flix-10922.herokuapp.com/users/").concat(this.props.user);
         _axios["default"].get(url, {
           headers: {
             Authorization: ("Bearer ").concat(token)
@@ -47382,36 +47427,64 @@ try {
           });
         })["catch"](function (e) {
           (console.log(e + ' error getting user data'), _this2.setState({
-            message: 'Something went wrong'
+            message: 'Something went wrong while retrieving your data.'
           }));
         });
       }
     }, {
       key: "removeFav",
-      value: // remove movie from favorites
-      function removeFav(movies) {
+      value: // remove movie from favorites - watchout -- if user can change username then code will break; create Config file for url vs hardcoding url, must export default to use it
+      function removeFav(movie) {
         var _this3 = this;
         var token = localStorage.getItem('token');
-        _axios["default"]["delete"]('https://best-flix-10922.herokuapp.com/users/' + localStorage.getItem('user') + '/Movies/' + movies._id, {
+        _axios["default"]["delete"]('https://best-flix-10922.herokuapp.com/users/' + this.props.user + '/Movies/' + movie._id, {
           headers: {
             Authorization: ("Bearer ").concat(token)
           }
         }).then(function (response) {
           console.log(response);
-          alert(("").concat(movies.Title, " has been successfully removed from your favorites."));
-          _this3.componentDidMount();
+          alert(("").concat(movie.Title, " has been successfully removed from your favorites."));
+          // clone of favorite movies. the "..." spread operator allowing you to clone an array
+          var tempArray = _toConsumableArray(_this3.state.favoriteMovies);
+          tempArray.splice(tempArray.indexOf(movie._id), 1);
+          // all array methods either mutate actual array or create new array
+          _this3.setState({
+            favoriteMovies: tempArray
+          });
         })["catch"](function (e) {
           (console.log(e + ' error deleting movie'), _this3.setState({
-            message: 'Something went wrong'
+            message: 'Sorry about that! Something went wrong while trying to remove a movie from your favorites.'
           }));
         });
       }
     }, {
       key: "render",
       value: function render() {
-        var _this$state = this.state, firstName = _this$state.firstName, lastName = _this$state.lastName, email = _this$state.email, dob = _this$state.dob, username = _this$state.username, password = _this$state.password, favoriteMovies = _this$state.favoriteMovies, movies = _this$state.movies;
+        var _this4 = this;
+        var _this$state = this.state, firstName = _this$state.firstName, lastName = _this$state.lastName, email = _this$state.email, dob = _this$state.dob, username = _this$state.username, password = _this$state.password, favoriteMovies = _this$state.favoriteMovies, history = _this$state.history;
+        var movies = this.props.movies;
+        var favMovies = movies.filter(function (movie) {
+          return favoriteMovies.includes(movie._id);
+        });
+        console.log(movies);
         return (
-          /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("span", null, "First Name: ", firstName)), /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("span", null, "Username: ", username)), /*#__PURE__*/_react["default"].createElement("div", null, "Change your password", /*#__PURE__*/_react["default"].createElement("div", null, "Current password:"), /*#__PURE__*/_react["default"].createElement("div", null, "New password:"), /*#__PURE__*/_react["default"].createElement("div", null, "Re-enter new password:")), /*#__PURE__*/_react["default"].createElement("div", null, movies.ImagePath))
+          /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("span", null, "First Name: ", firstName)), /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("span", null, "Username: ", username)), /*#__PURE__*/_react["default"].createElement("div", null, "Change your password", /*#__PURE__*/_react["default"].createElement("div", null, "Current password:"), /*#__PURE__*/_react["default"].createElement("div", null, "New password:"), /*#__PURE__*/_react["default"].createElement("div", null, "Re-enter new password:")), /*#__PURE__*/_react["default"].createElement("div", null, " Favorite Movies:", favMovies.map(function (fav, index) {
+            return (
+              /*#__PURE__*/_react["default"].createElement("div", {
+                key: index
+              }, /*#__PURE__*/_react["default"].createElement("img", {
+                src: fav.ImagePath
+              }), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
+                onClick: function onClick() {
+                  return _this4.removeFav(fav);
+                }
+              }, "Remove movie"))
+            );
+          })), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
+            onClick: function onClick() {
+              return history.push('/');
+            }
+          }, "Go back"))
         );
       }
     }]);
