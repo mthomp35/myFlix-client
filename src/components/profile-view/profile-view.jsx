@@ -61,14 +61,14 @@ export class ProfileView extends React.Component {
   // remove movie from favorites - watchout -- if user can change username then code will break; create Config file for url vs hardcoding url, must export default to use it
   removeFav(movie) {
     const token = localStorage.getItem('token');
-    axios.delete('https://best-flix-10922.herokuapp.com/users/'+this.props.user+'/Movies/'+movie._id, {
+    axios.delete(`https://best-flix-10922.herokuapp.com/users/${this.props.user}/Movies/${movie._id}`, {
       headers: { Authorization: `Bearer ${token}`}
     })
     .then(response => {
       console.log(response);
       alert(`${movie.Title} has been successfully removed from your favorites.`);
 
-      // clone of favorite movies. the "..." spread operator allowing you to clone an array
+      // clone of favorite movies. the "..." spread operator allows you to clone an array
       let tempArray = [...this.state.favoriteMovies];
       tempArray.splice(tempArray.indexOf(movie._id), 1); //all array methods either mutate actual array or create new array
       this.setState({
