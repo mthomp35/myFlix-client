@@ -6,7 +6,7 @@ import axios from 'axios';
 export class ProfileView extends React.Component {
   //constructor() {
     //super();
-    // must declare state without this. but must refer to state as this.state
+    // must declare state without "this." but must refer to state as "this.state"
     state = {
       firstName: null,
       lastName: '',
