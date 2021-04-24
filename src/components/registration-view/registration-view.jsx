@@ -136,5 +136,5 @@ RegistrationView.propTypes = {
     password: PropTypes.string.isRequired,
     confirmPassword: PropTypes.string.isRequired
   }),
-  onRegister: PropTypes.func.isRequired
+  handleRegister: PropTypes.func.isRequired
 };

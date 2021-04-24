@@ -27048,13 +27048,9 @@ try {
         var _this$state = this.state, movies = _this$state.movies, user = _this$state.user, token = _this$state.token, message = _this$state.message;
         // before the movies have been loaded
         /*If there is no user, the LoginView is rendered. If there is a user logged in, the user details are passed as a prop to the LoginView*/
-        if (!movies.length) return (
-          /*#__PURE__*/_react["default"].createElement("div", {
-            className: "main-view"
-          }, message)
-        );
+        // if (!movies.length) return <div className='main-view'>{message}</div>;
         return (
-          /*#__PURE__*/_react["default"].createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_react["default"].createElement("div", {
+          /*#__PURE__*/_react["default"].createElement(_reactRouterDom.BrowserRouter, {
             className: "main-view"
           }, /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Route, {
             exact: true,
@@ -27147,7 +27143,7 @@ try {
                 })
               );
             }
-          })))
+          }))
         );
       }
     }]);
@@ -45901,7 +45897,7 @@ try {
       password: _propTypes["default"].string.isRequired,
       confirmPassword: _propTypes["default"].string.isRequired
     }),
-    onRegister: _propTypes["default"].func.isRequired
+    handleRegister: _propTypes["default"].func.isRequired
   };
   var _c;
   $RefreshReg$(_c, "RegistrationView");
@@ -46205,7 +46201,7 @@ try {
         var data = response.data;
         props.onLoggedIn(data);
       })["catch"](function (e) {
-        console.log('User does not exist');
+        console.log(e + 'User does not exist');
       });
     };
     return (
@@ -47395,6 +47391,7 @@ try {
       value: // }
       function componentDidMount() {
         var accessToken = localStorage.getItem('token');
+        // let accessToken = this.props.token;
         if (accessToken !== null) {
           // Assign the result to the state
           /*this.setState({
@@ -47437,14 +47434,14 @@ try {
       function removeFav(movie) {
         var _this3 = this;
         var token = localStorage.getItem('token');
-        _axios["default"]["delete"]('https://best-flix-10922.herokuapp.com/users/' + this.props.user + '/Movies/' + movie._id, {
+        _axios["default"]["delete"](("https://best-flix-10922.herokuapp.com/users/").concat(this.props.user, "/Movies/").concat(movie._id), {
           headers: {
             Authorization: ("Bearer ").concat(token)
           }
         }).then(function (response) {
           console.log(response);
           alert(("").concat(movie.Title, " has been successfully removed from your favorites."));
-          // clone of favorite movies. the "..." spread operator allowing you to clone an array
+          // clone of favorite movies. the "..." spread operator allows you to clone an array
           var tempArray = _toConsumableArray(_this3.state.favoriteMovies);
           tempArray.splice(tempArray.indexOf(movie._id), 1);
           // all array methods either mutate actual array or create new array
