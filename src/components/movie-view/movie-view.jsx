@@ -18,7 +18,7 @@ export class MovieView extends React.Component {
   addFav(movie) {
     const token = localStorage.getItem('token');
     console.log(token);
-    axios.post('https://best-flix-10922.herokuapp.com/users/'+localStorage.getItem('user')+'/Movies/'+movie._id, {
+    axios.post(`https://best-flix-10922.herokuapp.com/users/${localStorage.getItem('user')}/Movies/${movie._id}`, {
       headers: { Authorization: `Bearer ${token}`}
     })
     .then(response => {
