@@ -56,7 +56,7 @@ export class MainView extends React.Component {
     });
     localStorage.removeItem('token');
     localStorage.removeItem('user');
-    alert('Thanks for visiting! You have successfully logged out.')
+    alert('Thanks for visiting Movie Mania! You have successfully logged out.')
   }
 
   getMovies(token) {
