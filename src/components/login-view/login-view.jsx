@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import { Form, Button, Col, Link } from 'react-bootstrap';
+import { Form, Button, Col } from 'react-bootstrap';
 
 import './login-view.scss';
 
