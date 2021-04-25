@@ -35,12 +35,11 @@ export class ProfileView extends React.Component {
 
   // get user information based on username stored in local storage
   getUser(token) {
-    const url = `https://best-flix-10922.herokuapp.com/users/${this.props.user}`;
-    axios.get(url, {
+    axios.get(`https://best-flix-10922.herokuapp.com/users/${this.props.user}`, {
       headers: { Authorization: `Bearer ${token}`}
     })
     .then(response => {
-      console.log(response);
+      console.log(response); // should I pull this as one prop, then pull out the pieces when used?
       this.setState({
         firstName: response.data.FirstName,
         lastName: response.data.LastName,
@@ -85,7 +84,12 @@ export class ProfileView extends React.Component {
   }
 
   editProfile() {
-
+    axios.post(`https://best-flix-10922.herokuapp.com/users/${this.props.user}`, {
+      headers: { Authorization: `Bearer ${token}`}
+    })
+    .then(response => {
+      console.log(response);
+    })
   }
 
   render() {
