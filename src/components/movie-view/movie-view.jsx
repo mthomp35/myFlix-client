@@ -27,10 +27,10 @@ export class MovieView extends React.Component {
       window.open('/', '_self');
     })
     .catch(e => {
-      console.log(e + ' error adding movie ' + token)
-      /*this.setState({
-        message: 'Something went wrong'
-      });*/
+      console.log(`${e} error adding ${movie._id} to ${token}`);
+      this.setState({
+        message: 'Uh oh! Something went wrong! Please try again later.'
+      });
     });
   }
 
