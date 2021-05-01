@@ -12,17 +12,6 @@ export class MovieCard extends React.Component {
 
     return (
       <div>
-        <Nav>
-          <Nav.Item>
-            <Nav.Link href='/'>Home</Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link href={`/users/${user}`}>Profile</Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link eventKey="link-2">Loggout</Nav.Link>
-          </Nav.Item>
-        </Nav>
         <Card bg='light' className='movie-card'>
           <Card.Img variant='top' src={movie.ImagePath} />  
           <Card.Body>
