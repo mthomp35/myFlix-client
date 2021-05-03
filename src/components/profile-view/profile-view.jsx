@@ -4,21 +4,18 @@ import { Nav, Form, Button } from 'react-bootstrap';
 import axios from 'axios';
 
 export class ProfileView extends React.Component {
-  //constructor() {
-    //super();
     // must declare state without "this." but must refer to state as "this.state"
     state = {
-      firstName: null,
+      firstName: '',
       lastName: '',
       email: '',
       dob: '',
       username: '',
       password: '',
+      confirmPassword: 'bettygotskills23',
       favoriteMovies: [],
       message: 'Loading'
     };
-
-  //}
 
   componentDidMount(){
     let accessToken = localStorage.getItem('token');
@@ -35,10 +32,12 @@ export class ProfileView extends React.Component {
 
   // get user information based on username stored in local storage
   getUser(token) {
+    console.log('this.props.user', this.props.user);
     axios.get(`https://best-flix-10922.herokuapp.com/users/${this.props.user}`, {
       headers: { Authorization: `Bearer ${token}`}
     })
     .then(response => {
+      console.log('this is getuser');
       console.log(response); // should I pull this as one prop, then pull out the pieces when used?
       this.setState({
         firstName: response.data.FirstName,
@@ -51,9 +50,9 @@ export class ProfileView extends React.Component {
       });
     })
     .catch(e => {
-      console.log(e + ' error getting user data'),
+      console.log(e),
       this.setState({
-        message: 'Something went wrong while retrieving your data.'
+        message: 'We were unable to load your information.'
       });
     });
   }
@@ -76,7 +75,7 @@ export class ProfileView extends React.Component {
       });
     })
     .catch(e => {
-      console.log(e + ' error deleting movie'),
+      console.log(e),
       this.setState({
         message: 'Sorry about that! Something went wrong while trying to remove a movie from your favorites.'
       });
@@ -84,31 +83,60 @@ export class ProfileView extends React.Component {
   }
 
   editProfile() {
+    //add something to ask if user is sure they want to update their profile
     axios.post(`https://best-flix-10922.herokuapp.com/users/${this.props.user}`, {
       headers: { Authorization: `Bearer ${token}`}
     })
     .then(response => {
       console.log(response);
+      alert('Great work! You have successfully updated your profile!');
+      // send email to user saying changes have been made to their profile. If they made them, then disregard. otherwise contact us and change their password
+      //do I need to set states to null?
     })
+    .catch(e => {
+      console.log(e);
+      this.setState({
+        message: 'Uh oh! Something went wrong when we tried to update your profile.'
+      });
+    });
+  }
+
+  deleteUser() {
+    //We hate to see you go but we understand. You are about to delete your account. All of your information will be lost. are you sure you want to delete your account?
+    axios.delete(`https://best-flix-10922.herokuapp.com/users/${this.props.user}`, {
+      headers: { Authorization: `Bearer ${token}`}
+    })
+    .then(response => {
+      console.log(response);
+      alert('Your account has been successfully deleted');
+      window.open('/register', '_self');
+    })
+    .catch(e => {
+      console.log(e);
+      this.setState({
+        message: 'Uh oh! Something went wrong when we tried to delete your profile. Please try again or contact us if the issue persists'
+      });
+    });
   }
 
   render() {
-    const { firstName, lastName, email, dob, username, password, favoriteMovies, history } = this.state;
+    const { firstName, lastName, email, dob, username, password, confirmPassword, favoriteMovies, history, editProfile } = this.state;
     const { movies } = this.props;
     const favMovies = movies.filter(movie => favoriteMovies.includes(movie._id));
     console.log(movies);
+    console.log(username);
 
     return(
       <div>
         <Form className='update-profile'>
-          <p>Edit ${username} profile information.</p>
+          <p>{`Hi ${firstName}}! Enter new details below to edit your profile.`}</p>
           <Form.Group controlId='formFirstName'>
             <Form.Label>First Name:</Form.Label>
             <Form.Control
               type='text'
               value={firstName}
               onChange={e => setFirstName(e.target.value)}
-              placeholder={this.props.firstName}
+              //placeholder={firstName}
             />
           </Form.Group>
       
@@ -118,7 +146,7 @@ export class ProfileView extends React.Component {
               type='text'
               value={lastName}
               onChange={e => setLastName(e.target.value)}
-              placeholder='Enter Last Name'
+              placeholder=''
               //srOnly='Enter Last Name'
             />
           </Form.Group>
@@ -138,7 +166,7 @@ export class ProfileView extends React.Component {
             <Form.Label>Birthday:</Form.Label>
             <Form.Control
               type='text'
-              value={birthday}
+              value={dob}
               onChange={e => setBirthday(e.target.value)}
               placeholder='Enter Date of Birth'
               //srOnly='Enter date of birth (month/day/year)'
@@ -183,7 +211,7 @@ export class ProfileView extends React.Component {
             />
           </Form.Group>
 
-          <Button type='submit' variant='secondary' onClick={handleRegister}>Submit</Button>
+          <Button type='submit' variant='secondary' onClick={editProfile}>Submit</Button>
         </Form>
         <div>Favorite Movies:
           {favMovies.map((fav, index) => {
@@ -197,6 +225,7 @@ export class ProfileView extends React.Component {
           )}
         </div>
         <Button onClick={() => history.push('/')}>Go back</Button>
+        <Button onClick={() => this.deleteUser()}>Delete account</Button>
       </div>
     );
   }
