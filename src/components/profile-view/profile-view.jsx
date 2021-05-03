@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Nav, Form, Button } from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
 import axios from 'axios';
 
 export class ProfileView extends React.Component {
