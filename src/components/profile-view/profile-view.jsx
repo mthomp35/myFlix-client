@@ -32,7 +32,7 @@ export class ProfileView extends React.Component {
 
   // get user information based on username stored in local storage
   getUser(token) {
-    console.log('this.props.user', this.props.user);
+    console.log('this.props.user', this.props.user); //if I do it this way, I have to make the user log back in - can't navigate away and back unless I use localStorage
     axios.get(`https://best-flix-10922.herokuapp.com/users/${this.props.user}`, {
       headers: { Authorization: `Bearer ${token}`}
     })
