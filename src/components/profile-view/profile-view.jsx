@@ -33,7 +33,7 @@ export class ProfileView extends React.Component {
   // get user information based on username stored in local storage
   getUser(token) {
     console.log('this.props.user', this.props.user); //if I do it this way, I have to make the user log back in - can't navigate away and back unless I use localStorage
-    axios.get(`https://best-flix-10922.herokuapp.com/users/${this.props.user}`, {
+    axios.get(`https://best-flix-10922.herokuapp.com/users/${localStorage.user}`, {
       headers: { Authorization: `Bearer ${token}`}
     })
     .then(response => {
@@ -84,7 +84,7 @@ export class ProfileView extends React.Component {
 
   editProfile() {
     //add something to ask if user is sure they want to update their profile
-    axios.post(`https://best-flix-10922.herokuapp.com/users/${this.props.user}`, {
+    axios.post(`https://best-flix-10922.herokuapp.com/users/${username}`, {
       headers: { Authorization: `Bearer ${token}`}
     })
     .then(response => {
@@ -103,7 +103,7 @@ export class ProfileView extends React.Component {
 
   deleteUser() {
     //We hate to see you go but we understand. You are about to delete your account. All of your information will be lost. are you sure you want to delete your account?
-    axios.delete(`https://best-flix-10922.herokuapp.com/users/${this.props.user}`, {
+    axios.delete(`https://best-flix-10922.herokuapp.com/users/${username}`, {
       headers: { Authorization: `Bearer ${token}`}
     })
     .then(response => {
@@ -158,7 +158,6 @@ export class ProfileView extends React.Component {
               value={email}
               onChange={e => setEmail(e.target.value)}
               placeholder='Enter Email'
-              //srOnly='Enter email address'
             />
           </Form.Group>
           
@@ -169,7 +168,7 @@ export class ProfileView extends React.Component {
               value={dob}
               onChange={e => setBirthday(e.target.value)}
               placeholder='Enter Date of Birth'
-              //srOnly='Enter date of birth (month/day/year)'
+              pattern='Enter date of birth (month/day/year)'
             />
           </Form.Group>
 
@@ -180,7 +179,6 @@ export class ProfileView extends React.Component {
               value={username}
               onChange={e => setUsername(e.target.value)}
               placeholder='Enter Username'
-              //srOnly='Enter username'
             />
           </Form.Group>
 
@@ -192,7 +190,6 @@ export class ProfileView extends React.Component {
               aria-describedby='passwordHelpBlock'
               onChange={e => setPassword(e.target.value)}
               placeholder='Enter Password'
-              //srOnly='Enter password'
             />
             <Form.Text id='passwordHelpBlock'>
               Password must contain: At least 10 characters, a combination of uppercase and lowercase letters (A-z), 
@@ -207,7 +204,7 @@ export class ProfileView extends React.Component {
               value={confirmPassword}
               onChange={e => setConfirmPassword(e.target.value)}
               placeholder='Confirm Password'
-              //srOnly='Re-enter password to confirm'
+              sr_only='Re-enter password to confirm'
             />
           </Form.Group>
 
