@@ -42,11 +42,12 @@ export class MainView extends React.Component {
   onLoggedIn(authData) {
     console.log(authData);
     this.setState({
-      user: authData.user.Username,
+      user: authData.user.Username
     });
 
     localStorage.setItem('token', authData.token);
     localStorage.setItem('user', authData.user.Username);
+    console.log('user', this.state.user);
     this.getMovies(authData.token);
   }
 
@@ -56,7 +57,8 @@ export class MainView extends React.Component {
     });
     localStorage.removeItem('token');
     localStorage.removeItem('user');
-    alert('Thanks for visiting Movie Mania! You have successfully logged out.')
+    alert('Thanks for visiting Movie Mania! You have successfully logged out.');
+    window.open('/', '_self');
   }
 
   getMovies(token) {
@@ -86,7 +88,17 @@ export class MainView extends React.Component {
     //if (!movies.length) return <div className='main-view'>{message}</div>;
     return (
       <Router className='main-view'>
-        
+         <Nav variant='light'/* how to add activeKey='' that changes with the page*/>
+          <Nav.Item>
+            <Nav.Link href='/'>Home</Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link href={`/users/${user}`}>Profile</Nav.Link>
+          </Nav.Item>
+          <Nav.Item> 
+            <Nav.Link className='justify-content-end' onClick={() => this.onLogOut()}>Log Out</Nav.Link>
+          </Nav.Item>
+        </Nav>
         <Route exact path='/' render={() => {
             if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
             return movies.map(m => <MovieCard key={m._id} movie={m} user={user}/>)
@@ -102,7 +114,7 @@ export class MainView extends React.Component {
             if (!movies.length) return <div className='main-view'>{message}</div>;
             return <DirectorView movies={movies.filter(m => m.Director.Name === match.params.name)} director={movies.find(m => m.Director.Name === match.params.name).Director}/>}
           } />
-          <Route path='/users/:Username' render={() => <ProfileView user={user} token={token} movies={movies} history={history}/>}/>
+          <Route path='/users/:Username' render={(history) => <ProfileView user={user} token={token} movies={movies} history={history}/>}/>
         
       </Router>
     );
