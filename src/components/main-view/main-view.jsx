@@ -112,17 +112,20 @@ export class MainView extends React.Component {
           }}/>
           
           <Route path='/movies/:movieId' render={({match, history}) => {
+            if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
             return <Col md={8}>
               <MovieView history={history} token={token} movie={movies.find(m => m._id === match.params.movieId)}/>
               </Col>
             }} />
           
           <Route path='/genre/:name' render={({match, history}) => {
+            if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
             if (!movies.length) return <div className='main-view'>{message}</div>;
             return <GenreView history={history} genre={movies.find(m => m.Genre.Name === match.params.name).Genre}/>}
           } />
           
           <Route path='/directors/:name' render={({match, history}) => {
+            if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
             if (!movies.length) return <div className='main-view'>{message}</div>;
             return <Col md={8}>
               <DirectorView history={history} movies={movies.filter(m => m.Director.Name === match.params.name)} director={movies.find(m => m.Director.Name === match.params.name).Director}/>
