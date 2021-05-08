@@ -6,25 +6,25 @@ import axios from 'axios';
 import './registration-view.scss';
 
 export function RegistrationView(props) {
-  const [ firstName, setFirstName ] = useState('');
-  const [ lastName, setLastName ] = useState('');
-  const [ email, setEmail ] = useState('');
-  const [ birthday , setBirthday ] = useState('');
-  const [ username, setUsername ] = useState('');
-  const [ password, setPassword ] = useState('');
-  const [ confirmPassword, setConfirmPassword ] = useState('');
+  const [ FirstName, setFirstName ] = useState('');
+  const [ LastName, setLastName ] = useState('');
+  const [ Email, setEmail ] = useState('');
+  const [ DOB , setDOB ] = useState('');
+  const [ Username, setUsername ] = useState('');
+  const [ Password, setPassword ] = useState('');
+  const [ ConfirmPassword, setConfirmPassword ] = useState('');
  
 
   const handleRegister = () => {
     e.preventDefault();
-    console.log(firstName, lastName, username, password, email, birthday);
+    console.log(FirstName, LastName, Username, Password, Email, DOB);
     axios.post('https://best-flix-10922.herokuapp.com/users', {
-      FirstName: firstName,
-      LastName: lastName,
-      Email: email,
-      Birth: birthday,
-      Username: username,
-      Password: password
+      FirstName: FirstName,
+      LastName: LastName,
+      Email: Email,
+      Birth: DOB,
+      Username: Username,
+      Password: Password
     })
     .then(response => {
       const data = response.data;
@@ -44,7 +44,7 @@ export function RegistrationView(props) {
         <Form.Label>First Name:</Form.Label>
         <Form.Control
           type='text'
-          value={firstName}
+          value={FirstName}
           onChange={e => setFirstName(e.target.value)}
           placeholder='Enter First Name'
         />
@@ -54,7 +54,7 @@ export function RegistrationView(props) {
         <Form.Label>Last Name:</Form.Label>
         <Form.Control
           type='text'
-          value={lastName}
+          value={LastName}
           onChange={e => setLastName(e.target.value)}
           placeholder='Enter Last Name'
           //srOnly='Enter Last Name'
@@ -64,20 +64,20 @@ export function RegistrationView(props) {
       <Form.Group controlId='formEmail'>
         <Form.Label>Email:</Form.Label>
         <Form.Control
-          type='email'
-          value={email}
+          type='Email'
+          value={Email}
           onChange={e => setEmail(e.target.value)}
           placeholder='Enter Email'
           //srOnly='Enter email address'
         />
       </Form.Group>
       
-      <Form.Group controlId='formBirthday'>
+      <Form.Group controlId='formDOB'>
         <Form.Label>Birthday:</Form.Label>
         <Form.Control
           type='text'
-          value={birthday}
-          onChange={e => setBirthday(e.target.value)}
+          value={DOB}
+          onChange={e => setDOB(e.target.value)}
           placeholder='Enter Date of Birth'
           //srOnly='Enter date of birth (month/day/year)'
         />
@@ -87,18 +87,18 @@ export function RegistrationView(props) {
         <Form.Label>Username:</Form.Label>
         <Form.Control
           type='text'
-          value={username}
+          value={Username}
           onChange={e => setUsername(e.target.value)}
           placeholder='Enter Username'
-          //srOnly='Enter username'
+          //srOnly='Enter Username'
         />
       </Form.Group>
 
       <Form.Group controlId='formPassword'>
         <Form.Label>Password:</Form.Label>
         <Form.Control
-          type='password'
-          value={password}
+          type='Password'
+          value={Password}
           aria-describedby='passwordHelpBlock'
           onChange={e => setPassword(e.target.value)}
           placeholder='Enter Password'
@@ -113,8 +113,8 @@ export function RegistrationView(props) {
       <Form.Group controlId='formConfirmPassword'>
         <Form.Label>Confirm Password:</Form.Label>
         <Form.Control
-          type='password'
-          value={confirmPassword}
+          type='Password'
+          value={ConfirmPassword}
           onChange={e => setConfirmPassword(e.target.value)}
           placeholder='Confirm Password'
           //srOnly='Re-enter password to confirm'
@@ -128,13 +128,13 @@ export function RegistrationView(props) {
 
 RegistrationView.propTypes = {
   register: PropTypes.shape({
-    firstName: PropTypes.string.isRequired,
-    lastName: PropTypes.string.isRequired,
-    email: PropTypes.string.isRequired,
-    birthday: PropTypes.string.isRequired, //note - this might need to be considered a string
-    username: PropTypes.string.isRequired,
-    password: PropTypes.string.isRequired,
-    confirmPassword: PropTypes.string.isRequired
+    FirstName: PropTypes.string.isRequired,
+    LastName: PropTypes.string.isRequired,
+    Email: PropTypes.string.isRequired,
+    DOB: PropTypes.string.isRequired, //note - this might need to be considered a string
+    Username: PropTypes.string.isRequired,
+    Password: PropTypes.string.isRequired,
+    ConfirmPassword: PropTypes.string.isRequired
   }),
   handleRegister: PropTypes.func.isRequired
 };

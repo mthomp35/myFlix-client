@@ -7,13 +7,13 @@ import axios from 'axios';
 export class ProfileView extends React.Component {
     // must declare state without "this." but must refer to state as "this.state"
     state = {
-      firstName: '',
-      lastName: '',
-      email: '',
-      dob: '',
-      username: '',
-      password: '',
-      confirmPassword: 'bettygotskills23',
+      FirstName: '',
+      LastName: '',
+      Email: '',
+      DOB: '',
+      Username: '',
+      Password: '',
+      ConfirmPassword: 'bettygotskills23',
       favoriteMovies: [],
       message: 'Loading'
     };
@@ -41,12 +41,12 @@ export class ProfileView extends React.Component {
       console.log('this is getuser');
       console.log(response); // should I pull this as one prop, then pull out the pieces when used?
       this.setState({
-        firstName: response.data.FirstName,
-        lastName: response.data.LastName,
-        email: response.data.Email,
-        dob: response.data.Birth,
-        username: response.data.Username,
-        password: response.data.Password,
+        FirstName: response.data.FirstName,
+        LastName: response.data.LastName,
+        Email: response.data.Email,
+        DOB: response.data.Birth,
+        Username: response.data.Username,
+        Password: response.data.Password,
         favoriteMovies: response.data.FavoriteMovies
       });
     })
@@ -84,14 +84,29 @@ export class ProfileView extends React.Component {
   }
 
   updateProfile() {
+    e.preventDefault();
     //add something to ask if user is sure they want to update their profile
-    axios.put(`https://best-flix-10922.herokuapp.com/users/${username}`, {
-      headers: { Authorization: `Bearer ${token}`}
+    axios.put(`https://best-flix-10922.herokuapp.com/users/${Username}`, {
+      headers: { Authorization: `Bearer ${token}`},
+      data: {
+        FirstName: newFirstName ? newFirstName : this.state.FirstName,
+        LastName: newLastName ? newLastName : this.state.LastName,
+        Email: newEmail ? newEmail : this.state.Email,
+        Birth: newDOB ? newDOB : this.state.Birth,
+        Password: newPassword ? newPassword : this.state.Password
+      }
     })
     .then(response => {
       console.log(response);
+      this.setState({
+        FirstName: response.data.FirstName,
+        LastName: response.data.LastName,
+        Email: response.data.Email,
+        DOB: response.data.Birth,
+        Password: response.data.Password
+      });
       alert('Great work! You have successfully updated your profile!');
-      // send email to user saying changes have been made to their profile. If they made them, then disregard. otherwise contact us and change their password
+      // send Email to user saying changes have been made to their profile. If they made them, then disregard. otherwise contact us and change their password
       //do I need to set states to null?
     })
     .catch(e => {
@@ -104,7 +119,7 @@ export class ProfileView extends React.Component {
 
   deleteUser() {
     //We hate to see you go but we understand. You are about to delete your account. All of your information will be lost. are you sure you want to delete your account?
-    axios.delete(`https://best-flix-10922.herokuapp.com/users/${username}`, {
+    axios.delete(`https://best-flix-10922.herokuapp.com/users/${Username}`, {
       headers: { Authorization: `Bearer ${token}`}
     })
     .then(response => {
@@ -121,23 +136,23 @@ export class ProfileView extends React.Component {
   }
 
   render() {
-    const { firstName, lastName, email, dob, username, password, confirmPassword, favoriteMovies, updateProfile } = this.state;
+    const { FirstName, LastName, Email, DOB, Username, Password, ConfirmPassword, favoriteMovies, updateProfile } = this.state;
     const { movies, history } = this.props;
     const favMovies = movies.filter(movie => favoriteMovies.includes(movie._id));
     console.log(movies);
-    console.log(username);
+    console.log(Username);
 
     return(
       <div>
+        <p>{`Hi ${FirstName}}! Enter new details below to edit your profile.`}</p>
         <Form className='update-profile'>
-          <p>{`Hi ${firstName}}! Enter new details below to edit your profile.`}</p>
           <Form.Group controlId='formFirstName'>
             <Form.Label>First Name:</Form.Label>
             <Form.Control
               type='text'
-              value={firstName}
+              value={FirstName}
               onChange={e => setFirstName(e.target.value)}
-              //placeholder={firstName}
+              //placeholder={FirstName}
             />
           </Form.Group>
       
@@ -145,7 +160,7 @@ export class ProfileView extends React.Component {
             <Form.Label>Last Name:</Form.Label>
             <Form.Control
               type='text'
-              value={lastName}
+              value={LastName}
               onChange={e => this.setLastName(e.target.value)}
               placeholder=''
               //srOnly='Enter Last Name'
@@ -155,39 +170,29 @@ export class ProfileView extends React.Component {
           <Form.Group controlId='formEmail'>
             <Form.Label>Email:</Form.Label>
             <Form.Control
-              type='email'
-              value={email}
+              type='Email'
+              value={Email}
               onChange={e => setEmail(e.target.value)}
               placeholder='Enter Email'
             />
           </Form.Group>
           
-          <Form.Group controlId='formBirthday'>
+          <Form.Group controlId='formDOB'>
             <Form.Label>Birthday:</Form.Label>
             <Form.Control
               type='text'
-              value={dob}
-              onChange={e => setBirthday(e.target.value)}
+              value={DOB}
+              onChange={e => setDOB(e.target.value)}
               placeholder='Enter Date of Birth'
               pattern='Enter date of birth (month/day/year)'
-            />
-          </Form.Group>
-
-          <Form.Group controlId='formUsername'>
-            <Form.Label>Username:</Form.Label>
-            <Form.Control
-              type='text'
-              value={username}
-              onChange={e => setUsername(e.target.value)}
-              placeholder='Enter Username'
             />
           </Form.Group>
 
           <Form.Group controlId='formPassword'>
             <Form.Label>Password:</Form.Label>
             <Form.Control
-              type='password'
-              value={password}
+              type='Password'
+              value={Password}
               aria-describedby='passwordHelpBlock'
               onChange={e => setPassword(e.target.value)}
               placeholder='Enter Password'
@@ -201,8 +206,8 @@ export class ProfileView extends React.Component {
           <Form.Group controlId='formConfirmPassword'>
             <Form.Label>Confirm Password:</Form.Label>
             <Form.Control
-              type='password'
-              value={confirmPassword}
+              type='Password'
+              value={ConfirmPassword}
               onChange={e => setConfirmPassword(e.target.value)}
               placeholder='Confirm Password'
               sr_only='Re-enter password to confirm'
