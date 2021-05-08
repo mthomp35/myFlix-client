@@ -24,7 +24,7 @@ export class MovieView extends React.Component {
     .then(response => {
       console.log(response);
       alert(`${movie.Title} has been successfully added to your favorites.`);
-      window.open('/', '_self');
+      //window.open('/', '_self');
     })
     .catch(e => {
       console.log(`${e} error adding ${movie._id} to ${token}`);

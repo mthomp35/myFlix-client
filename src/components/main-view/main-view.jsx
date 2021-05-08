@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { Nav, Row, Col } from 'react-bootstrap';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 
 import { RegistrationView } from '../registration-view/registration-view';
 import { LoginView } from '../login-view/login-view';
@@ -99,27 +99,36 @@ export class MainView extends React.Component {
             <Nav.Link className='justify-content-end' onClick={() => this.onLogOut()}>Log Out</Nav.Link>
           </Nav.Item>
         </Nav>
+        
         <Route exact path='/' render={() => {
             if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
             return movies.map(m => <MovieCard key={m._id} movie={m} user={user}/>)
             }
           }/>
-          <Route path='/register' render={() => <RegistrationView/>}/>
+          
+          <Route path='/register' render={() => {
+            if (user) return <Redirect to='/' />
+            return <RegistrationView/>
+          }}/>
+          
           <Route path='/movies/:movieId' render={({match, history}) => {
             return <Col md={8}>
               <MovieView history={history} token={token} movie={movies.find(m => m._id === match.params.movieId)}/>
               </Col>
-            }/>
+            }} />
+          
           <Route path='/genre/:name' render={({match, history}) => {
             if (!movies.length) return <div className='main-view'>{message}</div>;
             return <GenreView history={history} genre={movies.find(m => m.Genre.Name === match.params.name).Genre}/>}
           } />
+          
           <Route path='/directors/:name' render={({match, history}) => {
             if (!movies.length) return <div className='main-view'>{message}</div>;
             return <Col md={8}>
               <DirectorView history={history} movies={movies.filter(m => m.Director.Name === match.params.name)} director={movies.find(m => m.Director.Name === match.params.name).Director}/>
             </Col>
             }} />
+          
           <Route path='/users/:Username' render={(history) => <ProfileView user={user} token={token} movies={movies} history={history}/>}/>
         
       </Router>
