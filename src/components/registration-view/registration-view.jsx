@@ -5,7 +5,7 @@ import axios from 'axios';
 
 import './registration-view.scss';
 
-export function RegistrationView(props) {
+export function RegistrationView() {
   const [ FirstName, setFirstName ] = useState('');
   const [ LastName, setLastName ] = useState('');
   const [ Email, setEmail ] = useState('');
