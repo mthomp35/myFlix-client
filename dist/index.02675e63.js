@@ -47420,7 +47420,7 @@ try {
         var _this2 = this;
         console.log('this.props.user', this.props.user);
         // if I do it this way, I have to make the user log back in - can't navigate away and back unless I use localStorage
-        _axios["default"].get(("https://best-flix-10922.herokuapp.com/users/").concat(this.props.user), {
+        _axios["default"].get(("https://best-flix-10922.herokuapp.com/users/").concat(localStorage.user), {
           headers: {
             Authorization: ("Bearer ").concat(token)
           }
@@ -47474,7 +47474,7 @@ try {
       value: function editProfile() {
         var _this4 = this;
         // add something to ask if user is sure they want to update their profile
-        _axios["default"].post(("https://best-flix-10922.herokuapp.com/users/").concat(this.props.user), {
+        _axios["default"].put(("https://best-flix-10922.herokuapp.com/users/").concat(username), {
           headers: {
             Authorization: ("Bearer ").concat(token)
           }
@@ -47493,7 +47493,7 @@ try {
       value: function deleteUser() {
         var _this5 = this;
         // We hate to see you go but we understand. You are about to delete your account. All of your information will be lost. are you sure you want to delete your account?
-        _axios["default"]["delete"](("https://best-flix-10922.herokuapp.com/users/").concat(this.props.user), {
+        _axios["default"]["delete"](("https://best-flix-10922.herokuapp.com/users/").concat(username), {
           headers: {
             Authorization: ("Bearer ").concat(token)
           }
@@ -47536,7 +47536,7 @@ try {
             type: "text",
             value: lastName,
             onChange: function onChange(e) {
-              return setLastName(e.target.value);
+              return _this6.setLastName(e.target.value);
             },
             placeholder: ""
           })), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Group, {
@@ -47556,7 +47556,8 @@ try {
             onChange: function onChange(e) {
               return setBirthday(e.target.value);
             },
-            placeholder: "Enter Date of Birth"
+            placeholder: "Enter Date of Birth",
+            pattern: "Enter date of birth (month/day/year)"
           })), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Group, {
             controlId: "formUsername"
           }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Label, null, "Username:"), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Control, {
@@ -47586,7 +47587,8 @@ try {
             onChange: function onChange(e) {
               return setConfirmPassword(e.target.value);
             },
-            placeholder: "Confirm Password"
+            placeholder: "Confirm Password",
+            sr_only: "Re-enter password to confirm"
           })), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
             type: "submit",
             variant: "secondary",

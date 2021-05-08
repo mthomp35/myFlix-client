@@ -105,7 +105,11 @@ export class MainView extends React.Component {
             }
           }/>
           <Route path='/register' render={() => <RegistrationView/>}/>
-          <Route path='/movies/:movieId' render={({match, history}) => <MovieView history={history} token={token} movie={movies.find(m => m._id === match.params.movieId)}/>}/>
+          <Route path='/movies/:movieId' render={({match, history}) => {
+            return <Col md={8}>
+              <MovieView history={history} token={token} movie={movies.find(m => m._id === match.params.movieId)}/>
+              </Col>
+            }/>
           <Route path='/genre/:name' render={({match}) => {
             if (!movies.length) return <div className='main-view'>{message}</div>;
             return <GenreView genre={movies.find(m => m.Genre.Name === match.params.name).Genre}/>}
