@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Button, Form } from 'react-bootstrap';
 import axios from 'axios';
 
+// does this need to be a class?
 export class ProfileView extends React.Component {
     // must declare state without "this." but must refer to state as "this.state"
     state = {
@@ -82,9 +83,9 @@ export class ProfileView extends React.Component {
     });
   }
 
-  editProfile() {
+  updateProfile() {
     //add something to ask if user is sure they want to update their profile
-    axios.post(`https://best-flix-10922.herokuapp.com/users/${username}`, {
+    axios.put(`https://best-flix-10922.herokuapp.com/users/${username}`, {
       headers: { Authorization: `Bearer ${token}`}
     })
     .then(response => {
@@ -120,8 +121,8 @@ export class ProfileView extends React.Component {
   }
 
   render() {
-    const { firstName, lastName, email, dob, username, password, confirmPassword, favoriteMovies, history, editProfile } = this.state;
-    const { movies } = this.props;
+    const { firstName, lastName, email, dob, username, password, confirmPassword, favoriteMovies, updateProfile } = this.state;
+    const { movies, history } = this.props;
     const favMovies = movies.filter(movie => favoriteMovies.includes(movie._id));
     console.log(movies);
     console.log(username);
@@ -145,7 +146,7 @@ export class ProfileView extends React.Component {
             <Form.Control
               type='text'
               value={lastName}
-              onChange={e => setLastName(e.target.value)}
+              onChange={e => this.setLastName(e.target.value)}
               placeholder=''
               //srOnly='Enter Last Name'
             />
@@ -208,7 +209,7 @@ export class ProfileView extends React.Component {
             />
           </Form.Group>
 
-          <Button type='submit' variant='secondary' onClick={editProfile}>Submit</Button>
+          <Button type='submit' variant='secondary' onClick={updateProfile}>Submit</Button>
         </Form>
         <div>Favorite Movies:
           {favMovies.map((fav, index) => {
