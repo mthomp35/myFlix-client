@@ -40746,6 +40746,11 @@ try {
           }), /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Route, {
             path: "/register",
             render: function render() {
+              if (user) return (
+                /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Redirect, {
+                  to: "/"
+                })
+              );
               return (
                 /*#__PURE__*/_react["default"].createElement(_registrationView.RegistrationView, null)
               );
@@ -40754,20 +40759,36 @@ try {
             path: "/movies/:movieId",
             render: function render(_ref) {
               var match = _ref.match, history = _ref.history;
+              if (!user) return (
+                /*#__PURE__*/_react["default"].createElement(_loginView.LoginView, {
+                  onLoggedIn: function onLoggedIn(user) {
+                    return _this3.onLoggedIn(user);
+                  }
+                })
+              );
               return (
-                /*#__PURE__*/_react["default"].createElement(_movieView.MovieView, {
+                /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Col, {
+                  md: 8
+                }, /*#__PURE__*/_react["default"].createElement(_movieView.MovieView, {
                   history: history,
                   token: token,
                   movie: movies.find(function (m) {
                     return m._id === match.params.movieId;
                   })
-                })
+                }))
               );
             }
           }), /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Route, {
-            path: "/genre/:name",
+            path: "/genres/:name",
             render: function render(_ref2) {
-              var match = _ref2.match;
+              var match = _ref2.match, history = _ref2.history;
+              if (!user) return (
+                /*#__PURE__*/_react["default"].createElement(_loginView.LoginView, {
+                  onLoggedIn: function onLoggedIn(user) {
+                    return _this3.onLoggedIn(user);
+                  }
+                })
+              );
               if (!movies.length) return (
                 /*#__PURE__*/_react["default"].createElement("div", {
                   className: "main-view"
@@ -40775,6 +40796,7 @@ try {
               );
               return (
                 /*#__PURE__*/_react["default"].createElement(_genreView.GenreView, {
+                  history: history,
                   genre: movies.find(function (m) {
                     return m.Genre.Name === match.params.name;
                   }).Genre
@@ -40784,21 +40806,31 @@ try {
           }), /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Route, {
             path: "/directors/:name",
             render: function render(_ref3) {
-              var match = _ref3.match;
+              var match = _ref3.match, history = _ref3.history;
+              if (!user) return (
+                /*#__PURE__*/_react["default"].createElement(_loginView.LoginView, {
+                  onLoggedIn: function onLoggedIn(user) {
+                    return _this3.onLoggedIn(user);
+                  }
+                })
+              );
               if (!movies.length) return (
                 /*#__PURE__*/_react["default"].createElement("div", {
                   className: "main-view"
                 }, message)
               );
               return (
-                /*#__PURE__*/_react["default"].createElement(_directorView.DirectorView, {
+                /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Col, {
+                  md: 8
+                }, /*#__PURE__*/_react["default"].createElement(_directorView.DirectorView, {
+                  history: history,
                   movies: movies.filter(function (m) {
                     return m.Director.Name === match.params.name;
                   }),
                   director: movies.find(function (m) {
                     return m.Director.Name === match.params.name;
                   }).Director
-                })
+                }))
               );
             }
           }), /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Route, {
@@ -45794,25 +45826,25 @@ try {
   function _arrayWithHoles(arr) {
     if (Array.isArray(arr)) return arr;
   }
-  function RegistrationView(props) {
+  function RegistrationView() {
     _s2();
-    var _useState = (0, _react.useState)(''), _useState2 = _slicedToArray(_useState, 2), firstName = _useState2[0], setFirstName = _useState2[1];
-    var _useState3 = (0, _react.useState)(''), _useState4 = _slicedToArray(_useState3, 2), lastName = _useState4[0], setLastName = _useState4[1];
-    var _useState5 = (0, _react.useState)(''), _useState6 = _slicedToArray(_useState5, 2), email = _useState6[0], setEmail = _useState6[1];
-    var _useState7 = (0, _react.useState)(''), _useState8 = _slicedToArray(_useState7, 2), birthday = _useState8[0], setBirthday = _useState8[1];
-    var _useState9 = (0, _react.useState)(''), _useState10 = _slicedToArray(_useState9, 2), username = _useState10[0], setUsername = _useState10[1];
-    var _useState11 = (0, _react.useState)(''), _useState12 = _slicedToArray(_useState11, 2), password = _useState12[0], setPassword = _useState12[1];
-    var _useState13 = (0, _react.useState)(''), _useState14 = _slicedToArray(_useState13, 2), confirmPassword = _useState14[0], setConfirmPassword = _useState14[1];
+    var _useState = (0, _react.useState)(''), _useState2 = _slicedToArray(_useState, 2), FirstName = _useState2[0], setFirstName = _useState2[1];
+    var _useState3 = (0, _react.useState)(''), _useState4 = _slicedToArray(_useState3, 2), LastName = _useState4[0], setLastName = _useState4[1];
+    var _useState5 = (0, _react.useState)(''), _useState6 = _slicedToArray(_useState5, 2), Email = _useState6[0], setEmail = _useState6[1];
+    var _useState7 = (0, _react.useState)(''), _useState8 = _slicedToArray(_useState7, 2), DOB = _useState8[0], setDOB = _useState8[1];
+    var _useState9 = (0, _react.useState)(''), _useState10 = _slicedToArray(_useState9, 2), Username = _useState10[0], setUsername = _useState10[1];
+    var _useState11 = (0, _react.useState)(''), _useState12 = _slicedToArray(_useState11, 2), Password = _useState12[0], setPassword = _useState12[1];
+    var _useState13 = (0, _react.useState)(''), _useState14 = _slicedToArray(_useState13, 2), ConfirmPassword = _useState14[0], setConfirmPassword = _useState14[1];
     var handleRegister = function handleRegister() {
       e.preventDefault();
-      console.log(firstName, lastName, username, password, email, birthday);
+      console.log(FirstName, LastName, Username, Password, Email, DOB);
       _axios["default"].post('https://best-flix-10922.herokuapp.com/users', {
-        FirstName: firstName,
-        LastName: lastName,
-        Email: email,
-        Birth: birthday,
-        Username: username,
-        Password: password
+        FirstName: FirstName,
+        LastName: LastName,
+        Email: Email,
+        Birth: DOB,
+        Username: Username,
+        Password: Password
       }).then(function (response) {
         var data = response.data;
         console.log(data);
@@ -45828,7 +45860,7 @@ try {
         controlId: "formFirstName"
       }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Label, null, "First Name:"), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Control, {
         type: "text",
-        value: firstName,
+        value: FirstName,
         onChange: function onChange(e) {
           return setFirstName(e.target.value);
         },
@@ -45837,7 +45869,7 @@ try {
         controlId: "formLastName"
       }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Label, null, "Last Name:"), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Control, {
         type: "text",
-        value: lastName,
+        value: LastName,
         onChange: function onChange(e) {
           return setLastName(e.target.value);
         },
@@ -45845,26 +45877,26 @@ try {
       })), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Group, {
         controlId: "formEmail"
       }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Label, null, "Email:"), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Control, {
-        type: "email",
-        value: email,
+        type: "Email",
+        value: Email,
         onChange: function onChange(e) {
           return setEmail(e.target.value);
         },
         placeholder: "Enter Email"
       })), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Group, {
-        controlId: "formBirthday"
+        controlId: "formDOB"
       }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Label, null, "Birthday:"), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Control, {
         type: "text",
-        value: birthday,
+        value: DOB,
         onChange: function onChange(e) {
-          return setBirthday(e.target.value);
+          return setDOB(e.target.value);
         },
         placeholder: "Enter Date of Birth"
       })), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Group, {
         controlId: "formUsername"
       }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Label, null, "Username:"), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Control, {
         type: "text",
-        value: username,
+        value: Username,
         onChange: function onChange(e) {
           return setUsername(e.target.value);
         },
@@ -45872,8 +45904,8 @@ try {
       })), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Group, {
         controlId: "formPassword"
       }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Label, null, "Password:"), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Control, {
-        type: "password",
-        value: password,
+        type: "Password",
+        value: Password,
         "aria-describedby": "passwordHelpBlock",
         onChange: function onChange(e) {
           return setPassword(e.target.value);
@@ -45884,8 +45916,8 @@ try {
       }, "Password must contain: At least 10 characters, a combination of uppercase and lowercase letters (A-z), numbers (0-9), and special characters (e.g. ! @ # ? ] ).")), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Group, {
         controlId: "formConfirmPassword"
       }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Label, null, "Confirm Password:"), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Control, {
-        type: "password",
-        value: confirmPassword,
+        type: "Password",
+        value: ConfirmPassword,
         onChange: function onChange(e) {
           return setConfirmPassword(e.target.value);
         },
@@ -45897,18 +45929,18 @@ try {
       }, "Submit"))
     );
   }
-  _s2(RegistrationView, "FiQFO8HyDiwcWI0G3FDUT6dviLU=");
+  _s2(RegistrationView, "GM8HzfSR5FA0O2wlLfshkGfL6Es=");
   _c = RegistrationView;
   RegistrationView.propTypes = {
     register: _propTypes["default"].shape({
-      firstName: _propTypes["default"].string.isRequired,
-      lastName: _propTypes["default"].string.isRequired,
-      email: _propTypes["default"].string.isRequired,
-      birthday: _propTypes["default"].string.isRequired,
+      FirstName: _propTypes["default"].string.isRequired,
+      LastName: _propTypes["default"].string.isRequired,
+      Email: _propTypes["default"].string.isRequired,
+      DOB: _propTypes["default"].string.isRequired,
       // note - this might need to be considered a string
-      username: _propTypes["default"].string.isRequired,
-      password: _propTypes["default"].string.isRequired,
-      confirmPassword: _propTypes["default"].string.isRequired
+      Username: _propTypes["default"].string.isRequired,
+      Password: _propTypes["default"].string.isRequired,
+      ConfirmPassword: _propTypes["default"].string.isRequired
     }),
     handleRegister: _propTypes["default"].func.isRequired
   };
@@ -46400,7 +46432,7 @@ try {
     _createClass(MovieCard, [{
       key: "render",
       value: function render() {
-        var _this$props = this.props, movie = _this$props.movie, user = _this$props.user;
+        var movie = this.props.movie;
         return (
           /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card, {
             bg: "light",
@@ -46572,14 +46604,14 @@ try {
         var _this2 = this;
         var token = localStorage.getItem('token');
         console.log(token);
-        _axios["default"].post(("https://best-flix-10922.herokuapp.com/users/").concat(localStorage.getItem('user'), "/Movies/").concat(movie._id), {
+        console.log(localStorage.getItem('user'));
+        _axios["default"].post(("https://best-flix-10922.herokuapp.com/users/").concat(localStorage.getItem('user'), "/Movies/").concat(movie._id), {}, {
           headers: {
             Authorization: ("Bearer ").concat(token)
           }
         }).then(function (response) {
           console.log(response);
           alert(("").concat(movie.Title, " has been successfully added to your favorites."));
-          window.open('/', '_self');
         })["catch"](function (e) {
           console.log(("").concat(e, " error adding ").concat(movie._id, " to ").concat(token));
           _this2.setState({
@@ -46858,12 +46890,11 @@ try {
     return DirectorView;
   })(_react["default"].Component);
   exports.DirectorView = DirectorView;
-  DirectorView.PropTypes = {
+  DirectorView.propTypes = {
     director: _propTypes["default"].shape({
       Name: _propTypes["default"].string.isRequired,
       Bio: _propTypes["default"].string.isRequired,
-      Birth: _propTypes["default"].string.isRequired,
-      Death: _propTypes["default"].string.isRequired
+      Birth: _propTypes["default"].string.isRequired
     })
   };
   helpers.postlude(module);
@@ -47094,6 +47125,7 @@ try {
   var _react = _interopRequireDefault(require("react"));
   var _propTypes = _interopRequireDefault(require("prop-types"));
   var _reactBootstrap = require("react-bootstrap");
+  var _movieCard = require("../movie-card/movie-card");
   function _interopRequireDefault(obj) {
     return obj && obj.__esModule ? obj : {
       "default": obj
@@ -47197,7 +47229,7 @@ try {
         return (
           /*#__PURE__*/_react["default"].createElement("div", {
             className: "genre-view"
-          }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Nav, null), /*#__PURE__*/_react["default"].createElement("div", {
+          }, /*#__PURE__*/_react["default"].createElement("div", {
             className: "gv"
           }, /*#__PURE__*/_react["default"].createElement("div", {
             className: "gv-name"
@@ -47210,7 +47242,7 @@ try {
     return GenreView;
   })(_react["default"].Component);
   exports.GenreView = GenreView;
-  GenreView.PropTypes = {
+  GenreView.propTypes = {
     Genre: _propTypes["default"].shape({
       Name: _propTypes["default"].string.isRequired,
       Description: _propTypes["default"].string.isRequired
@@ -47222,7 +47254,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6fW6i"}],"3CncI":[function(require,module,exports) {
+},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","../movie-card/movie-card":"7v6h3","../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6fW6i"}],"3CncI":[function(require,module,exports) {
 "use strict";
 var helpers = require("../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
@@ -47376,6 +47408,7 @@ try {
     }
     return obj;
   }
+  // does this need to be a class?
   var ProfileView = /*#__PURE__*/(function (_React$Component) {
     _inherits(ProfileView, _React$Component);
     var _super = _createSuper(ProfileView);
@@ -47387,29 +47420,46 @@ try {
       }
       _this = _super.call.apply(_super, [this].concat(args));
       _defineProperty(_assertThisInitialized(_this), "state", {
-        firstName: '',
-        lastName: '',
-        email: '',
-        dob: '',
-        username: '',
-        password: '',
-        confirmPassword: 'bettygotskills23',
+        FirstName: '',
+        setFirstName: '',
+        newFirstName: '',
+        LastName: '',
+        Email: '',
+        DOB: '',
+        Username: '',
+        Password: '',
+        ConfirmPassword: 'bettygotskills23',
         favoriteMovies: [],
         message: 'Loading'
       });
       return _this;
     }
     _createClass(ProfileView, [{
+      key: "setFirstName",
+      value: function setFirstName(input) {
+        this.newFirstName = input;
+      }
+    }, {
+      key: "setLastName",
+      value: function setLastName(input) {
+        this.LastName = input;
+      }
+    }, {
+      key: "setEmail",
+      value: function setEmail(input) {
+        this.Email = input;
+      }
+    }, {
+      key: "setDOB",
+      value: function setDOB(input) {
+        this.newDOB = input;
+      }
+    }, {
       key: "componentDidMount",
       value: function componentDidMount() {
         var accessToken = localStorage.getItem('token');
         // let accessToken = this.props.token;
         if (accessToken !== null) {
-          // Assign the result to the state
-          /*this.setState({
-          user: localStorage.getItem('user'),
-          token: accessToken
-          });*/
           this.getUser(accessToken);
         }
       }
@@ -47429,12 +47479,12 @@ try {
           console.log(response);
           // should I pull this as one prop, then pull out the pieces when used?
           _this2.setState({
-            firstName: response.data.FirstName,
-            lastName: response.data.LastName,
-            email: response.data.Email,
-            dob: response.data.Birth,
-            username: response.data.Username,
-            password: response.data.Password,
+            FirstName: response.data.FirstName,
+            LastName: response.data.LastName,
+            Email: response.data.Email,
+            DOB: response.data.Birth,
+            Username: response.data.Username,
+            Password: response.data.Password,
             favoriteMovies: response.data.FavoriteMovies
           });
         })["catch"](function (e) {
@@ -47470,16 +47520,34 @@ try {
         });
       }
     }, {
-      key: "editProfile",
-      value: function editProfile() {
+      key: "updateProfile",
+      value: function updateProfile() {
         var _this4 = this;
+        e.preventDefault();
+        console.log(("username: ").concat(Username));
+        console.log('new first name' + newFirstName);
+        console.log('this.state first name' + this.state.FirstName);
         // add something to ask if user is sure they want to update their profile
-        _axios["default"].put(("https://best-flix-10922.herokuapp.com/users/").concat(username), {
+        _axios["default"].put(("https://best-flix-10922.herokuapp.com/users/").concat(Username), {
           headers: {
             Authorization: ("Bearer ").concat(token)
+          },
+          data: {
+            FirstName: newFirstName ? newFirstName : this.state.FirstName,
+            LastName: newLastName ? newLastName : this.state.LastName,
+            Email: newEmail ? newEmail : this.state.Email,
+            Birth: newDOB ? newDOB : this.state.Birth,
+            Password: newPassword ? newPassword : this.state.Password
           }
         }).then(function (response) {
           console.log(response);
+          _this4.setState({
+            FirstName: response.data.FirstName,
+            LastName: response.data.LastName,
+            Email: response.data.Email,
+            DOB: response.data.Birth,
+            Password: response.data.Password
+          });
           alert('Great work! You have successfully updated your profile!');
         })["catch"](function (e) {
           console.log(e);
@@ -47493,12 +47561,13 @@ try {
       value: function deleteUser() {
         var _this5 = this;
         // We hate to see you go but we understand. You are about to delete your account. All of your information will be lost. are you sure you want to delete your account?
-        _axios["default"]["delete"](("https://best-flix-10922.herokuapp.com/users/").concat(username), {
+        _axios["default"]["delete"](("https://best-flix-10922.herokuapp.com/users/").concat(Username), {
           headers: {
             Authorization: ("Bearer ").concat(token)
           }
         }).then(function (response) {
           console.log(response);
+          localStorage.clear();
           alert('Your account has been successfully deleted');
           window.open('/register', '_self');
         })["catch"](function (e) {
@@ -47512,88 +47581,76 @@ try {
       key: "render",
       value: function render() {
         var _this6 = this;
-        var _this$state = this.state, firstName = _this$state.firstName, lastName = _this$state.lastName, email = _this$state.email, dob = _this$state.dob, username = _this$state.username, password = _this$state.password, confirmPassword = _this$state.confirmPassword, favoriteMovies = _this$state.favoriteMovies, history = _this$state.history, editProfile = _this$state.editProfile;
-        var movies = this.props.movies;
+        var _this$state = this.state, FirstName = _this$state.FirstName, LastName = _this$state.LastName, Email = _this$state.Email, DOB = _this$state.DOB, Username = _this$state.Username, Password = _this$state.Password, ConfirmPassword = _this$state.ConfirmPassword, favoriteMovies = _this$state.favoriteMovies, newFirstName = _this$state.newFirstName;
+        var _this$props = this.props, movies = _this$props.movies, history = _this$props.history, newDOB = _this$props.newDOB;
         var favMovies = movies.filter(function (movie) {
           return favoriteMovies.includes(movie._id);
         });
         console.log(movies);
-        console.log(username);
+        console.log(Username);
         return (
-          /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form, {
+          /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("p", null, ("Hi ").concat(FirstName, "! Enter new details below to edit your profile.")), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form, {
             className: "update-profile"
-          }, /*#__PURE__*/_react["default"].createElement("p", null, ("Hi ").concat(firstName, "}! Enter new details below to edit your profile.")), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Group, {
+          }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Group, {
             controlId: "formFirstName"
           }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Label, null, "First Name:"), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Control, {
             type: "text",
-            value: firstName,
+            value: newFirstName,
             onChange: function onChange(e) {
-              return setFirstName(e.target.value);
+              return _this6.setFirstName(e.target.value);
             }
           })), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Group, {
             controlId: "formLastName"
           }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Label, null, "Last Name:"), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Control, {
             type: "text",
-            value: lastName,
+            value: LastName,
             onChange: function onChange(e) {
               return _this6.setLastName(e.target.value);
-            },
-            placeholder: ""
+            }
           })), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Group, {
             controlId: "formEmail"
           }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Label, null, "Email:"), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Control, {
-            type: "email",
-            value: email,
+            type: "Email",
+            value: Email,
             onChange: function onChange(e) {
               return setEmail(e.target.value);
-            },
-            placeholder: "Enter Email"
+            }
           })), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Group, {
-            controlId: "formBirthday"
+            controlId: "formDOB"
           }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Label, null, "Birthday:"), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Control, {
             type: "text",
-            value: dob,
+            value: newDOB,
             onChange: function onChange(e) {
-              return setBirthday(e.target.value);
-            },
-            placeholder: "Enter Date of Birth",
-            pattern: "Enter date of birth (month/day/year)"
-          })), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Group, {
-            controlId: "formUsername"
-          }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Label, null, "Username:"), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Control, {
-            type: "text",
-            value: username,
-            onChange: function onChange(e) {
-              return setUsername(e.target.value);
-            },
-            placeholder: "Enter Username"
+              return _this6.setDOB(e.target.value);
+            }
           })), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Group, {
             controlId: "formPassword"
           }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Label, null, "Password:"), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Control, {
-            type: "password",
-            value: password,
+            type: "Password",
+            value: Password,
             "aria-describedby": "passwordHelpBlock",
             onChange: function onChange(e) {
               return setPassword(e.target.value);
-            },
-            placeholder: "Enter Password"
+            }
           }), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Text, {
             id: "passwordHelpBlock"
           }, "Password must contain: At least 10 characters, a combination of uppercase and lowercase letters (A-z), numbers (0-9), and special characters (e.g. ! @ # ? ] ).")), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Group, {
             controlId: "formConfirmPassword"
           }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Label, null, "Confirm Password:"), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Control, {
-            type: "password",
-            value: confirmPassword,
+            type: "Password",
+            value: ConfirmPassword,
             onChange: function onChange(e) {
               return setConfirmPassword(e.target.value);
             },
-            placeholder: "Confirm Password",
+            /*placeholder='Confirm Password'*/
             sr_only: "Re-enter password to confirm"
           })), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
             type: "submit",
             variant: "secondary",
-            onClick: editProfile
-          }, "Submit")), /*#__PURE__*/_react["default"].createElement("div", null, "Favorite Movies:", favMovies.map(function (fav, index) {
+            onClick: function onClick() {
+              return _this6.updateProfile();
+            }
+          }, "Update Profile")), /*#__PURE__*/_react["default"].createElement("div", null, "Favorite Movies:", favMovies.map(function (fav, index) {
             return (
               /*#__PURE__*/_react["default"].createElement("div", {
                 key: index

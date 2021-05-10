@@ -8,6 +8,8 @@ export class ProfileView extends React.Component {
     // must declare state without "this." but must refer to state as "this.state"
     state = {
       FirstName: '',
+      setFirstName: '', 
+      newFirstName: '',
       LastName: '',
       Email: '',
       DOB: '',
@@ -16,17 +18,32 @@ export class ProfileView extends React.Component {
       ConfirmPassword: 'bettygotskills23',
       favoriteMovies: [],
       message: 'Loading'
+      /*newLastName,
+      newEmail,
+      newDOB,
+      newPassword*/
     };
+
+  setFirstName(input) {
+    this.newFirstName = input;
+  }
+
+  setLastName(input) {
+    this.LastName = input;
+  }
+
+  setEmail(input) {
+    this.Email = input;
+  }
+
+  setDOB(input) {
+    this.newDOB = input;
+  }
 
   componentDidMount(){
     let accessToken = localStorage.getItem('token');
     //let accessToken = this.props.token;
     if (accessToken !== null) {
-      //Assign the result to the state
-      /*this.setState({
-        user: localStorage.getItem('user'),
-        token: accessToken
-      });*/
       this.getUser(accessToken);
     }
   }
@@ -85,6 +102,9 @@ export class ProfileView extends React.Component {
 
   updateProfile() {
     e.preventDefault();
+    console.log(`username: ${Username}`);
+    console.log('new first name' + newFirstName);
+    console.log('this.state first name' + this.state.FirstName);
     //add something to ask if user is sure they want to update their profile
     axios.put(`https://best-flix-10922.herokuapp.com/users/${Username}`, {
       headers: { Authorization: `Bearer ${token}`},
@@ -124,6 +144,7 @@ export class ProfileView extends React.Component {
     })
     .then(response => {
       console.log(response);
+      localStorage.clear();
       alert('Your account has been successfully deleted');
       window.open('/register', '_self');
     })
@@ -136,22 +157,22 @@ export class ProfileView extends React.Component {
   }
 
   render() {
-    const { FirstName, LastName, Email, DOB, Username, Password, ConfirmPassword, favoriteMovies, updateProfile } = this.state;
-    const { movies, history } = this.props;
+    const { FirstName, LastName, Email, DOB, Username, Password, ConfirmPassword, favoriteMovies, newFirstName } = this.state;
+    const { movies, history, newDOB } = this.props;
     const favMovies = movies.filter(movie => favoriteMovies.includes(movie._id));
     console.log(movies);
     console.log(Username);
 
     return(
       <div>
-        <p>{`Hi ${FirstName}}! Enter new details below to edit your profile.`}</p>
+        <p>{`Hi ${FirstName}! Enter new details below to edit your profile.`}</p>
         <Form className='update-profile'>
           <Form.Group controlId='formFirstName'>
             <Form.Label>First Name:</Form.Label>
             <Form.Control
               type='text'
-              value={FirstName}
-              onChange={e => setFirstName(e.target.value)}
+              value={newFirstName}
+              onChange={e => this.setFirstName(e.target.value)}
               //placeholder={FirstName}
             />
           </Form.Group>
@@ -162,7 +183,7 @@ export class ProfileView extends React.Component {
               type='text'
               value={LastName}
               onChange={e => this.setLastName(e.target.value)}
-              placeholder=''
+              //placeholder=''
               //srOnly='Enter Last Name'
             />
           </Form.Group>
@@ -173,7 +194,7 @@ export class ProfileView extends React.Component {
               type='Email'
               value={Email}
               onChange={e => setEmail(e.target.value)}
-              placeholder='Enter Email'
+              //placeholder='Enter Email'
             />
           </Form.Group>
           
@@ -181,10 +202,10 @@ export class ProfileView extends React.Component {
             <Form.Label>Birthday:</Form.Label>
             <Form.Control
               type='text'
-              value={DOB}
-              onChange={e => setDOB(e.target.value)}
-              placeholder='Enter Date of Birth'
-              pattern='Enter date of birth (month/day/year)'
+              value={newDOB}
+              onChange={e => this.setDOB(e.target.value)}
+              //placeholder='Enter Date of Birth'
+              //pattern='Enter date of birth (month/day/year)'
             />
           </Form.Group>
 
@@ -195,7 +216,7 @@ export class ProfileView extends React.Component {
               value={Password}
               aria-describedby='passwordHelpBlock'
               onChange={e => setPassword(e.target.value)}
-              placeholder='Enter Password'
+              //placeholder='Enter Password'
             />
             <Form.Text id='passwordHelpBlock'>
               Password must contain: At least 10 characters, a combination of uppercase and lowercase letters (A-z), 
@@ -209,12 +230,12 @@ export class ProfileView extends React.Component {
               type='Password'
               value={ConfirmPassword}
               onChange={e => setConfirmPassword(e.target.value)}
-              placeholder='Confirm Password'
+              //placeholder='Confirm Password'
               sr_only='Re-enter password to confirm'
             />
           </Form.Group>
 
-          <Button type='submit' variant='secondary' onClick={updateProfile}>Submit</Button>
+          <Button type='submit' variant='secondary' onClick={() => this.updateProfile()}>Update Profile</Button>
         </Form>
         <div>Favorite Movies:
           {favMovies.map((fav, index) => {
