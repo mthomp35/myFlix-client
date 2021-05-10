@@ -8,7 +8,7 @@ import './movie-card.scss';
 
 export class MovieCard extends React.Component {
   render() {
-    const { movie, user } = this.props;
+    const { movie } = this.props;
 
     return (
       <div>
