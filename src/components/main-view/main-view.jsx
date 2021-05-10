@@ -118,7 +118,7 @@ export class MainView extends React.Component {
               </Col>
             }} />
           
-          <Route path='/genre/:name' render={({match, history}) => {
+          <Route path='/genres/:name' render={({match, history}) => {
             if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
             if (!movies.length) return <div className='main-view'>{message}</div>;
             return <GenreView history={history} genre={movies.find(m => m.Genre.Name === match.params.name).Genre}/>}
