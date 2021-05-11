@@ -100,7 +100,7 @@ export class ProfileView extends React.Component {
     });
   }
 
-  updateProfile() {
+  updateProfile(e) {
     e.preventDefault();
     console.log(`username: ${Username}`);
     console.log('new first name' + newFirstName);
@@ -112,7 +112,7 @@ export class ProfileView extends React.Component {
         FirstName: newFirstName ? newFirstName : this.state.FirstName,
         LastName: newLastName ? newLastName : this.state.LastName,
         Email: newEmail ? newEmail : this.state.Email,
-        Birth: newDOB ? newDOB : this.state.Birth,
+        Birth: newDOB ? newDOB : this.state.DOB,
         Password: newPassword ? newPassword : this.state.Password
       }
     })
