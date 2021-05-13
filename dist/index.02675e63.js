@@ -40713,7 +40713,7 @@ try {
           /*#__PURE__*/_react["default"].createElement(_reactRouterDom.BrowserRouter, {
             className: "main-view"
           }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Nav, {
-            variant: "light"
+            className: "light"
           }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Nav.Item, null, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Nav.Link, {
             href: "/"
           }, "Home")), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Nav.Item, null, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Nav.Link, {
@@ -47444,7 +47444,7 @@ try {
         DOB: '',
         Username: '',
         Password: '',
-        ConfirmPassword: 'bettygotskills23',
+        ConfirmPassword: '',
         favoriteMovies: [],
         message: 'Loading'
       });

@@ -14,7 +14,7 @@ export class ProfileView extends React.Component {
       DOB: '',
       Username: '',
       Password: '',
-      ConfirmPassword: 'bettygotskills23',
+      ConfirmPassword: '',
       favoriteMovies: [],
       message: 'Loading'
     };

@@ -89,7 +89,7 @@ export class MainView extends React.Component {
     //if (!movies.length) return <div className='main-view'>{message}</div>;
     return (
       <Router className='main-view'>
-         <Nav variant='light'/* how to add activeKey='' that changes with the page*/>
+         <Nav className='light'/* how to add activeKey='' that changes with the page*/>
           <Nav.Item>
             <Nav.Link href='/'>Home</Nav.Link>
           </Nav.Item>
