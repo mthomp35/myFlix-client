@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { Nav, Row, Col } from 'react-bootstrap';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import Config from '../../config';
 
 import { RegistrationView } from '../registration-view/registration-view';
 import { LoginView } from '../login-view/login-view';
@@ -62,7 +63,7 @@ export class MainView extends React.Component {
   }
 
   getMovies(token) {
-    axios.get('https://best-flix-10922.herokuapp.com/movies', {
+    axios.get(`${Config.API_URL}/movies`, {
       headers: { Authorization: `Bearer ${token}`}
     })
     .then(response => {

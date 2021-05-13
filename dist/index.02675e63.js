@@ -40532,6 +40532,7 @@ try {
   var _axios = _interopRequireDefault(require("axios"));
   var _reactBootstrap = require("react-bootstrap");
   var _reactRouterDom = require("react-router-dom");
+  var _config = _interopRequireDefault(require("../../config"));
   var _registrationView = require("../registration-view/registration-view");
   var _loginView = require("../login-view/login-view");
   var _movieCard = require("../movie-card/movie-card");
@@ -40683,7 +40684,7 @@ try {
       key: "getMovies",
       value: function getMovies(token) {
         var _this2 = this;
-        _axios["default"].get('https://best-flix-10922.herokuapp.com/movies', {
+        _axios["default"].get(("").concat(_config["default"].API_URL, "/movies"), {
           headers: {
             Authorization: ("Bearer ").concat(token)
           }
@@ -40858,7 +40859,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","axios":"7rA65","react-bootstrap":"4n7hB","react-router-dom":"1PMSK","../registration-view/registration-view":"7gvH2","../login-view/login-view":"6M7fu","../movie-card/movie-card":"7v6h3","../movie-view/movie-view":"3xBbr","../director-view/director-view":"7HF27","../genre-view/genre-view":"6FLqj","../profile-view/profile-view":"3CncI","./main-view.scss":"3X8QW","../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6fW6i"}],"7rA65":[function(require,module,exports) {
+},{"react":"3b2NM","axios":"7rA65","react-bootstrap":"4n7hB","react-router-dom":"1PMSK","../../config":"5yJJr","../registration-view/registration-view":"7gvH2","../login-view/login-view":"6M7fu","../movie-card/movie-card":"7v6h3","../movie-view/movie-view":"3xBbr","../director-view/director-view":"7HF27","../genre-view/genre-view":"6FLqj","../profile-view/profile-view":"3CncI","./main-view.scss":"3X8QW","../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6fW6i"}],"7rA65":[function(require,module,exports) {
 module.exports = require('./lib/axios');
 },{"./lib/axios":"4qfhW"}],"4qfhW":[function(require,module,exports) {
 'use strict';
@@ -45705,7 +45706,20 @@ function hoistNonReactStatics(targetComponent, sourceComponent, blacklist) {
 
 module.exports = hoistNonReactStatics;
 
-},{"react-is":"68QIU"}],"7gvH2":[function(require,module,exports) {
+},{"react-is":"68QIU"}],"5yJJr":[function(require,module,exports) {
+"use strict";
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+var Config = {
+  // API_URL: 'https://best-flix-10922.herokuapp.com',
+  API_URL: 'http://localhost:8080'
+};
+var _default = Config;
+exports["default"] = _default;
+
+},{}],"7gvH2":[function(require,module,exports) {
 "use strict";
 var helpers = require("../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
@@ -45733,6 +45747,7 @@ try {
   var _propTypes = _interopRequireDefault(require("prop-types"));
   var _reactBootstrap = require("react-bootstrap");
   var _axios = _interopRequireDefault(require("axios"));
+  var _config = _interopRequireDefault(require("../../config"));
   require("./registration-view.scss");
   var _s2 = $RefreshSig$();
   function _interopRequireDefault(obj) {
@@ -45829,16 +45844,17 @@ try {
   function RegistrationView() {
     _s2();
     var _useState = (0, _react.useState)(''), _useState2 = _slicedToArray(_useState, 2), FirstName = _useState2[0], setFirstName = _useState2[1];
+    // array destructuring - let's learn more about that
     var _useState3 = (0, _react.useState)(''), _useState4 = _slicedToArray(_useState3, 2), LastName = _useState4[0], setLastName = _useState4[1];
     var _useState5 = (0, _react.useState)(''), _useState6 = _slicedToArray(_useState5, 2), Email = _useState6[0], setEmail = _useState6[1];
     var _useState7 = (0, _react.useState)(''), _useState8 = _slicedToArray(_useState7, 2), DOB = _useState8[0], setDOB = _useState8[1];
     var _useState9 = (0, _react.useState)(''), _useState10 = _slicedToArray(_useState9, 2), Username = _useState10[0], setUsername = _useState10[1];
     var _useState11 = (0, _react.useState)(''), _useState12 = _slicedToArray(_useState11, 2), Password = _useState12[0], setPassword = _useState12[1];
     var _useState13 = (0, _react.useState)(''), _useState14 = _slicedToArray(_useState13, 2), ConfirmPassword = _useState14[0], setConfirmPassword = _useState14[1];
-    var handleRegister = function handleRegister() {
+    var handleRegister = function handleRegister(e) {
       e.preventDefault();
       console.log(FirstName, LastName, Username, Password, Email, DOB);
-      _axios["default"].post('https://best-flix-10922.herokuapp.com/users', {
+      _axios["default"].post(("").concat(_config["default"].API_URL, "/users"), {
         FirstName: FirstName,
         LastName: LastName,
         Email: Email,
@@ -45886,7 +45902,7 @@ try {
       })), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Group, {
         controlId: "formDOB"
       }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Label, null, "Birthday:"), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Control, {
-        type: "text",
+        type: "date",
         value: DOB,
         onChange: function onChange(e) {
           return setDOB(e.target.value);
@@ -45936,13 +45952,12 @@ try {
       FirstName: _propTypes["default"].string.isRequired,
       LastName: _propTypes["default"].string.isRequired,
       Email: _propTypes["default"].string.isRequired,
-      DOB: _propTypes["default"].string.isRequired,
+      DOB: _propTypes["default"].instanceOf(Date).isRequired,
       // note - this might need to be considered a string
       Username: _propTypes["default"].string.isRequired,
       Password: _propTypes["default"].string.isRequired,
       ConfirmPassword: _propTypes["default"].string.isRequired
-    }),
-    handleRegister: _propTypes["default"].func.isRequired
+    })
   };
   var _c;
   $RefreshReg$(_c, "RegistrationView");
@@ -45952,7 +45967,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","axios":"7rA65","./registration-view.scss":"22HWg","../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6fW6i"}],"22HWg":[function() {},{}],"6fW6i":[function(require,module,exports) {
+},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","axios":"7rA65","../../config":"5yJJr","./registration-view.scss":"22HWg","../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6fW6i"}],"22HWg":[function() {},{}],"6fW6i":[function(require,module,exports) {
 "use strict";
 var Refresh = require('react-refresh/runtime');
 function debounce(func, delay) {
@@ -46138,6 +46153,7 @@ try {
   var _axios = _interopRequireDefault(require("axios"));
   var _propTypes = _interopRequireDefault(require("prop-types"));
   var _reactBootstrap = require("react-bootstrap");
+  var _config = _interopRequireDefault(require("../../config"));
   require("./login-view.scss");
   var _s2 = $RefreshSig$();
   function _interopRequireDefault(obj) {
@@ -46240,7 +46256,7 @@ try {
       e.preventDefault();
       // Send a request to the server for authentication
       console.log(username, password);
-      _axios["default"].post('https://best-flix-10922.herokuapp.com/login', {
+      _axios["default"].post(("").concat(_config["default"].API_URL, "/login"), {
         Username: username,
         Password: password
       }).then(function (response) {
@@ -46307,7 +46323,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","react-router-dom":"1PMSK","axios":"7rA65","prop-types":"4dfy5","react-bootstrap":"4n7hB","./login-view.scss":"3ueKO","../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6fW6i"}],"3ueKO":[function() {},{}],"7v6h3":[function(require,module,exports) {
+},{"react":"3b2NM","react-router-dom":"1PMSK","axios":"7rA65","prop-types":"4dfy5","react-bootstrap":"4n7hB","../../config":"5yJJr","./login-view.scss":"3ueKO","../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6fW6i"}],"3ueKO":[function() {},{}],"7v6h3":[function(require,module,exports) {
 "use strict";
 var helpers = require("../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
@@ -46500,6 +46516,7 @@ try {
   var _reactBootstrap = require("react-bootstrap");
   var _reactRouterDom = require("react-router-dom");
   var _axios = _interopRequireDefault(require("axios"));
+  var _config = _interopRequireDefault(require("../../config"));
   require("./movie-view.scss");
   function _interopRequireDefault(obj) {
     return obj && obj.__esModule ? obj : {
@@ -46605,7 +46622,7 @@ try {
         var token = localStorage.getItem('token');
         console.log(token);
         console.log(localStorage.getItem('user'));
-        _axios["default"].post(("https://best-flix-10922.herokuapp.com/users/").concat(localStorage.getItem('user'), "/Movies/").concat(movie._id), {}, {
+        _axios["default"].post(("").concat(_config["default"].API_URL, "/users/").concat(localStorage.getItem('user'), "/Movies/").concat(movie._id), {}, {
           headers: {
             Authorization: ("Bearer ").concat(token)
           }
@@ -46717,7 +46734,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","react-router-dom":"1PMSK","axios":"7rA65","./movie-view.scss":"4iZ2Z","../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6fW6i"}],"4iZ2Z":[function() {},{}],"7HF27":[function(require,module,exports) {
+},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","react-router-dom":"1PMSK","axios":"7rA65","../../config":"5yJJr","./movie-view.scss":"4iZ2Z","../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6fW6i"}],"4iZ2Z":[function() {},{}],"7HF27":[function(require,module,exports) {
 "use strict";
 var helpers = require("../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
@@ -47282,6 +47299,7 @@ try {
   var _propTypes = _interopRequireDefault(require("prop-types"));
   var _reactBootstrap = require("react-bootstrap");
   var _axios = _interopRequireDefault(require("axios"));
+  var _config = _interopRequireDefault(require("../../config"));
   function _interopRequireDefault(obj) {
     return obj && obj.__esModule ? obj : {
       "default": obj
@@ -47421,8 +47439,6 @@ try {
       _this = _super.call.apply(_super, [this].concat(args));
       _defineProperty(_assertThisInitialized(_this), "state", {
         FirstName: '',
-        setFirstName: '',
-        newFirstName: '',
         LastName: '',
         Email: '',
         DOB: '',
@@ -47432,27 +47448,77 @@ try {
         favoriteMovies: [],
         message: 'Loading'
       });
+      _defineProperty(_assertThisInitialized(_this), "updateProfile", function (e) {
+        e.preventDefault();
+        // need to define the 'e' as prop to prevent page refresh
+        // need the arrow function for 'this' to look at the 'class' instead of the 'form / last thing it was looking at' -->reco decouple then put into axios
+        // add something to ask if user is sure they want to update their profile
+        var data = {
+          FirstName: _this.state.FirstName,
+          LastName: _this.state.LastName,
+          Email: _this.state.Email,
+          Username: _this.state.Username
+        };
+        _axios["default"].put(("").concat(_config["default"].API_URL, "/users/").concat(_this.state.Username), data, {
+          headers: {
+            Authorization: ("Bearer ").concat(localStorage.getItem('token'))
+          }
+        }).then(function (response) {
+          console.log(response);
+          _this.setState({
+            FirstName: response.data.FirstName,
+            LastName: response.data.LastName,
+            Email: response.data.Email,
+            DOB: response.data.Birth,
+            Password: response.data.Password
+          });
+          alert('Great work! You have successfully updated your profile!');
+        })["catch"](function (e) {
+          console.log(e);
+          _this.setState({
+            message: 'Uh oh! Something went wrong when we tried to update your profile.'
+          });
+        });
+      });
       return _this;
     }
     _createClass(ProfileView, [{
+      key: "setNew",
+      value: function setNew(input) {
+        this.setState({
+          FirstName: input,
+          LastName: input,
+          Email: input,
+          DOB: input
+        });
+      }
+    }, {
       key: "setFirstName",
       value: function setFirstName(input) {
-        this.newFirstName = input;
+        this.setState({
+          FirstName: input
+        });
       }
     }, {
       key: "setLastName",
       value: function setLastName(input) {
-        this.LastName = input;
+        this.setState({
+          LastName: input
+        });
       }
     }, {
-      key: "setEmail",
-      value: function setEmail(input) {
-        this.Email = input;
+      key: "seEmail",
+      value: function seEmail(input) {
+        this.setState({
+          Email: input
+        });
       }
     }, {
       key: "setDOB",
       value: function setDOB(input) {
-        this.newDOB = input;
+        this.setState({
+          DOB: input
+        });
       }
     }, {
       key: "componentDidMount",
@@ -47466,26 +47532,27 @@ try {
     }, {
       key: "getUser",
       value: // get user information based on username stored in local storage
-      function getUser(token) {
+      function getUser() {
         var _this2 = this;
         console.log('this.props.user', this.props.user);
         // if I do it this way, I have to make the user log back in - can't navigate away and back unless I use localStorage
-        _axios["default"].get(("https://best-flix-10922.herokuapp.com/users/").concat(localStorage.user), {
+        _axios["default"].get(("").concat(_config["default"].API_URL, "/users/").concat(localStorage.getItem('user')), {
           headers: {
-            Authorization: ("Bearer ").concat(token)
+            Authorization: ("Bearer ").concat(localStorage.getItem('token'))
           }
         }).then(function (response) {
           console.log('this is getuser');
           console.log(response);
           // should I pull this as one prop, then pull out the pieces when used?
+          var data = response.data;
           _this2.setState({
-            FirstName: response.data.FirstName,
-            LastName: response.data.LastName,
-            Email: response.data.Email,
-            DOB: response.data.Birth,
-            Username: response.data.Username,
-            Password: response.data.Password,
-            favoriteMovies: response.data.FavoriteMovies
+            FirstName: data.FirstName,
+            LastName: data.LastName,
+            Email: data.Email,
+            DOB: data.Birth,
+            Username: data.Username,
+            Password: data.Password,
+            favoriteMovies: data.FavoriteMovies
           });
         })["catch"](function (e) {
           (console.log(e), _this2.setState({
@@ -47499,7 +47566,7 @@ try {
       function removeFav(movie) {
         var _this3 = this;
         var token = localStorage.getItem('token');
-        _axios["default"]["delete"](("https://best-flix-10922.herokuapp.com/users/").concat(this.props.user, "/Movies/").concat(movie._id), {
+        _axios["default"]["delete"](("").concat(_config["default"].API_URL, "/users/").concat(this.state.Username, "/Movies/").concat(movie._id), {
           headers: {
             Authorization: ("Bearer ").concat(token)
           }
@@ -47520,50 +47587,13 @@ try {
         });
       }
     }, {
-      key: "updateProfile",
-      value: function updateProfile() {
-        var _this4 = this;
-        e.preventDefault();
-        console.log(("username: ").concat(Username));
-        console.log('new first name' + newFirstName);
-        console.log('this.state first name' + this.state.FirstName);
-        // add something to ask if user is sure they want to update their profile
-        _axios["default"].put(("https://best-flix-10922.herokuapp.com/users/").concat(Username), {
-          headers: {
-            Authorization: ("Bearer ").concat(token)
-          },
-          data: {
-            FirstName: newFirstName ? newFirstName : this.state.FirstName,
-            LastName: newLastName ? newLastName : this.state.LastName,
-            Email: newEmail ? newEmail : this.state.Email,
-            Birth: newDOB ? newDOB : this.state.Birth,
-            Password: newPassword ? newPassword : this.state.Password
-          }
-        }).then(function (response) {
-          console.log(response);
-          _this4.setState({
-            FirstName: response.data.FirstName,
-            LastName: response.data.LastName,
-            Email: response.data.Email,
-            DOB: response.data.Birth,
-            Password: response.data.Password
-          });
-          alert('Great work! You have successfully updated your profile!');
-        })["catch"](function (e) {
-          console.log(e);
-          _this4.setState({
-            message: 'Uh oh! Something went wrong when we tried to update your profile.'
-          });
-        });
-      }
-    }, {
       key: "deleteUser",
       value: function deleteUser() {
-        var _this5 = this;
+        var _this4 = this;
         // We hate to see you go but we understand. You are about to delete your account. All of your information will be lost. are you sure you want to delete your account?
-        _axios["default"]["delete"](("https://best-flix-10922.herokuapp.com/users/").concat(Username), {
+        _axios["default"]["delete"](("").concat(_config["default"].API_URL, "/users/").concat(this.state.Username), {
           headers: {
-            Authorization: ("Bearer ").concat(token)
+            Authorization: ("Bearer ").concat(localStorage.getItem('token'))
           }
         }).then(function (response) {
           console.log(response);
@@ -47572,7 +47602,7 @@ try {
           window.open('/register', '_self');
         })["catch"](function (e) {
           console.log(e);
-          _this5.setState({
+          _this4.setState({
             message: 'Uh oh! Something went wrong when we tried to delete your profile. Please try again or contact us if the issue persists'
           });
         });
@@ -47580,9 +47610,9 @@ try {
     }, {
       key: "render",
       value: function render() {
-        var _this6 = this;
-        var _this$state = this.state, FirstName = _this$state.FirstName, LastName = _this$state.LastName, Email = _this$state.Email, DOB = _this$state.DOB, Username = _this$state.Username, Password = _this$state.Password, ConfirmPassword = _this$state.ConfirmPassword, favoriteMovies = _this$state.favoriteMovies, newFirstName = _this$state.newFirstName;
-        var _this$props = this.props, movies = _this$props.movies, history = _this$props.history, newDOB = _this$props.newDOB;
+        var _this5 = this;
+        var _this$state = this.state, FirstName = _this$state.FirstName, LastName = _this$state.LastName, Email = _this$state.Email, DOB = _this$state.DOB, Username = _this$state.Username, Password = _this$state.Password, ConfirmPassword = _this$state.ConfirmPassword, favoriteMovies = _this$state.favoriteMovies;
+        var _this$props = this.props, movies = _this$props.movies, history = _this$props.history;
         var favMovies = movies.filter(function (movie) {
           return favoriteMovies.includes(movie._id);
         });
@@ -47595,9 +47625,9 @@ try {
             controlId: "formFirstName"
           }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Label, null, "First Name:"), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Control, {
             type: "text",
-            value: newFirstName,
+            value: FirstName,
             onChange: function onChange(e) {
-              return _this6.setFirstName(e.target.value);
+              return _this5.setFirstName(e.target.value);
             }
           })), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Group, {
             controlId: "formLastName"
@@ -47605,7 +47635,7 @@ try {
             type: "text",
             value: LastName,
             onChange: function onChange(e) {
-              return _this6.setLastName(e.target.value);
+              return _this5.setLastName(e.target.value);
             }
           })), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Group, {
             controlId: "formEmail"
@@ -47618,16 +47648,16 @@ try {
           })), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Group, {
             controlId: "formDOB"
           }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Label, null, "Birthday:"), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Control, {
-            type: "text",
-            value: newDOB,
+            type: "date",
+            value: DOB,
             onChange: function onChange(e) {
-              return _this6.setDOB(e.target.value);
+              return _this5.setDOB(e.target.value);
             }
           })), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Group, {
             controlId: "formPassword"
           }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Label, null, "Password:"), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Control, {
             type: "Password",
-            value: Password,
+            /*value={Password}*/
             "aria-describedby": "passwordHelpBlock",
             onChange: function onChange(e) {
               return setPassword(e.target.value);
@@ -47647,9 +47677,7 @@ try {
           })), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
             type: "submit",
             variant: "secondary",
-            onClick: function onClick() {
-              return _this6.updateProfile();
-            }
+            onClick: this.updateProfile
           }, "Update Profile")), /*#__PURE__*/_react["default"].createElement("div", null, "Favorite Movies:", favMovies.map(function (fav, index) {
             return (
               /*#__PURE__*/_react["default"].createElement("div", {
@@ -47658,7 +47686,7 @@ try {
                 src: fav.ImagePath
               }), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
                 onClick: function onClick() {
-                  return _this6.removeFav(fav);
+                  return _this5.removeFav(fav);
                 }
               }, "Remove movie"))
             );
@@ -47668,7 +47696,7 @@ try {
             }
           }, "Go back"), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
             onClick: function onClick() {
-              return _this6.deleteUser();
+              return _this5.deleteUser();
             }
           }, "Delete account"))
         );
@@ -47683,6 +47711,6 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","axios":"7rA65","../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6fW6i"}],"3X8QW":[function() {},{}],"5iJih":[function() {},{}]},["1j6wU","68WUB","1DVjT"], "1DVjT", "parcelRequire427e")
+},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","axios":"7rA65","../../config":"5yJJr","../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6fW6i"}],"3X8QW":[function() {},{}],"5iJih":[function() {},{}]},["1j6wU","68WUB","1DVjT"], "1DVjT", "parcelRequire427e")
 
 //# sourceMappingURL=index.02675e63.js.map

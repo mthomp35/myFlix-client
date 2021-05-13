@@ -12,14 +12,6 @@ export function ProfileView() {
   const [ Username, setUsername ] = useState('');
   const [ Password, setPassword ] = useState('');
   const [ ConfirmPassword, setConfirmPassword ] = useState('');
- 
-  componentDidMount() {
-    let accessToken = localStorage.getItem('token');
-    //let accessToken = this.props.token;
-    if (accessToken !== null) {
-      this.getUser(accessToken);
-    }
-  }
 
   const updateProfile = () => {
     e.preventDefault();
@@ -51,59 +43,6 @@ export function ProfileView() {
       console.log(`${e} error registering the user`)
     });
   };
-
-  // get user information based on username stored in local storage
-  getUser(token) {
-    console.log('this.props.user', this.props.user); //if I do it this way, I have to make the user log back in - can't navigate away and back unless I use localStorage
-    axios.get(`https://best-flix-10922.herokuapp.com/users/${localStorage.user}`, {
-      headers: { Authorization: `Bearer ${token}`}
-    })
-    .then(response => {
-      console.log('this is getuser');
-      console.log(response); // should I pull this as one prop, then pull out the pieces when used?
-      this.setState({
-        FirstName: response.data.FirstName,
-        LastName: response.data.LastName,
-        Email: response.data.Email,
-        DOB: response.data.Birth,
-        Username: response.data.Username,
-        Password: response.data.Password,
-        favoriteMovies: response.data.FavoriteMovies
-      });
-    })
-    .catch(e => {
-      console.log(e),
-      this.setState({
-        message: 'We were unable to load your information.'
-      });
-    });
-  };
-
-  // remove movie from favorites - watchout -- if user can change username then code will break; create Config file for url vs hardcoding url, must export default to use it
-  const removeFav = (movie) => {
-    const token = localStorage.getItem('token');
-    axios.delete(`https://best-flix-10922.herokuapp.com/users/${this.props.user}/Movies/${movie._id}`, {
-      headers: { Authorization: `Bearer ${token}`}
-    })
-    .then(response => {
-      console.log(response);
-      alert(`${movie.Title} has been successfully removed from your favorites.`);
-
-      // clone of favorite movies. the "..." spread operator allows you to clone an array
-      let tempArray = [...this.state.favoriteMovies];
-      tempArray.splice(tempArray.indexOf(movie._id), 1); //all array methods either mutate actual array or create new array
-      this.setState({
-        favoriteMovies: tempArray
-      });
-    })
-    .catch(e => {
-      console.log(e),
-      this.setState({
-        message: 'Sorry about that! Something went wrong while trying to remove a movie from your favorites.'
-      });
-    });
-  }
-
 
   return (
     <Form className='registration'>

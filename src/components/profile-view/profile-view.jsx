@@ -2,14 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Form } from 'react-bootstrap';
 import axios from 'axios';
+import Config from '../../config';
 
 // does this need to be a class?
 export class ProfileView extends React.Component {
     // must declare state without "this." but must refer to state as "this.state"
     state = {
       FirstName: '',
-      setFirstName: '', 
-      newFirstName: '',
       LastName: '',
       Email: '',
       DOB: '',
@@ -18,26 +17,39 @@ export class ProfileView extends React.Component {
       ConfirmPassword: 'bettygotskills23',
       favoriteMovies: [],
       message: 'Loading'
-      /*newLastName,
-      newEmail,
-      newDOB,
-      newPassword*/
     };
 
+  setNew(input) {
+    this.setState({
+      FirstName: input,
+      LastName: input,
+      Email: input,
+      DOB: input
+    })
+  }
+
   setFirstName(input) {
-    this.newFirstName = input;
+    this.setState({
+      FirstName: input
+    })
   }
 
   setLastName(input) {
-    this.LastName = input;
+    this.setState({
+      LastName: input
+    })
   }
 
-  setEmail(input) {
-    this.Email = input;
+  seEmail(input) {
+    this.setState({
+      Email: input
+    })
   }
 
   setDOB(input) {
-    this.newDOB = input;
+    this.setState({
+      DOB: input
+    })
   }
 
   componentDidMount(){
@@ -49,22 +61,23 @@ export class ProfileView extends React.Component {
   }
 
   // get user information based on username stored in local storage
-  getUser(token) {
+  getUser() {
     console.log('this.props.user', this.props.user); //if I do it this way, I have to make the user log back in - can't navigate away and back unless I use localStorage
-    axios.get(`https://best-flix-10922.herokuapp.com/users/${localStorage.user}`, {
-      headers: { Authorization: `Bearer ${token}`}
+    axios.get(`${Config.API_URL}/users/${localStorage.getItem('user')}`, {
+      headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
     })
     .then(response => {
       console.log('this is getuser');
       console.log(response); // should I pull this as one prop, then pull out the pieces when used?
+      let data = response.data;
       this.setState({
-        FirstName: response.data.FirstName,
-        LastName: response.data.LastName,
-        Email: response.data.Email,
-        DOB: response.data.Birth,
-        Username: response.data.Username,
-        Password: response.data.Password,
-        favoriteMovies: response.data.FavoriteMovies
+        FirstName: data.FirstName,
+        LastName: data.LastName,
+        Email: data.Email,
+        DOB: data.Birth,
+        Username: data.Username,
+        Password: data.Password,
+        favoriteMovies: data.FavoriteMovies
       });
     })
     .catch(e => {
@@ -78,7 +91,7 @@ export class ProfileView extends React.Component {
   // remove movie from favorites - watchout -- if user can change username then code will break; create Config file for url vs hardcoding url, must export default to use it
   removeFav(movie) {
     const token = localStorage.getItem('token');
-    axios.delete(`https://best-flix-10922.herokuapp.com/users/${this.props.user}/Movies/${movie._id}`, {
+    axios.delete(`${Config.API_URL}/users/${this.state.Username}/Movies/${movie._id}`, {
       headers: { Authorization: `Bearer ${token}`}
     })
     .then(response => {
@@ -100,21 +113,20 @@ export class ProfileView extends React.Component {
     });
   }
 
-  updateProfile(e) {
-    e.preventDefault();
-    console.log(`username: ${Username}`);
-    console.log('new first name' + newFirstName);
-    console.log('this.state first name' + this.state.FirstName);
+  updateProfile = (e) => {
+    e.preventDefault(); //need to define the 'e' as prop to prevent page refresh
+    //need the arrow function for 'this' to look at the 'class' instead of the 'form / last thing it was looking at' -->reco decouple then put into axios
     //add something to ask if user is sure they want to update their profile
-    axios.put(`https://best-flix-10922.herokuapp.com/users/${Username}`, {
-      headers: { Authorization: `Bearer ${token}`},
-      data: {
-        FirstName: newFirstName ? newFirstName : this.state.FirstName,
-        LastName: newLastName ? newLastName : this.state.LastName,
-        Email: newEmail ? newEmail : this.state.Email,
-        Birth: newDOB ? newDOB : this.state.DOB,
-        Password: newPassword ? newPassword : this.state.Password
-      }
+    let data = {
+      FirstName: this.state.FirstName,
+      LastName: this.state.LastName,
+      Email: this.state.Email,
+      Username: this.state.Username
+     // Birth: this.state.DOB,
+     // Password: this.state.Password
+    }
+    axios.put(`${Config.API_URL}/users/${this.state.Username}`, data, {
+      headers: { Authorization: `Bearer ${localStorage.getItem('token')}`},
     })
     .then(response => {
       console.log(response);
@@ -139,8 +151,8 @@ export class ProfileView extends React.Component {
 
   deleteUser() {
     //We hate to see you go but we understand. You are about to delete your account. All of your information will be lost. are you sure you want to delete your account?
-    axios.delete(`https://best-flix-10922.herokuapp.com/users/${Username}`, {
-      headers: { Authorization: `Bearer ${token}`}
+    axios.delete(`${Config.API_URL}/users/${this.state.Username}`, {
+      headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
     })
     .then(response => {
       console.log(response);
@@ -157,8 +169,8 @@ export class ProfileView extends React.Component {
   }
 
   render() {
-    const { FirstName, LastName, Email, DOB, Username, Password, ConfirmPassword, favoriteMovies, newFirstName } = this.state;
-    const { movies, history, newDOB } = this.props;
+    const { FirstName, LastName, Email, DOB, Username, Password, ConfirmPassword, favoriteMovies } = this.state;
+    const { movies, history } = this.props;
     const favMovies = movies.filter(movie => favoriteMovies.includes(movie._id));
     console.log(movies);
     console.log(Username);
@@ -171,7 +183,7 @@ export class ProfileView extends React.Component {
             <Form.Label>First Name:</Form.Label>
             <Form.Control
               type='text'
-              value={newFirstName}
+              value={FirstName}
               onChange={e => this.setFirstName(e.target.value)}
               //placeholder={FirstName}
             />
@@ -183,8 +195,6 @@ export class ProfileView extends React.Component {
               type='text'
               value={LastName}
               onChange={e => this.setLastName(e.target.value)}
-              //placeholder=''
-              //srOnly='Enter Last Name'
             />
           </Form.Group>
           
@@ -194,17 +204,15 @@ export class ProfileView extends React.Component {
               type='Email'
               value={Email}
               onChange={e => setEmail(e.target.value)}
-              //placeholder='Enter Email'
             />
           </Form.Group>
           
           <Form.Group controlId='formDOB'>
             <Form.Label>Birthday:</Form.Label>
             <Form.Control
-              type='text'
-              value={newDOB}
+              type='date'
+              value={DOB}
               onChange={e => this.setDOB(e.target.value)}
-              //placeholder='Enter Date of Birth'
               //pattern='Enter date of birth (month/day/year)'
             />
           </Form.Group>
@@ -213,7 +221,7 @@ export class ProfileView extends React.Component {
             <Form.Label>Password:</Form.Label>
             <Form.Control
               type='Password'
-              value={Password}
+              //value={Password}
               aria-describedby='passwordHelpBlock'
               onChange={e => setPassword(e.target.value)}
               //placeholder='Enter Password'
@@ -235,7 +243,7 @@ export class ProfileView extends React.Component {
             />
           </Form.Group>
 
-          <Button type='submit' variant='secondary' onClick={() => this.updateProfile()}>Update Profile</Button>
+          <Button type='submit' variant='secondary' onClick={this.updateProfile}>Update Profile</Button>
         </Form>
         <div>Favorite Movies:
           {favMovies.map((fav, index) => {

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Button, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import Config from '../../config';
 
 import './movie-view.scss';
 
@@ -19,7 +20,7 @@ export class MovieView extends React.Component {
     const token = localStorage.getItem('token');
     console.log(token);
     console.log(localStorage.getItem('user'));
-    axios.post(`https://best-flix-10922.herokuapp.com/users/${localStorage.getItem('user')}/Movies/${movie._id}`, {}, 
+    axios.post(`${Config.API_URL}/users/${localStorage.getItem('user')}/Movies/${movie._id}`, {}, 
     {
       headers: { Authorization: `Bearer ${token}`}
     })

@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Form } from 'react-bootstrap';
 import axios from 'axios';
+import Config from '../../config';
 
 import './registration-view.scss';
 
 export function RegistrationView() {
-  const [ FirstName, setFirstName ] = useState('');
+  const [ FirstName, setFirstName ] = useState(''); //array destructuring - let's learn more about that
   const [ LastName, setLastName ] = useState('');
   const [ Email, setEmail ] = useState('');
   const [ DOB , setDOB ] = useState('');
@@ -15,10 +16,10 @@ export function RegistrationView() {
   const [ ConfirmPassword, setConfirmPassword ] = useState('');
  
 
-  const handleRegister = () => {
+  const handleRegister = (e) => {
     e.preventDefault();
     console.log(FirstName, LastName, Username, Password, Email, DOB);
-    axios.post('https://best-flix-10922.herokuapp.com/users', {
+    axios.post(`${Config.API_URL}/users`, {
       FirstName: FirstName,
       LastName: LastName,
       Email: Email,
@@ -75,7 +76,7 @@ export function RegistrationView() {
       <Form.Group controlId='formDOB'>
         <Form.Label>Birthday:</Form.Label>
         <Form.Control
-          type='text'
+          type='date'
           value={DOB}
           onChange={e => setDOB(e.target.value)}
           placeholder='Enter Date of Birth'
@@ -131,10 +132,10 @@ RegistrationView.propTypes = {
     FirstName: PropTypes.string.isRequired,
     LastName: PropTypes.string.isRequired,
     Email: PropTypes.string.isRequired,
-    DOB: PropTypes.string.isRequired, //note - this might need to be considered a string
+    DOB: PropTypes.instanceOf(Date).isRequired, //note - this might need to be considered a string
     Username: PropTypes.string.isRequired,
     Password: PropTypes.string.isRequired,
     ConfirmPassword: PropTypes.string.isRequired
   }),
-  handleRegister: PropTypes.func.isRequired
+  //handleRegister: PropTypes.func.isRequired
 };

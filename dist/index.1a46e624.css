@@ -10,8 +10,10 @@
 .label {
   font-weight: bold;
 }
-
-.app-container {
+.main-view {
   background-color: #09518b;
 }
+/*.app-container {
+  background-color: $bgcolor;
+}*/
 /*# sourceMappingURL=index.1a46e624.css.map */

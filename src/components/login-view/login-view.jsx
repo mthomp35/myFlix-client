@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import { Button, Col, Form } from 'react-bootstrap';
+import Config from '../../config';
 
 import './login-view.scss';
 
@@ -15,7 +16,7 @@ export function LoginView(props) {
     e.preventDefault();
     // Send a request to the server for authentication
     console.log(username, password);
-    axios.post('https://best-flix-10922.herokuapp.com/login', {
+    axios.post(`${Config.API_URL}/login`, {
       Username: username,
       Password: password
     })
