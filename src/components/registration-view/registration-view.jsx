@@ -40,7 +40,7 @@ export function RegistrationView() {
 
   return (
     <Form className='registration'>
-      <h1>Welcome to Movie Mania!</h1>
+      <h1>Welcome to M's Movie Mania!</h1>
       <p>Please register here to gain access.</p>
       <p>Already registered? 
         <Link to={'/'}>

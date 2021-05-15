@@ -32,7 +32,7 @@ export function LoginView(props) {
   return (
     <Form className='login'>
       <Form.Row>
-        <h1>Welcome to Movie Mania!</h1>
+        <h1>Welcome back to M's Movie Mania!</h1>
       </Form.Row>
       <Form.Row>
         <p>Please log in to to continue.</p>
@@ -66,7 +66,7 @@ export function LoginView(props) {
         </Col>
         <Col md={6}>
           <Link to={'/register'}>
-            <Button type='button' variant='link'>New to Movie Mania? Click here to register</Button>
+            <Button type='button' variant='link'>New to M's Movie Mania? Click here to register</Button>
           </Link>
         </Col>
       </Form.Row>

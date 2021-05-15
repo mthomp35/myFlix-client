@@ -40721,7 +40721,7 @@ try {
             className: "nav-bar"
           }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Navbar.Brand, {
             href: "/"
-          }, "Movie Mania"), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Navbar.Toggle, {
+          }, "M's"), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Navbar.Toggle, {
             "aria-controls": "basic-navbar-nav"
           }), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Navbar.Collapse, {
             id: "basic-navbar-nav"
@@ -45915,7 +45915,7 @@ try {
     return (
       /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form, {
         className: "registration"
-      }, /*#__PURE__*/_react["default"].createElement("h1", null, "Welcome to Movie Mania!"), /*#__PURE__*/_react["default"].createElement("p", null, "Please register here to gain access."), /*#__PURE__*/_react["default"].createElement("p", null, "Already registered?", /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Link, {
+      }, /*#__PURE__*/_react["default"].createElement("h1", null, "Welcome to M's Movie Mania!"), /*#__PURE__*/_react["default"].createElement("p", null, "Please register here to gain access."), /*#__PURE__*/_react["default"].createElement("p", null, "Already registered?", /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Link, {
         to: '/'
       }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
         type: "button",
@@ -46317,7 +46317,7 @@ try {
     return (
       /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form, {
         className: "login"
-      }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Row, null, /*#__PURE__*/_react["default"].createElement("h1", null, "Welcome to Movie Mania!")), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Row, null, /*#__PURE__*/_react["default"].createElement("p", null, "Please log in to to continue.")), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Group, {
+      }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Row, null, /*#__PURE__*/_react["default"].createElement("h1", null, "Welcome back to M's Movie Mania!")), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Row, null, /*#__PURE__*/_react["default"].createElement("p", null, "Please log in to to continue.")), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Group, {
         controlId: "formUsername"
       }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Label, null, "Username:"), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Control, {
         type: "text",
@@ -46351,7 +46351,7 @@ try {
       }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
         type: "button",
         variant: "link"
-      }, "New to Movie Mania? Click here to register")))))
+      }, "New to M's Movie Mania? Click here to register")))))
     );
   }
   _s2(LoginView, "9FY2cPL9VBDmuhjwpF2ik6flsHs=");

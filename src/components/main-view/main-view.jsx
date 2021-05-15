@@ -92,7 +92,7 @@ export class MainView extends React.Component {
          <Row className='nav-bar_row'>
            
             <Navbar bg='light' expand='md' className='nav-bar'>
-              <Navbar.Brand href='/'>Movie Mania</Navbar.Brand>
+              <Navbar.Brand href='/'>M's</Navbar.Brand>
               <Navbar.Toggle aria-controls='basic-navbar-nav' />
               <Navbar.Collapse id='basic-navbar-nav'>
                 <Nav className='mr-auto' variant='light'/* how to add activeKey='' that changes with the page*/>
