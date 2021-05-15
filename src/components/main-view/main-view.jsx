@@ -133,7 +133,7 @@ export class MainView extends React.Component {
             </Col>
             }} />
           
-          <Route path='/users/:Username' render={(history) => <ProfileView user={user} token={token} movies={movies} history={history}/>}/>
+          <Route path='/users/:Username' render={(history) => <ProfileView movies={movies} history={history}/>}/>
         
       </Router>
     );

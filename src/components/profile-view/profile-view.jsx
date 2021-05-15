@@ -26,7 +26,6 @@ export class ProfileView extends React.Component {
   }
 
   changeDate(string) {
-    //return string.slice(0,string.indexOf('T'));
     return string ? string.slice(0,string.indexOf('T')) : '1111-11-11';
   }
 
@@ -40,7 +39,7 @@ export class ProfileView extends React.Component {
 
   // get user information based on username stored in local storage
   getUser() {
-    console.log('this.props.user', this.props.user); //if I do it this way, I have to make the user log back in - can't navigate away and back unless I use localStorage
+    //if I use this.props.user, I have to make the user log back in - can't navigate away and back unless I use localStorage
     axios.get(`${Config.API_URL}/users/${localStorage.getItem('user')}`, {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
     })
