@@ -20,19 +20,44 @@
 .label {
   font-weight: bold;
 }
+.profile,
+.fav,
+.buttons {
+  color: #fff;
+  background-color: #09518b;
+}
+
+h3, .fav-label {
+  padding: 15px;
+}
+
+.no-fav {
+  font-size: 16px;
+}
 .main-view {
   background-color: #09518b;
   margin: 0;
 }
 
-.nav-bar {
+.navbar {
+  background-color: #09518b;
   width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0;
+  padding-right: 0;
 }
 /*.app-container {
-  background-color: $bgcolor;
-}*/
-.my-flix {
-  padding: 0;
-  margin: 0;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0;
+  padding-right:0
 }
+
+.my-flix {
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0;
+  padding-right:0
+}*/
 /*# sourceMappingURL=index.1a46e624.css.map */

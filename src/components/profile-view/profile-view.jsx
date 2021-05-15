@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Form } from 'react-bootstrap';
+import { Button, Col, Form, Row} from 'react-bootstrap';
 import axios from 'axios';
 import Config from '../../config';
+import './profile-view.scss';
 
 // does this need to be a class?
 export class ProfileView extends React.Component {
@@ -154,15 +155,16 @@ export class ProfileView extends React.Component {
   }
 
   render() {
-    const { FirstName, LastName, Email, DOB, Username, Password, ConfirmPassword, favoriteMovies } = this.state;
+    const { FirstName, LastName, Email, DOB, Password, ConfirmPassword, favoriteMovies } = this.state;
     const { movies, history } = this.props;
     const favMovies = movies.filter(movie => favoriteMovies.includes(movie._id));
-    console.log(movies);
-    console.log(Username);
 
     return(
       <div>
-        <p>{`Hi ${FirstName}! Enter new details below to edit your profile.`}</p>
+        <Row className='profile'>
+        
+        <Col md={10}>
+        <h3>{`Hi ${FirstName}! Enter new details below to edit your profile.`}</h3>
         <Form className='update-profile'>
           <Form.Group controlId='formFirstName'>
             <Form.Label>First Name:</Form.Label>
@@ -209,7 +211,7 @@ export class ProfileView extends React.Component {
               value={Password}
               aria-describedby='passwordHelpBlock'
               onChange={e => this.setNew('Password', e.target.value)}
-              //placeholder='Enter Password'
+              placeholder='Enter New Password'
             />
             <Form.Text id='passwordHelpBlock'>
               Password must contain: At least 10 characters, a combination of uppercase and lowercase letters (A-z), 
@@ -223,27 +225,41 @@ export class ProfileView extends React.Component {
               type='Password'
               value={ConfirmPassword}
               onChange={e => this.setNew('ConfirmPassword', e.target.value)}
-              //placeholder='Confirm Password'
+              placeholder='Confirm Password'
               sr_only='Re-enter password to confirm'
             />
           </Form.Group>
 
           <Button type='submit' variant='secondary' onClick={this.updateProfile}>Update Profile</Button>
         </Form>
-        <div>Favorite Movies:
-          {favMovies.map((fav, index) => {
-            return(
-            <div key={index}>
-              <img src={fav.ImagePath}/>
-              <Button onClick={() => this.removeFav(fav)}>Remove movie</Button>
+        </Col>
+        </Row>
+        <Row className='fav'>
+          <Col md={4}>
+            <div className='fav-label'>Favorite Movies:
+              {favMovies.map((fav, index) => {
+                if(!favMovies) return <p className='no-fav'>You have no favorite movies. Go add some!</p>;
+                return(
+                <div key={index}>
+                  <img src={fav.ImagePath}/>
+                  <Button onClick={() => this.removeFav(fav)}>Remove movie</Button>
+                </div>
+                )
+              }
+              )}
             </div>
-            )
-          }
-          )}
+          </Col>
+        </Row>
+        <Row className='buttons'>
+          <Col md={4}>
+            <Button variant ='warning' onClick={() => history.push('/')}>Go back</Button>
+          </Col>
+          <Col md={{ span: 4, offset: 4 }}>
+            <Button variant='dark' onClick={() => this.deleteUser()}>Delete account</Button>
+          </Col>
+        </Row>
         </div>
-        <Button onClick={() => history.push('/')}>Go back</Button>
-        <Button onClick={() => this.deleteUser()}>Delete account</Button>
-      </div>
+      
     );
   }
 }

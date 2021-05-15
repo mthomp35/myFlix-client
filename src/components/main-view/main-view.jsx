@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { Container, Form, FormControl, Nav, Navbar, Button, Col, Row } from 'react-bootstrap';
+import { Form, Nav, Navbar, Button, Col, Row } from 'react-bootstrap';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import Config from '../../config';
 
@@ -86,12 +86,12 @@ export class MainView extends React.Component {
 
     //before the movies have been loaded
     /* If there is no user, the LoginView is rendered. If there is a user logged in, the user details are passed as a prop to the LoginView*/
-    //if (!movies.length) return <div className='main-view'>{message}</div>;
+    //if (!movies.length) return <div className='main-view'>{message}</div>; <Row className='nav-bar_row' sticky='top' > <Row className='main-view justify-content-md-center'>
     return (
         <Router className='router-mv'>
-         <Row className='nav-bar_row'>
+        
            
-            <Navbar bg='light' expand='md' className='nav-bar'>
+            <Navbar bg='light' variant='light' expand='md' sticky='top' className='navbar'>
               <Navbar.Brand href='/'>M's</Navbar.Brand>
               <Navbar.Toggle aria-controls='basic-navbar-nav' />
               <Navbar.Collapse id='basic-navbar-nav'>
@@ -107,13 +107,13 @@ export class MainView extends React.Component {
                   </Nav.Item>
                 </Nav>
                 <Form inline>
-                  <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+                  <Form.Control type="text" placeholder="Search" className="mr-sm-2" />
                   <Button variant="outline-success">Search</Button>
                 </Form>
               </Navbar.Collapse>
             </Navbar>
           
-        </Row>
+        
         <Row className='main-view justify-content-md-center'>
           <Route exact path='/' render={() => {
               if (!user) return <Col>
@@ -163,9 +163,9 @@ export class MainView extends React.Component {
                 <DirectorView history={history} movies={movies.filter(m => m.Director.Name === match.params.name)} director={movies.find(m => m.Director.Name === match.params.name).Director}/>
               </Col>
               }} />
-            
+            </Row>
             <Route path='/users/:Username' render={(history) => <ProfileView movies={movies} history={history} onBackClick={() => history.goBack()}/>}/>
-          </Row>
+          
       </Router>
     );
   }

@@ -40709,16 +40709,16 @@ try {
         var _this$state = this.state, movies = _this$state.movies, user = _this$state.user, token = _this$state.token, message = _this$state.message;
         // before the movies have been loaded
         /*If there is no user, the LoginView is rendered. If there is a user logged in, the user details are passed as a prop to the LoginView*/
-        // if (!movies.length) return <div className='main-view'>{message}</div>;
+        // if (!movies.length) return <div className='main-view'>{message}</div>; <Row className='nav-bar_row' sticky='top' > <Row className='main-view justify-content-md-center'>
         return (
           /*#__PURE__*/_react["default"].createElement(_reactRouterDom.BrowserRouter, {
             className: "router-mv"
-          }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Row, {
-            className: "nav-bar_row"
           }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Navbar, {
             bg: "light",
+            variant: "light",
             expand: "md",
-            className: "nav-bar"
+            sticky: "top",
+            className: "navbar"
           }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Navbar.Brand, {
             href: "/"
           }, "M's"), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Navbar.Toggle, {
@@ -40744,13 +40744,13 @@ try {
             }
           }, "Log Out"))), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form, {
             inline: true
-          }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.FormControl, {
+          }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Control, {
             type: "text",
             placeholder: "Search",
             className: "mr-sm-2"
           }), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
             variant: "outline-success"
-          }, "Search"))))), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Row, {
+          }, "Search")))), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Row, {
             className: "main-view justify-content-md-center"
           }, /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Route, {
             exact: true,
@@ -40875,7 +40875,7 @@ try {
                 }))
               );
             }
-          }), /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Route, {
+          })), /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Route, {
             path: "/users/:Username",
             render: function render(history) {
               return (
@@ -40888,7 +40888,7 @@ try {
                 })
               );
             }
-          })))
+          }))
         );
       }
     }]);
@@ -46751,11 +46751,11 @@ try {
             }
           }, "Add to favorites"), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
             className: "text-left",
+            variant: "light",
+            block: true,
             onClick: function onClick() {
               return history.push('/');
-            },
-            variant: "light",
-            block: true
+            }
           }, "Return Home"))
         );
       }
@@ -47350,6 +47350,7 @@ try {
   var _reactBootstrap = require("react-bootstrap");
   var _axios = _interopRequireDefault(require("axios"));
   var _config = _interopRequireDefault(require("../../config"));
+  require("./profile-view.scss");
   function _interopRequireDefault(obj) {
     return obj && obj.__esModule ? obj : {
       "default": obj
@@ -47643,15 +47644,17 @@ try {
       key: "render",
       value: function render() {
         var _this5 = this;
-        var _this$state = this.state, FirstName = _this$state.FirstName, LastName = _this$state.LastName, Email = _this$state.Email, DOB = _this$state.DOB, Username = _this$state.Username, Password = _this$state.Password, ConfirmPassword = _this$state.ConfirmPassword, favoriteMovies = _this$state.favoriteMovies;
+        var _this$state = this.state, FirstName = _this$state.FirstName, LastName = _this$state.LastName, Email = _this$state.Email, DOB = _this$state.DOB, Password = _this$state.Password, ConfirmPassword = _this$state.ConfirmPassword, favoriteMovies = _this$state.favoriteMovies;
         var _this$props = this.props, movies = _this$props.movies, history = _this$props.history;
         var favMovies = movies.filter(function (movie) {
           return favoriteMovies.includes(movie._id);
         });
-        console.log(movies);
-        console.log(Username);
         return (
-          /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("p", null, ("Hi ").concat(FirstName, "! Enter new details below to edit your profile.")), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form, {
+          /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Row, {
+            className: "profile"
+          }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Col, {
+            md: 10
+          }, /*#__PURE__*/_react["default"].createElement("h3", null, ("Hi ").concat(FirstName, "! Enter new details below to edit your profile.")), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form, {
             className: "update-profile"
           }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Group, {
             controlId: "formFirstName"
@@ -47693,7 +47696,8 @@ try {
             "aria-describedby": "passwordHelpBlock",
             onChange: function onChange(e) {
               return _this5.setNew('Password', e.target.value);
-            }
+            },
+            placeholder: "Enter New Password"
           }), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Text, {
             id: "passwordHelpBlock"
           }, "Password must contain: At least 10 characters, a combination of uppercase and lowercase letters (A-z), numbers (0-9), and special characters (e.g. ! @ # ? ] ).")), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Group, {
@@ -47704,13 +47708,24 @@ try {
             onChange: function onChange(e) {
               return _this5.setNew('ConfirmPassword', e.target.value);
             },
-            /*placeholder='Confirm Password'*/
+            placeholder: "Confirm Password",
             sr_only: "Re-enter password to confirm"
           })), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
             type: "submit",
             variant: "secondary",
             onClick: this.updateProfile
-          }, "Update Profile")), /*#__PURE__*/_react["default"].createElement("div", null, "Favorite Movies:", favMovies.map(function (fav, index) {
+          }, "Update Profile")))), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Row, {
+            className: "fav"
+          }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Col, {
+            md: 4
+          }, /*#__PURE__*/_react["default"].createElement("div", {
+            className: "fav-label"
+          }, "Favorite Movies:", favMovies.map(function (fav, index) {
+            if (!favMovies) return (
+              /*#__PURE__*/_react["default"].createElement("p", {
+                className: "no-fav"
+              }, "You have no favorite movies. Go add some!")
+            );
             return (
               /*#__PURE__*/_react["default"].createElement("div", {
                 key: index
@@ -47722,15 +47737,26 @@ try {
                 }
               }, "Remove movie"))
             );
-          })), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
+          })))), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Row, {
+            className: "buttons"
+          }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Col, {
+            md: 4
+          }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
+            variant: "warning",
             onClick: function onClick() {
               return history.push('/');
             }
-          }, "Go back"), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
+          }, "Go back")), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Col, {
+            md: {
+              span: 4,
+              offset: 4
+            }
+          }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
+            variant: "dark",
             onClick: function onClick() {
               return _this5.deleteUser();
             }
-          }, "Delete account"))
+          }, "Delete account"))))
         );
       }
     }]);
@@ -47743,6 +47769,6 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","axios":"7rA65","../../config":"5yJJr","../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6fW6i"}],"3X8QW":[function() {},{}],"5iJih":[function() {},{}]},["1j6wU","68WUB","1DVjT"], "1DVjT", "parcelRequire427e")
+},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","axios":"7rA65","../../config":"5yJJr","../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6fW6i","./profile-view.scss":"3kYjk"}],"3kYjk":[function() {},{}],"3X8QW":[function() {},{}],"5iJih":[function() {},{}]},["1j6wU","68WUB","1DVjT"], "1DVjT", "parcelRequire427e")
 
 //# sourceMappingURL=index.02675e63.js.map

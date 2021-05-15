@@ -1,5 +1,5 @@
-$bgcolor: rgb(9, 81, 139);
-$txtcolor: white;
+$bgcolor: #09518b;
+$bdtxt: #fff;
 $ltgray: #f1eeee;
 $dkgray: #413f3f;
 
@@ -8,6 +8,11 @@ $dkgray: #413f3f;
   margin: 0
 }
 
-.nav-bar {
-  width: 100%
+.navbar {
+  background-color: $bgcolor;
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0;
+  padding-right:0
 }

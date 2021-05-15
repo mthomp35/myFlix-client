@@ -78,7 +78,7 @@ export class MovieView extends React.Component {
           </Card.Text>
         </Card.Body>
           <Button variant='warning' onClick={() => this.addFav(movie)}>Add to favorites</Button>
-          <Button className='text-left' onClick={() => history.push('/')} variant='light' block>Return Home</Button>
+          <Button className='text-left' variant='light' block onClick={() => history.push('/')}>Return Home</Button>
       </Card>
     );
   }
