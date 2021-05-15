@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Button, Form } from 'react-bootstrap';
 import axios from 'axios';
@@ -41,6 +42,11 @@ export function RegistrationView() {
     <Form className='registration'>
       <h1>Welcome to Movie Mania!</h1>
       <p>Please register here to gain access.</p>
+      <p>Already registered? 
+        <Link to={'/'}>
+            <Button type='button' variant='link'>Login here</Button>
+        </Link>
+      </p>
       <Form.Group controlId='formFirstName'>
         <Form.Label>First Name:</Form.Label>
         <Form.Control
