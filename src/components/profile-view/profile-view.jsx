@@ -19,37 +19,15 @@ export class ProfileView extends React.Component {
       message: 'Loading'
     };
 
-  setNew(input) {
-    this.setState({
-      FirstName: input,
-      LastName: input,
-      Email: input,
-      DOB: input
-    })
+  setNew(key, value) {
+    let obj = {};
+    obj[key] = value; //must use array syntax to access prop because it's a variable
+    this.setState(obj)
   }
 
-  setFirstName(input) {
-    this.setState({
-      FirstName: input
-    })
-  }
-
-  setLastName(input) {
-    this.setState({
-      LastName: input
-    })
-  }
-
-  seEmail(input) {
-    this.setState({
-      Email: input
-    })
-  }
-
-  setDOB(input) {
-    this.setState({
-      DOB: input
-    })
+  changeDate(string) {
+    //return string.slice(0,string.indexOf('T'));
+    return string ? string.slice(0,string.indexOf('T')) : '1111-11-11';
   }
 
   componentDidMount(){
@@ -74,7 +52,7 @@ export class ProfileView extends React.Component {
         FirstName: data.FirstName,
         LastName: data.LastName,
         Email: data.Email,
-        DOB: data.Birth,
+        DOB: this.changeDate(data.Birth),
         Username: data.Username,
         Password: data.Password,
         favoriteMovies: data.FavoriteMovies
@@ -117,14 +95,21 @@ export class ProfileView extends React.Component {
     e.preventDefault(); //need to define the 'e' as prop to prevent page refresh
     //need the arrow function for 'this' to look at the 'class' instead of the 'form / last thing it was looking at' -->reco decouple then put into axios
     //add something to ask if user is sure they want to update their profile
+    
     let data = {
       FirstName: this.state.FirstName,
       LastName: this.state.LastName,
       Email: this.state.Email,
-      Username: this.state.Username
-     // Birth: this.state.DOB,
-     // Password: this.state.Password
+      Username: this.state.Username,
+      Birth: this.state.DOB
     }
+    if(this.state.Password === this.state.ConfirmPassword && this.state.Password !== '') {
+      data.Password = this.state.Password
+    } else if(this.state.Password !== this.state.ConfirmPassword){
+      alert('Your passwords do not match');
+      return; //put statement will never get hit after the return statement
+    }
+
     axios.put(`${Config.API_URL}/users/${this.state.Username}`, data, {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}`},
     })
@@ -134,8 +119,9 @@ export class ProfileView extends React.Component {
         FirstName: response.data.FirstName,
         LastName: response.data.LastName,
         Email: response.data.Email,
-        DOB: response.data.Birth,
-        Password: response.data.Password
+        DOB: this.changeDate(response.data.Birth),
+        Password: '',
+        ConfirmPassword: ''
       });
       alert('Great work! You have successfully updated your profile!');
       // send Email to user saying changes have been made to their profile. If they made them, then disregard. otherwise contact us and change their password
@@ -184,7 +170,7 @@ export class ProfileView extends React.Component {
             <Form.Control
               type='text'
               value={FirstName}
-              onChange={e => this.setFirstName(e.target.value)}
+              onChange={e => this.setNew('FirstName', e.target.value)}
               //placeholder={FirstName}
             />
           </Form.Group>
@@ -194,7 +180,7 @@ export class ProfileView extends React.Component {
             <Form.Control
               type='text'
               value={LastName}
-              onChange={e => this.setLastName(e.target.value)}
+              onChange={e => this.setNew('LastName', e.target.value)}
             />
           </Form.Group>
           
@@ -203,7 +189,7 @@ export class ProfileView extends React.Component {
             <Form.Control
               type='Email'
               value={Email}
-              onChange={e => setEmail(e.target.value)}
+              onChange={e => this.setNew('Email', e.target.value)}
             />
           </Form.Group>
           
@@ -212,7 +198,7 @@ export class ProfileView extends React.Component {
             <Form.Control
               type='date'
               value={DOB}
-              onChange={e => this.setDOB(e.target.value)}
+              onChange={e => this.setNew('DOB', e.target.value)}
               //pattern='Enter date of birth (month/day/year)'
             />
           </Form.Group>
@@ -221,9 +207,9 @@ export class ProfileView extends React.Component {
             <Form.Label>Password:</Form.Label>
             <Form.Control
               type='Password'
-              //value={Password}
+              value={Password}
               aria-describedby='passwordHelpBlock'
-              onChange={e => setPassword(e.target.value)}
+              onChange={e => this.setNew('Password', e.target.value)}
               //placeholder='Enter Password'
             />
             <Form.Text id='passwordHelpBlock'>
@@ -237,7 +223,7 @@ export class ProfileView extends React.Component {
             <Form.Control
               type='Password'
               value={ConfirmPassword}
-              onChange={e => setConfirmPassword(e.target.value)}
+              onChange={e => this.setNew('ConfirmPassword', e.target.value)}
               //placeholder='Confirm Password'
               sr_only='Re-enter password to confirm'
             />

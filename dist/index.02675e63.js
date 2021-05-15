@@ -47457,8 +47457,15 @@ try {
           FirstName: _this.state.FirstName,
           LastName: _this.state.LastName,
           Email: _this.state.Email,
-          Username: _this.state.Username
+          Username: _this.state.Username,
+          Birth: _this.state.DOB
         };
+        if (_this.state.Password === _this.state.ConfirmPassword && _this.state.Password !== '') {
+          data.Password = _this.state.Password;
+        } else if (_this.state.Password !== _this.state.ConfirmPassword) {
+          alert('Your passwords do not match');
+          return;
+        }
         _axios["default"].put(("").concat(_config["default"].API_URL, "/users/").concat(_this.state.Username), data, {
           headers: {
             Authorization: ("Bearer ").concat(localStorage.getItem('token'))
@@ -47469,8 +47476,9 @@ try {
             FirstName: response.data.FirstName,
             LastName: response.data.LastName,
             Email: response.data.Email,
-            DOB: response.data.Birth,
-            Password: response.data.Password
+            DOB: _this.changeDate(response.data.Birth),
+            Password: '',
+            ConfirmPassword: ''
           });
           alert('Great work! You have successfully updated your profile!');
         })["catch"](function (e) {
@@ -47484,41 +47492,17 @@ try {
     }
     _createClass(ProfileView, [{
       key: "setNew",
-      value: function setNew(input) {
-        this.setState({
-          FirstName: input,
-          LastName: input,
-          Email: input,
-          DOB: input
-        });
+      value: function setNew(key, value) {
+        var obj = {};
+        obj[key] = value;
+        // must use array syntax to access prop because it's a variable
+        this.setState(obj);
       }
     }, {
-      key: "setFirstName",
-      value: function setFirstName(input) {
-        this.setState({
-          FirstName: input
-        });
-      }
-    }, {
-      key: "setLastName",
-      value: function setLastName(input) {
-        this.setState({
-          LastName: input
-        });
-      }
-    }, {
-      key: "seEmail",
-      value: function seEmail(input) {
-        this.setState({
-          Email: input
-        });
-      }
-    }, {
-      key: "setDOB",
-      value: function setDOB(input) {
-        this.setState({
-          DOB: input
-        });
+      key: "changeDate",
+      value: function changeDate(string) {
+        // return string.slice(0,string.indexOf('T'));
+        return string ? string.slice(0, string.indexOf('T')) : '1111-11-11';
       }
     }, {
       key: "componentDidMount",
@@ -47549,7 +47533,7 @@ try {
             FirstName: data.FirstName,
             LastName: data.LastName,
             Email: data.Email,
-            DOB: data.Birth,
+            DOB: _this2.changeDate(data.Birth),
             Username: data.Username,
             Password: data.Password,
             favoriteMovies: data.FavoriteMovies
@@ -47627,7 +47611,7 @@ try {
             type: "text",
             value: FirstName,
             onChange: function onChange(e) {
-              return _this5.setFirstName(e.target.value);
+              return _this5.setNew('FirstName', e.target.value);
             }
           })), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Group, {
             controlId: "formLastName"
@@ -47635,7 +47619,7 @@ try {
             type: "text",
             value: LastName,
             onChange: function onChange(e) {
-              return _this5.setLastName(e.target.value);
+              return _this5.setNew('LastName', e.target.value);
             }
           })), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Group, {
             controlId: "formEmail"
@@ -47643,7 +47627,7 @@ try {
             type: "Email",
             value: Email,
             onChange: function onChange(e) {
-              return setEmail(e.target.value);
+              return _this5.setNew('Email', e.target.value);
             }
           })), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Group, {
             controlId: "formDOB"
@@ -47651,16 +47635,16 @@ try {
             type: "date",
             value: DOB,
             onChange: function onChange(e) {
-              return _this5.setDOB(e.target.value);
+              return _this5.setNew('DOB', e.target.value);
             }
           })), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Group, {
             controlId: "formPassword"
           }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Label, null, "Password:"), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Control, {
             type: "Password",
-            /*value={Password}*/
+            value: Password,
             "aria-describedby": "passwordHelpBlock",
             onChange: function onChange(e) {
-              return setPassword(e.target.value);
+              return _this5.setNew('Password', e.target.value);
             }
           }), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Text, {
             id: "passwordHelpBlock"
@@ -47670,7 +47654,7 @@ try {
             type: "Password",
             value: ConfirmPassword,
             onChange: function onChange(e) {
-              return setConfirmPassword(e.target.value);
+              return _this5.setNew('ConfirmPassword', e.target.value);
             },
             /*placeholder='Confirm Password'*/
             sr_only: "Re-enter password to confirm"
