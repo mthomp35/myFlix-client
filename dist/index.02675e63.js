@@ -1165,6 +1165,7 @@ try {
       value: function render() {
         return (
           /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Container, {
+            fluid: true,
             className: "my-flix"
           }, /*#__PURE__*/_react["default"].createElement(_mainView.MainView, null))
         );
@@ -40712,19 +40713,44 @@ try {
         return (
           /*#__PURE__*/_react["default"].createElement(_reactRouterDom.BrowserRouter, {
             className: "router-mv"
-          }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Nav, {
-            className: "light"
-          }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Nav.Item, null, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Nav.Link, {
+          }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Row, {
+            className: "nav-bar_row"
+          }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Navbar, {
+            bg: "light",
+            expand: "md",
+            className: "nav-bar"
+          }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Navbar.Brand, {
             href: "/"
-          }, "Home")), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Nav.Item, null, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Nav.Link, {
+          }, "Movie Mania"), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Navbar.Toggle, {
+            "aria-controls": "basic-navbar-nav"
+          }), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Navbar.Collapse, {
+            id: "basic-navbar-nav"
+          }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Nav, {
+            className: "mr-auto",
+            variant: "light"
+          }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Nav.Item, {
+            className: "nav-link"
+          }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Nav.Link, {
+            href: "/"
+          }, "Home")), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Nav.Item, {
+            className: "nav-link"
+          }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Nav.Link, {
             href: ("/users/").concat(user)
           }, "Profile")), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Nav.Item, {
-            className: "justify-content-end"
+            className: "nav-link justify-content-end"
           }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Nav.Link, {
             onClick: function onClick() {
               return _this3.onLogOut();
             }
-          }, "Log Out"))), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Row, {
+          }, "Log Out"))), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form, {
+            inline: true
+          }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.FormControl, {
+            type: "text",
+            placeholder: "Search",
+            className: "mr-sm-2"
+          }), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
+            variant: "outline-success"
+          }, "Search"))))), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Row, {
             className: "main-view justify-content-md-center"
           }, /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Route, {
             exact: true,
@@ -46719,10 +46745,11 @@ try {
           }, "Director Bio: "), /*#__PURE__*/_react["default"].createElement("span", {
             className: "value"
           }, movie.Director.Bio))), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
+            variant: "warning",
             onClick: function onClick() {
               return _this3.addFav(movie);
             }
-          }, "Add movie to favorites"), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
+          }, "Add to favorites"), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
             className: "text-left",
             onClick: function onClick() {
               return history.push('/');

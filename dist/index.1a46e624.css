@@ -22,8 +22,17 @@
 }
 .main-view {
   background-color: #09518b;
+  margin: 0;
+}
+
+.nav-bar {
+  width: 100%;
 }
 /*.app-container {
   background-color: $bgcolor;
 }*/
+.my-flix {
+  padding: 0;
+  margin: 0;
+}
 /*# sourceMappingURL=index.1a46e624.css.map */

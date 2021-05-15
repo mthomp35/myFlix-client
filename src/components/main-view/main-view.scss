@@ -1,6 +1,13 @@
 $bgcolor: rgb(9, 81, 139);
 $txtcolor: white;
+$ltgray: #f1eeee;
+$dkgray: #413f3f;
 
 .main-view {
   background-color: $bgcolor;
+  margin: 0
+}
+
+.nav-bar {
+  width: 100%
 }

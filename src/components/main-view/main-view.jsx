@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { Nav, Row, Col } from 'react-bootstrap';
+import { Container, Form, FormControl, Nav, Navbar, Button, Col, Row } from 'react-bootstrap';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import Config from '../../config';
 
@@ -88,18 +88,32 @@ export class MainView extends React.Component {
     /* If there is no user, the LoginView is rendered. If there is a user logged in, the user details are passed as a prop to the LoginView*/
     //if (!movies.length) return <div className='main-view'>{message}</div>;
     return (
-      <Router className='router-mv'>
-         <Nav className='light'/* how to add activeKey='' that changes with the page*/>
-          <Nav.Item>
-            <Nav.Link href='/'>Home</Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link href={`/users/${user}`}>Profile</Nav.Link>
-          </Nav.Item>
-          <Nav.Item className='justify-content-end'> 
-            <Nav.Link onClick={() => this.onLogOut()}>Log Out</Nav.Link>
-          </Nav.Item>
-        </Nav>
+        <Router className='router-mv'>
+         <Row className='nav-bar_row'>
+           
+            <Navbar bg='light' expand='md' className='nav-bar'>
+              <Navbar.Brand href='/'>Movie Mania</Navbar.Brand>
+              <Navbar.Toggle aria-controls='basic-navbar-nav' />
+              <Navbar.Collapse id='basic-navbar-nav'>
+                <Nav className='mr-auto' variant='light'/* how to add activeKey='' that changes with the page*/>
+                  <Nav.Item className='nav-link'>
+                    <Nav.Link href='/'>Home</Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item className='nav-link'>
+                    <Nav.Link href={`/users/${user}`}>Profile</Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item className='nav-link justify-content-end'> 
+                    <Nav.Link onClick={() => this.onLogOut()}>Log Out</Nav.Link>
+                  </Nav.Item>
+                </Nav>
+                <Form inline>
+                  <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+                  <Button variant="outline-success">Search</Button>
+                </Form>
+              </Navbar.Collapse>
+            </Navbar>
+          
+        </Row>
         <Row className='main-view justify-content-md-center'>
           <Route exact path='/' render={() => {
               if (!user) return <Col>
