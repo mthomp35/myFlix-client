@@ -46507,10 +46507,10 @@ try {
             src: movie.ImagePath
           }), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card.Title, null, movie.Title), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card.Text, {
             className: "movie-card_text"
-          }, movie.Description)), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card.Footer, {
-            className: "text-center"
-          }, /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Link, {
+          }, movie.Description)), /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Link, {
             to: ("/movies/").concat(movie._id)
+          }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card.Footer, {
+            className: "text-center"
           }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
             variant: "Link"
           }, "Learn More")))))
