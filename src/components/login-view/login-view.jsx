@@ -25,7 +25,7 @@ export function LoginView(props) {
       props.onLoggedIn(data);
     })
     .catch(e => {
-      console.log(e + 'User does not exist')
+      console.log(`${e} User does not exist`)
     });
   };
 
@@ -66,7 +66,7 @@ export function LoginView(props) {
         </Col>
         <Col md={6}>
           <Link to={'/register'}>
-            <Button type='button' variance='link'>New to Movie Mania? Click here to register</Button>
+            <Button type='button' variant='link'>New to Movie Mania? Click here to register</Button>
           </Link>
         </Col>
       </Form.Row>
