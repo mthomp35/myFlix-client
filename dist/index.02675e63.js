@@ -40711,36 +40711,45 @@ try {
         // if (!movies.length) return <div className='main-view'>{message}</div>;
         return (
           /*#__PURE__*/_react["default"].createElement(_reactRouterDom.BrowserRouter, {
-            className: "main-view"
+            className: "router-mv"
           }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Nav, {
             className: "light"
           }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Nav.Item, null, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Nav.Link, {
             href: "/"
           }, "Home")), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Nav.Item, null, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Nav.Link, {
             href: ("/users/").concat(user)
-          }, "Profile")), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Nav.Item, null, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Nav.Link, {
-            className: "justify-content-end",
+          }, "Profile")), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Nav.Item, {
+            className: "justify-content-end"
+          }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Nav.Link, {
             onClick: function onClick() {
               return _this3.onLogOut();
             }
-          }, "Log Out"))), /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Route, {
+          }, "Log Out"))), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Row, {
+            className: "main-view justify-content-md-center"
+          }, /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Route, {
             exact: true,
             path: "/",
             render: function render() {
               if (!user) return (
-                /*#__PURE__*/_react["default"].createElement(_loginView.LoginView, {
+                /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Col, null, /*#__PURE__*/_react["default"].createElement(_loginView.LoginView, {
                   onLoggedIn: function onLoggedIn(user) {
                     return _this3.onLoggedIn(user);
                   }
-                })
+                }), ";")
+              );
+              if (!movies.length) return (
+                /*#__PURE__*/_react["default"].createElement("div", {
+                  className: "main-view"
+                }, message)
               );
               return movies.map(function (m) {
                 return (
-                  /*#__PURE__*/_react["default"].createElement(_movieCard.MovieCard, {
-                    key: m._id,
-                    movie: m,
-                    user: user
-                  })
+                  /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Col, {
+                    md: 4,
+                    key: m._id
+                  }, /*#__PURE__*/_react["default"].createElement(_movieCard.MovieCard, {
+                    movie: m
+                  }))
                 );
               });
             }
@@ -40753,7 +40762,7 @@ try {
                 })
               );
               return (
-                /*#__PURE__*/_react["default"].createElement(_registrationView.RegistrationView, null)
+                /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Col, null, /*#__PURE__*/_react["default"].createElement(_registrationView.RegistrationView, null))
               );
             }
           }), /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Route, {
@@ -40761,18 +40770,22 @@ try {
             render: function render(_ref) {
               var match = _ref.match, history = _ref.history;
               if (!user) return (
-                /*#__PURE__*/_react["default"].createElement(_loginView.LoginView, {
+                /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Col, null, /*#__PURE__*/_react["default"].createElement(_loginView.LoginView, {
                   onLoggedIn: function onLoggedIn(user) {
                     return _this3.onLoggedIn(user);
                   }
-                })
+                }), ";")
+              );
+              if (!movies.length) return (
+                /*#__PURE__*/_react["default"].createElement("div", {
+                  className: "main-view"
+                }, message)
               );
               return (
                 /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Col, {
                   md: 8
                 }, /*#__PURE__*/_react["default"].createElement(_movieView.MovieView, {
                   history: history,
-                  token: token,
                   movie: movies.find(function (m) {
                     return m._id === match.params.movieId;
                   })
@@ -40784,11 +40797,11 @@ try {
             render: function render(_ref2) {
               var match = _ref2.match, history = _ref2.history;
               if (!user) return (
-                /*#__PURE__*/_react["default"].createElement(_loginView.LoginView, {
+                /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Col, null, /*#__PURE__*/_react["default"].createElement(_loginView.LoginView, {
                   onLoggedIn: function onLoggedIn(user) {
                     return _this3.onLoggedIn(user);
                   }
-                })
+                }), ";")
               );
               if (!movies.length) return (
                 /*#__PURE__*/_react["default"].createElement("div", {
@@ -40796,12 +40809,14 @@ try {
                 }, message)
               );
               return (
-                /*#__PURE__*/_react["default"].createElement(_genreView.GenreView, {
+                /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Col, {
+                  md: 8
+                }, /*#__PURE__*/_react["default"].createElement(_genreView.GenreView, {
                   history: history,
                   genre: movies.find(function (m) {
                     return m.Genre.Name === match.params.name;
                   }).Genre
-                })
+                }))
               );
             }
           }), /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Route, {
@@ -40809,11 +40824,11 @@ try {
             render: function render(_ref3) {
               var match = _ref3.match, history = _ref3.history;
               if (!user) return (
-                /*#__PURE__*/_react["default"].createElement(_loginView.LoginView, {
+                /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Col, null, /*#__PURE__*/_react["default"].createElement(_loginView.LoginView, {
                   onLoggedIn: function onLoggedIn(user) {
                     return _this3.onLoggedIn(user);
                   }
-                })
+                }), ";")
               );
               if (!movies.length) return (
                 /*#__PURE__*/_react["default"].createElement("div", {
@@ -40839,14 +40854,15 @@ try {
             render: function render(history) {
               return (
                 /*#__PURE__*/_react["default"].createElement(_profileView.ProfileView, {
-                  user: user,
-                  token: token,
                   movies: movies,
-                  history: history
+                  history: history,
+                  onBackClick: function onBackClick() {
+                    return history.goBack();
+                  }
                 })
               );
             }
-          }))
+          })))
         );
       }
     }]);
@@ -45744,6 +45760,7 @@ try {
   });
   exports.RegistrationView = RegistrationView;
   var _react = _interopRequireWildcard(require("react"));
+  var _reactRouterDom = require("react-router-dom");
   var _propTypes = _interopRequireDefault(require("prop-types"));
   var _reactBootstrap = require("react-bootstrap");
   var _axios = _interopRequireDefault(require("axios"));
@@ -45872,7 +45889,12 @@ try {
     return (
       /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form, {
         className: "registration"
-      }, /*#__PURE__*/_react["default"].createElement("h1", null, "Welcome to Movie Mania!"), /*#__PURE__*/_react["default"].createElement("p", null, "Please register here to gain access."), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Group, {
+      }, /*#__PURE__*/_react["default"].createElement("h1", null, "Welcome to Movie Mania!"), /*#__PURE__*/_react["default"].createElement("p", null, "Please register here to gain access."), /*#__PURE__*/_react["default"].createElement("p", null, "Already registered?", /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Link, {
+        to: '/'
+      }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
+        type: "button",
+        variant: "link"
+      }, "Login here"))), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Group, {
         controlId: "formFirstName"
       }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Label, null, "First Name:"), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Control, {
         type: "text",
@@ -45967,7 +45989,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","axios":"7rA65","../../config":"5yJJr","./registration-view.scss":"22HWg","../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6fW6i"}],"22HWg":[function() {},{}],"6fW6i":[function(require,module,exports) {
+},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","axios":"7rA65","../../config":"5yJJr","./registration-view.scss":"22HWg","../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6fW6i","react-router-dom":"1PMSK"}],"22HWg":[function() {},{}],"6fW6i":[function(require,module,exports) {
 "use strict";
 var Refresh = require('react-refresh/runtime');
 function debounce(func, delay) {
@@ -46263,7 +46285,7 @@ try {
         var data = response.data;
         props.onLoggedIn(data);
       })["catch"](function (e) {
-        console.log(e + 'User does not exist');
+        console.log(("").concat(e, " User does not exist"));
       });
     };
     return (
@@ -46302,7 +46324,7 @@ try {
         to: '/register'
       }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
         type: "button",
-        variance: "link"
+        variant: "link"
       }, "New to Movie Mania? Click here to register")))))
     );
   }
@@ -46452,8 +46474,9 @@ try {
         return (
           /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card, {
             bg: "light",
-            className: "movie-card"
+            className: "movie-card text-center"
           }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card.Img, {
+            className: "movie-card_img",
             variant: "top",
             src: movie.ImagePath
           }), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card.Title, null, movie.Title), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card.Text, {
@@ -47501,7 +47524,6 @@ try {
     }, {
       key: "changeDate",
       value: function changeDate(string) {
-        // return string.slice(0,string.indexOf('T'));
         return string ? string.slice(0, string.indexOf('T')) : '1111-11-11';
       }
     }, {
@@ -47518,8 +47540,7 @@ try {
       value: // get user information based on username stored in local storage
       function getUser() {
         var _this2 = this;
-        console.log('this.props.user', this.props.user);
-        // if I do it this way, I have to make the user log back in - can't navigate away and back unless I use localStorage
+        // if I use this.props.user, I have to make the user log back in - can't navigate away and back unless I use localStorage
         _axios["default"].get(("").concat(_config["default"].API_URL, "/users/").concat(localStorage.getItem('user')), {
           headers: {
             Authorization: ("Bearer ").concat(localStorage.getItem('token'))

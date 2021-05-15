@@ -6,6 +6,16 @@
 }
 .movie-card {
   margin: 15px;
+  height: 500px;
+  flex-basis: 500px;
+}
+
+.movie-card_img {
+  width: 150px;
+}
+
+.movie-card_text {
+  font-size: 14px;
 }
 .label {
   font-weight: bold;
