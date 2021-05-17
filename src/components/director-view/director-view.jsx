@@ -37,14 +37,14 @@ export class DirectorView extends React.Component {
         </Col>
         </Row>
         <Row>
-          <Col md={4}>
+          
             <div className='dv-movies'>
               <div className='label'>Movies directed by {director.Name}: </div>
               <div>
               {movies.map(movie => <MovieCard key={movie._id} movie={movie}/>)}
               </div>
             </div>
-          </Col>
+          
         </Row>
       </div>
     );

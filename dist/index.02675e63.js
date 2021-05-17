@@ -46953,9 +46953,7 @@ try {
             className: "label"
           }, "Date of Death: "), /*#__PURE__*/_react["default"].createElement("span", {
             className: "value"
-          }, director.Death || 'N/A'))))), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Row, null, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Col, {
-            md: 4
-          }, /*#__PURE__*/_react["default"].createElement("div", {
+          }, director.Death || 'N/A'))))), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Row, null, /*#__PURE__*/_react["default"].createElement("div", {
             className: "dv-movies"
           }, /*#__PURE__*/_react["default"].createElement("div", {
             className: "label"
@@ -46966,7 +46964,7 @@ try {
                 movie: movie
               })
             );
-          }))))))
+          })))))
         );
       }
     }]);
