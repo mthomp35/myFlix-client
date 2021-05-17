@@ -40771,7 +40771,7 @@ try {
               return movies.map(function (m) {
                 return (
                   /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Col, {
-                    md: 4,
+                    md: 3,
                     key: m._id
                   }, /*#__PURE__*/_react["default"].createElement(_movieCard.MovieCard, {
                     movie: m
@@ -40808,14 +40808,12 @@ try {
                 }, message)
               );
               return (
-                /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Col, {
-                  md: 8
-                }, /*#__PURE__*/_react["default"].createElement(_movieView.MovieView, {
+                /*#__PURE__*/_react["default"].createElement(_movieView.MovieView, {
                   history: history,
                   movie: movies.find(function (m) {
                     return m._id === match.params.movieId;
                   })
-                }))
+                })
               );
             }
           }), /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Route, {
@@ -40836,7 +40834,7 @@ try {
               );
               return (
                 /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Col, {
-                  md: 8
+                  md: 10
                 }, /*#__PURE__*/_react["default"].createElement(_genreView.GenreView, {
                   history: history,
                   genre: movies.find(function (m) {
@@ -40862,9 +40860,7 @@ try {
                 }, message)
               );
               return (
-                /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Col, {
-                  md: 8
-                }, /*#__PURE__*/_react["default"].createElement(_directorView.DirectorView, {
+                /*#__PURE__*/_react["default"].createElement(_directorView.DirectorView, {
                   history: history,
                   movies: movies.filter(function (m) {
                     return m.Director.Name === match.params.name;
@@ -40872,7 +40868,7 @@ try {
                   director: movies.find(function (m) {
                     return m.Director.Name === match.params.name;
                   }).Director
-                }))
+                })
               );
             }
           })), /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Route, {
@@ -45755,8 +45751,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 var Config = {
-  // API_URL: 'https://best-flix-10922.herokuapp.com',
-  API_URL: 'http://localhost:8080'
+  API_URL: 'https://best-flix-10922.herokuapp.com'
 };
 var _default = Config;
 exports["default"] = _default;
@@ -45915,7 +45910,7 @@ try {
     return (
       /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form, {
         className: "registration"
-      }, /*#__PURE__*/_react["default"].createElement("h1", null, "Welcome to M's Movie Mania!"), /*#__PURE__*/_react["default"].createElement("p", null, "Please register here to gain access."), /*#__PURE__*/_react["default"].createElement("p", null, "Already registered?", /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Link, {
+      }, /*#__PURE__*/_react["default"].createElement("h1", null, "Welcome to M's Movie Mania!"), /*#__PURE__*/_react["default"].createElement("p", null, "Please register here to access the site."), /*#__PURE__*/_react["default"].createElement("p", null, "Already registered?", /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Link, {
         to: '/'
       }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
         type: "button",
@@ -45985,12 +45980,15 @@ try {
         onChange: function onChange(e) {
           return setConfirmPassword(e.target.value);
         },
-        placeholder: "Confirm Password"
-      })), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
+        placeholder: "Confirm Password",
+        sr_only: "Re-enter password to confirm"
+      })), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Group, {
+        className: "btn-blk"
+      }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
         type: "submit",
         variant: "secondary",
         onClick: handleRegister
-      }, "Submit"))
+      }, "Submit")))
     );
   }
   _s2(RegistrationView, "GM8HzfSR5FA0O2wlLfshkGfL6Es=");
@@ -46015,7 +46013,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","axios":"7rA65","../../config":"5yJJr","./registration-view.scss":"22HWg","../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6fW6i","react-router-dom":"1PMSK"}],"22HWg":[function() {},{}],"6fW6i":[function(require,module,exports) {
+},{"react":"3b2NM","react-router-dom":"1PMSK","prop-types":"4dfy5","react-bootstrap":"4n7hB","axios":"7rA65","../../config":"5yJJr","./registration-view.scss":"22HWg","../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6fW6i"}],"22HWg":[function() {},{}],"6fW6i":[function(require,module,exports) {
 "use strict";
 var Refresh = require('react-refresh/runtime');
 function debounce(func, delay) {
@@ -46338,7 +46336,9 @@ try {
         placeholder: "Enter Password"
       }), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Text, {
         id: "passwordHelpBlock"
-      }, "Password must contain: At least 10 characters, a combination of uppercase and lowercase letters (A-z), numbers (0-9), and special characters (e.g. ! @ # ? ] ).")), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Row, null, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Col, {
+      }, "Password must contain: At least 10 characters, a combination of uppercase and lowercase letters (A-z), numbers (0-9), and special characters (e.g. ! @ # ? ] ).")), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Row, {
+        className: "btn-blk"
+      }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Col, {
         md: 6
       }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
         type: "submit",
@@ -46498,22 +46498,24 @@ try {
       value: function render() {
         var movie = this.props.movie;
         return (
-          /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card, {
+          /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card, {
             bg: "light",
             className: "movie-card text-center"
           }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card.Img, {
-            className: "movie-card_img",
+            className: "movie-img",
             variant: "top",
             src: movie.ImagePath
-          }), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card.Title, null, movie.Title), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card.Text, {
-            className: "movie-card_text"
+          }), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card.Title, {
+            className: "movie-title"
+          }, movie.Title), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card.Text, {
+            className: "movie-text"
           }, movie.Description)), /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Link, {
             to: ("/movies/").concat(movie._id)
           }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card.Footer, {
-            className: "text-center"
+            className: "text-center btn-blk"
           }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
             variant: "Link"
-          }, "Learn More")))))
+          }, "Learn More"))))
         );
       }
     }]);
@@ -46664,6 +46666,14 @@ try {
       return _this;
     }
     _createClass(MovieView, [{
+      key: "getYear",
+      value: // get year from date
+      function getYear(movie) {
+        var date = new Date(movie);
+        var year = date.getFullYear();
+        return year;
+      }
+    }, {
       key: "addFav",
       value: // add movie to favorites
       function addFav(movie) {
@@ -46692,19 +46702,28 @@ try {
         var _this$props = this.props, movie = _this$props.movie, history = _this$props.history;
         if (!movie) return null;
         return (
-          /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card, {
-            className: "movie-view"
+          /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Row, {
+            className: "mv justify-content-center"
+          }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Col, {
+            md: 4,
+            className: "mv-col col1"
+          }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card, {
+            className: "mv-card"
           }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
-            className: "text-left",
+            variant: "warning",
             onClick: function onClick() {
-              return history.push('/');
-            },
-            variant: "light",
-            block: true
-          }, "Return Home"), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card.Img, {
-            className: "movie-poster left",
+              return _this3.addFav(movie);
+            }
+          }, "Add to favorites"), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card.Img, {
+            className: "movie-img center",
             src: movie.ImagePath
-          }), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card.Title, {
+          }))), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Col, {
+            md: 4,
+            className: "mv-col col2"
+          }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card, {
+            className: "mv-card",
+            bg: "light"
+          }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card.Title, {
             className: "movie-title"
           }, movie.Title), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card.Text, {
             className: "movie-year"
@@ -46712,7 +46731,7 @@ try {
             className: "label"
           }, "Release Year: "), /*#__PURE__*/_react["default"].createElement("span", {
             className: "value"
-          }, movie.Year)), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card.Text, {
+          }, this.getYear(movie.Year))), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card.Text, {
             className: "movie-description"
           }, /*#__PURE__*/_react["default"].createElement("span", {
             className: "label"
@@ -46738,25 +46757,18 @@ try {
             to: ("/directors/").concat(movie.Director.Name)
           }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
             variant: "link"
-          }, "Director Details"))), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card.Text, {
-            className: "movie-director-bio"
-          }, /*#__PURE__*/_react["default"].createElement("span", {
-            className: "label"
-          }, "Director Bio: "), /*#__PURE__*/_react["default"].createElement("span", {
-            className: "value"
-          }, movie.Director.Bio))), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
+          }, "Director Details")))), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
             variant: "warning",
             onClick: function onClick() {
               return _this3.addFav(movie);
             }
-          }, "Add to favorites"), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
-            className: "text-left",
+          }, "Add to favorites"), /*#__PURE__*/_react["default"].createElement("br", null), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
+            className: "btn-blk",
             variant: "light",
-            block: true,
             onClick: function onClick() {
               return history.push('/');
             }
-          }, "Return Home"))
+          }, "Return Home"))))
         );
       }
     }]);
@@ -46812,7 +46824,7 @@ try {
   var _propTypes = _interopRequireDefault(require("prop-types"));
   var _reactBootstrap = require("react-bootstrap");
   var _movieCard = require("../movie-card/movie-card");
-  var _Image = require("react-bootstrap/esm/Image");
+  require("./director-view.scss");
   function _interopRequireDefault(obj) {
     return obj && obj.__esModule ? obj : {
       "default": obj
@@ -46915,9 +46927,11 @@ try {
         var _this$props = this.props, director = _this$props.director, movies = _this$props.movies;
         // const directedMovies = movies.filter(m => m.Director.Name === director.Name);
         return (
-          /*#__PURE__*/_react["default"].createElement("div", {
-            className: "director-view"
-          }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Nav, null), /*#__PURE__*/_react["default"].createElement("div", {
+          /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Row, {
+            className: "justify-content-center"
+          }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Col, {
+            md: 10
+          }, /*#__PURE__*/_react["default"].createElement("div", {
             className: "dv"
           }, /*#__PURE__*/_react["default"].createElement("div", {
             className: "dv-name"
@@ -46939,18 +46953,20 @@ try {
             className: "label"
           }, "Date of Death: "), /*#__PURE__*/_react["default"].createElement("span", {
             className: "value"
-          }, director.Death || '[N/A]')), /*#__PURE__*/_react["default"].createElement("div", {
+          }, director.Death || 'N/A'))))), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Row, null, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Col, {
+            md: 4
+          }, /*#__PURE__*/_react["default"].createElement("div", {
             className: "dv-movies"
-          }, /*#__PURE__*/_react["default"].createElement("span", {
+          }, /*#__PURE__*/_react["default"].createElement("div", {
             className: "label"
-          }, "Movies directed by ", director.Name, " (maybe just the movie image?): "), /*#__PURE__*/_react["default"].createElement("div", null, movies.map(function (movie) {
+          }, "Movies directed by ", director.Name, ": "), /*#__PURE__*/_react["default"].createElement("div", null, movies.map(function (movie) {
             return (
               /*#__PURE__*/_react["default"].createElement(_movieCard.MovieCard, {
                 key: movie._id,
                 movie: movie
               })
             );
-          })))))
+          }))))))
         );
       }
     }]);
@@ -46970,202 +46986,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","../movie-card/movie-card":"7v6h3","react-bootstrap/esm/Image":"rzPO3","../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6fW6i"}],"rzPO3":[function(require,module,exports) {
-var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
-_parcelHelpers.defineInteropFlag(exports);
-_parcelHelpers.export(exports, "propTypes", function () {
-  return propTypes;
-});
-var _babelRuntimeHelpersEsmExtends = require("@babel/runtime/helpers/esm/extends");
-var _babelRuntimeHelpersEsmExtendsDefault = _parcelHelpers.interopDefault(_babelRuntimeHelpersEsmExtends);
-var _babelRuntimeHelpersEsmObjectWithoutPropertiesLoose = require("@babel/runtime/helpers/esm/objectWithoutPropertiesLoose");
-var _babelRuntimeHelpersEsmObjectWithoutPropertiesLooseDefault = _parcelHelpers.interopDefault(_babelRuntimeHelpersEsmObjectWithoutPropertiesLoose);
-var _classnames = require('classnames');
-var _classnamesDefault = _parcelHelpers.interopDefault(_classnames);
-var _react = require('react');
-var _reactDefault = _parcelHelpers.interopDefault(_react);
-var _propTypes = require('prop-types');
-var _propTypesDefault = _parcelHelpers.interopDefault(_propTypes);
-var _ThemeProvider = require('./ThemeProvider');
-var propTypes = {
-  /**
-  * @default 'img'
-  */
-  bsPrefix: _propTypesDefault.default.string,
-  /**
-  * Sets image as fluid image.
-  */
-  fluid: _propTypesDefault.default.bool,
-  /**
-  * Sets image shape as rounded.
-  */
-  rounded: _propTypesDefault.default.bool,
-  /**
-  * Sets image shape as circle.
-  */
-  roundedCircle: _propTypesDefault.default.bool,
-  /**
-  * Sets image shape as thumbnail.
-  */
-  thumbnail: _propTypesDefault.default.bool
-};
-var defaultProps = {
-  fluid: false,
-  rounded: false,
-  roundedCircle: false,
-  thumbnail: false
-};
-var Image = /*#__PURE__*/_reactDefault.default.forwardRef(function (_ref, ref) {
-  var bsPrefix = _ref.bsPrefix, className = _ref.className, fluid = _ref.fluid, rounded = _ref.rounded, roundedCircle = _ref.roundedCircle, thumbnail = _ref.thumbnail, props = _babelRuntimeHelpersEsmObjectWithoutPropertiesLooseDefault.default(_ref, ["bsPrefix", "className", "fluid", "rounded", "roundedCircle", "thumbnail"]);
-  bsPrefix = _ThemeProvider.useBootstrapPrefix(bsPrefix, 'img');
-  var classes = _classnamesDefault.default(fluid && bsPrefix + "-fluid", rounded && "rounded", roundedCircle && "rounded-circle", thumbnail && bsPrefix + "-thumbnail");
-  return (
-    /*#__PURE__*/_reactDefault.default.createElement("img", _babelRuntimeHelpersEsmExtendsDefault.default({
-      // eslint-disable-line jsx-a11y/alt-text
-      ref: ref
-    }, props, {
-      className: _classnamesDefault.default(className, classes)
-    }))
-  );
-});
-Image.displayName = 'Image';
-Image.defaultProps = defaultProps;
-exports.default = Image;
-
-},{"@babel/runtime/helpers/esm/extends":"5qnVv","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"6rNIl","classnames":"5aJRc","react":"3b2NM","prop-types":"4dfy5","./ThemeProvider":"6Pzum","@parcel/transformer-js/lib/esmodule-helpers.js":"2yYcQ"}],"5qnVv":[function(require,module,exports) {
-var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
-_parcelHelpers.defineInteropFlag(exports);
-function _extends() {
-  _extends = Object.assign || (function (target) {
-    for (var i = 1; i < arguments.length; i++) {
-      var source = arguments[i];
-      for (var key in source) {
-        if (Object.prototype.hasOwnProperty.call(source, key)) {
-          target[key] = source[key];
-        }
-      }
-    }
-    return target;
-  });
-  return _extends.apply(this, arguments);
-}
-exports.default = _extends;
-
-},{"@parcel/transformer-js/lib/esmodule-helpers.js":"2yYcQ"}],"2yYcQ":[function(require,module,exports) {
-"use strict";
-
-exports.interopDefault = function (a) {
-  return a && a.__esModule ? a : {
-    default: a
-  };
-};
-
-exports.defineInteropFlag = function (a) {
-  Object.defineProperty(a, '__esModule', {
-    value: true
-  });
-};
-
-exports.exportAll = function (source, dest) {
-  Object.keys(source).forEach(function (key) {
-    if (key === 'default' || key === '__esModule') {
-      return;
-    } // Skip duplicate re-exports when they have the same value.
-
-
-    if (key in dest && dest[key] === source[key]) {
-      return;
-    }
-
-    Object.defineProperty(dest, key, {
-      enumerable: true,
-      get: function () {
-        return source[key];
-      }
-    });
-  });
-  return dest;
-};
-
-exports.export = function (dest, destName, get) {
-  Object.defineProperty(dest, destName, {
-    enumerable: true,
-    get: get
-  });
-};
-},{}],"6rNIl":[function(require,module,exports) {
-var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
-_parcelHelpers.defineInteropFlag(exports);
-function _objectWithoutPropertiesLoose(source, excluded) {
-  if (source == null) return {};
-  var target = {};
-  var sourceKeys = Object.keys(source);
-  var key, i;
-  for (i = 0; i < sourceKeys.length; i++) {
-    key = sourceKeys[i];
-    if (excluded.indexOf(key) >= 0) continue;
-    target[key] = source[key];
-  }
-  return target;
-}
-exports.default = _objectWithoutPropertiesLoose;
-
-},{"@parcel/transformer-js/lib/esmodule-helpers.js":"2yYcQ"}],"6Pzum":[function(require,module,exports) {
-var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
-_parcelHelpers.defineInteropFlag(exports);
-_parcelHelpers.export(exports, "useBootstrapPrefix", function () {
-  return useBootstrapPrefix;
-});
-_parcelHelpers.export(exports, "createBootstrapComponent", function () {
-  return createBootstrapComponent;
-});
-_parcelHelpers.export(exports, "ThemeConsumer", function () {
-  return Consumer;
-});
-var _babelRuntimeHelpersEsmExtends = require("@babel/runtime/helpers/esm/extends");
-var _babelRuntimeHelpersEsmExtendsDefault = _parcelHelpers.interopDefault(_babelRuntimeHelpersEsmExtends);
-var _react = require('react');
-var _reactDefault = _parcelHelpers.interopDefault(_react);
-var ThemeContext = /*#__PURE__*/_reactDefault.default.createContext({});
-var Consumer = ThemeContext.Consumer, Provider = ThemeContext.Provider;
-function ThemeProvider(_ref) {
-  var prefixes = _ref.prefixes, children = _ref.children;
-  var copiedPrefixes = _react.useMemo(function () {
-    return _babelRuntimeHelpersEsmExtendsDefault.default({}, prefixes);
-  }, [prefixes]);
-  return (
-    /*#__PURE__*/_reactDefault.default.createElement(Provider, {
-      value: copiedPrefixes
-    }, children)
-  );
-}
-function useBootstrapPrefix(prefix, defaultPrefix) {
-  var prefixes = _react.useContext(ThemeContext);
-  return prefix || prefixes[defaultPrefix] || defaultPrefix;
-}
-function createBootstrapComponent(Component, opts) {
-  if (typeof opts === 'string') opts = {
-    prefix: opts
-  };
-  var isClassy = Component.prototype && Component.prototype.isReactComponent;
-  // If it's a functional component make sure we don't break it with a ref
-  var _opts = opts, prefix = _opts.prefix, _opts$forwardRefAs = _opts.forwardRefAs, forwardRefAs = _opts$forwardRefAs === void 0 ? isClassy ? 'ref' : 'innerRef' : _opts$forwardRefAs;
-  var Wrapped = /*#__PURE__*/_reactDefault.default.forwardRef(function (_ref2, ref) {
-    var props = _babelRuntimeHelpersEsmExtendsDefault.default({}, _ref2);
-    props[forwardRefAs] = ref;
-    var bsPrefix = useBootstrapPrefix(props.bsPrefix, prefix);
-    return (
-      /*#__PURE__*/_reactDefault.default.createElement(Component, _babelRuntimeHelpersEsmExtendsDefault.default({}, props, {
-        bsPrefix: bsPrefix
-      }))
-    );
-  });
-  Wrapped.displayName = "Bootstrap(" + (Component.displayName || Component.name) + ")";
-  return Wrapped;
-}
-exports.default = ThemeProvider;
-
-},{"@babel/runtime/helpers/esm/extends":"5qnVv","react":"3b2NM","@parcel/transformer-js/lib/esmodule-helpers.js":"2yYcQ"}],"6FLqj":[function(require,module,exports) {
+},{"react":"3b2NM","prop-types":"4dfy5","../movie-card/movie-card":"7v6h3","../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6fW6i","./director-view.scss":"4ddkX","react-bootstrap":"4n7hB"}],"4ddkX":[function() {},{}],"6FLqj":[function(require,module,exports) {
 "use strict";
 var helpers = require("../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
@@ -47192,7 +47013,7 @@ try {
   var _react = _interopRequireDefault(require("react"));
   var _propTypes = _interopRequireDefault(require("prop-types"));
   var _reactBootstrap = require("react-bootstrap");
-  var _movieCard = require("../movie-card/movie-card");
+  require("./genre-view.scss");
   function _interopRequireDefault(obj) {
     return obj && obj.__esModule ? obj : {
       "default": obj
@@ -47298,10 +47119,10 @@ try {
             className: "genre-view"
           }, /*#__PURE__*/_react["default"].createElement("div", {
             className: "gv"
-          }, /*#__PURE__*/_react["default"].createElement("div", {
+          }, /*#__PURE__*/_react["default"].createElement("h2", {
             className: "gv-name"
-          }, genre.Name), /*#__PURE__*/_react["default"].createElement("div", {
-            className: "description"
+          }, genre.Name), /*#__PURE__*/_react["default"].createElement("p", {
+            className: "gv-txt"
           }, genre.Description)))
         );
       }
@@ -47321,7 +47142,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","../movie-card/movie-card":"7v6h3","../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6fW6i"}],"3CncI":[function(require,module,exports) {
+},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6fW6i","./genre-view.scss":"4iHPp"}],"4iHPp":[function() {},{}],"3CncI":[function(require,module,exports) {
 "use strict";
 var helpers = require("../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
@@ -47653,7 +47474,7 @@ try {
           /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Row, {
             className: "profile"
           }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Col, {
-            md: 10
+            md: 12
           }, /*#__PURE__*/_react["default"].createElement("h3", null, ("Hi ").concat(FirstName, "! Enter new details below to edit your profile.")), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form, {
             className: "update-profile"
           }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Group, {
@@ -47730,8 +47551,10 @@ try {
               /*#__PURE__*/_react["default"].createElement("div", {
                 key: index
               }, /*#__PURE__*/_react["default"].createElement("img", {
+                className: "fav-mv",
                 src: fav.ImagePath
               }), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
+                variant: "light",
                 onClick: function onClick() {
                   return _this5.removeFav(fav);
                 }
@@ -47769,6 +47592,6 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","axios":"7rA65","../../config":"5yJJr","../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6fW6i","./profile-view.scss":"3kYjk"}],"3kYjk":[function() {},{}],"3X8QW":[function() {},{}],"5iJih":[function() {},{}]},["1j6wU","68WUB","1DVjT"], "1DVjT", "parcelRequire427e")
+},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","axios":"7rA65","../../config":"5yJJr","./profile-view.scss":"3kYjk","../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6fW6i"}],"3kYjk":[function() {},{}],"3X8QW":[function() {},{}],"5iJih":[function() {},{}]},["1j6wU","68WUB","1DVjT"], "1DVjT", "parcelRequire427e")
 
 //# sourceMappingURL=index.02675e63.js.map

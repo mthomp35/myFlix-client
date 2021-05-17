@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Nav, Form, Button } from 'react-bootstrap';
-import { MovieCard } from '../movie-card/movie-card';
+import { Col, Row, Button } from 'react-bootstrap';
+import './genre-view.scss';
 
 export class GenreView extends React.Component {
   constructor() {
@@ -16,8 +16,8 @@ export class GenreView extends React.Component {
     return(
       <div className='genre-view'>
         <div className='gv'>
-          <div className='gv-name'>{genre.Name}</div>
-          <div className='description'>{genre.Description}</div>
+          <h2 className='gv-name'>{genre.Name}</h2>
+          <p className='gv-txt'>{genre.Description}</p>
         </div>
       </div>
     );

@@ -1,13 +1,19 @@
 .movie-card {
   margin: 15px;
-  height: 500px;
-  flex-basis: 500px
+  max-width: 20rem;
+  border: 2px solid #fff
 }
 
-.movie-card_img {
-  width: 150px
-}
+/*.movie-card_img {
+  height: 40%
+}*/
 
 .movie-card_text {
-  font-size: 14px
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis
+}
+
+.btn-blk:hover {
+  background-color:rgba(0, 0, 0, 0.1);
 }

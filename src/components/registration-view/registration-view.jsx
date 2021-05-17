@@ -41,7 +41,7 @@ export function RegistrationView() {
   return (
     <Form className='registration'>
       <h1>Welcome to M's Movie Mania!</h1>
-      <p>Please register here to gain access.</p>
+      <p>Please register here to access the site.</p>
       <p>Already registered? 
         <Link to={'/'}>
             <Button type='button' variant='link'>Login here</Button>
@@ -97,7 +97,6 @@ export function RegistrationView() {
           value={Username}
           onChange={e => setUsername(e.target.value)}
           placeholder='Enter Username'
-          //srOnly='Enter Username'
         />
       </Form.Group>
 
@@ -109,7 +108,6 @@ export function RegistrationView() {
           aria-describedby='passwordHelpBlock'
           onChange={e => setPassword(e.target.value)}
           placeholder='Enter Password'
-          //srOnly='Enter password'
         />
         <Form.Text id='passwordHelpBlock'>
           Password must contain: At least 10 characters, a combination of uppercase and lowercase letters (A-z), 
@@ -124,11 +122,12 @@ export function RegistrationView() {
           value={ConfirmPassword}
           onChange={e => setConfirmPassword(e.target.value)}
           placeholder='Confirm Password'
-          //srOnly='Re-enter password to confirm'
+          sr_only='Re-enter password to confirm'
         />
       </Form.Group>
-
-      <Button type='submit' variant='secondary' onClick={handleRegister}>Submit</Button>
+      <Form.Group className='btn-blk'>
+       <Button type='submit' variant='secondary' onClick={handleRegister}>Submit</Button>
+      </Form.Group>
     </Form>
   );
 }

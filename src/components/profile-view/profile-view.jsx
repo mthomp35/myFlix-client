@@ -163,7 +163,7 @@ export class ProfileView extends React.Component {
       <div>
         <Row className='profile'>
         
-        <Col md={10}>
+        <Col md={12}>
         <h3>{`Hi ${FirstName}! Enter new details below to edit your profile.`}</h3>
         <Form className='update-profile'>
           <Form.Group controlId='formFirstName'>
@@ -172,7 +172,6 @@ export class ProfileView extends React.Component {
               type='text'
               value={FirstName}
               onChange={e => this.setNew('FirstName', e.target.value)}
-              //placeholder={FirstName}
             />
           </Form.Group>
       
@@ -241,8 +240,8 @@ export class ProfileView extends React.Component {
                 if(!favMovies) return <p className='no-fav'>You have no favorite movies. Go add some!</p>;
                 return(
                 <div key={index}>
-                  <img src={fav.ImagePath}/>
-                  <Button onClick={() => this.removeFav(fav)}>Remove movie</Button>
+                  <img className='fav-mv' src={fav.ImagePath}/>
+                  <Button variant='light' onClick={() => this.removeFav(fav)}>Remove movie</Button>
                 </div>
                 )
               }

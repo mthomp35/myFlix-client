@@ -30,6 +30,7 @@ export function LoginView(props) {
   };
 
   return (
+   
     <Form className='login'>
       <Form.Row>
         <h1>Welcome back to M's Movie Mania!</h1>
@@ -60,7 +61,7 @@ export function LoginView(props) {
           Password must contain: At least 10 characters, a combination of uppercase and lowercase letters (A-z), numbers (0-9), and special characters (e.g. ! @ # ? ] ).
         </Form.Text>
       </Form.Group>
-      <Form.Row>
+      <Form.Row className='btn-blk'>
         <Col md={6}>
           <Button type='submit' variant='secondary' onClick={handleSubmit}>Submit</Button>
         </Col>

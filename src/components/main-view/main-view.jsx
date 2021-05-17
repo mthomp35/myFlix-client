@@ -90,11 +90,11 @@ export class MainView extends React.Component {
     return (
         <Router className='router-mv'>
         
-           
             <Navbar bg='light' variant='light' expand='md' sticky='top' className='navbar'>
               <Navbar.Brand href='/'>M's</Navbar.Brand>
               <Navbar.Toggle aria-controls='basic-navbar-nav' />
               <Navbar.Collapse id='basic-navbar-nav'>
+              
                 <Nav className='mr-auto' variant='light'/* how to add activeKey='' that changes with the page*/>
                   <Nav.Item className='nav-link'>
                     <Nav.Link href='/'>Home</Nav.Link>
@@ -104,7 +104,7 @@ export class MainView extends React.Component {
                   </Nav.Item>
                   <Nav.Item className='nav-link justify-content-end'> 
                     <Nav.Link onClick={() => this.onLogOut()}>Log Out</Nav.Link>
-                  </Nav.Item>
+                  </Nav.Item> 
                 </Nav>
                 <Form inline>
                   <Form.Control type="text" placeholder="Search" className="mr-sm-2" />
@@ -121,7 +121,7 @@ export class MainView extends React.Component {
               </Col>
               if (!movies.length) return <div className='main-view'>{message}</div>;
               return movies.map(m => (
-                <Col md={4} key={m._id}>
+                <Col md={3} key={m._id}>
                   <MovieCard movie={m}/>
                 </Col>
               ))
@@ -139,9 +139,7 @@ export class MainView extends React.Component {
                 <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
               </Col>
               if (!movies.length) return <div className='main-view'>{message}</div>;
-              return <Col md={8}>
-                <MovieView history={history} movie={movies.find(m => m._id === match.params.movieId)}/>
-                </Col>
+              return <MovieView history={history} movie={movies.find(m => m._id === match.params.movieId)}/>
               }} />
             
             <Route path='/genres/:name' render={({match, history}) => {
@@ -149,7 +147,7 @@ export class MainView extends React.Component {
                 <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
               </Col>
               if (!movies.length) return <div className='main-view'>{message}</div>;
-              return <Col md={8}>
+              return <Col md={10}>
                 <GenreView history={history} genre={movies.find(m => m.Genre.Name === match.params.name).Genre}/>
               </Col>
             }} />
@@ -159,9 +157,7 @@ export class MainView extends React.Component {
                 <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
               </Col>
               if (!movies.length) return <div className='main-view'>{message}</div>;
-              return <Col md={8}>
-                <DirectorView history={history} movies={movies.filter(m => m.Director.Name === match.params.name)} director={movies.find(m => m.Director.Name === match.params.name).Director}/>
-              </Col>
+              return <DirectorView history={history} movies={movies.filter(m => m.Director.Name === match.params.name)} director={movies.find(m => m.Director.Name === match.params.name).Director}/>
               }} />
             </Row>
             <Route path='/users/:Username' render={(history) => <ProfileView movies={movies} history={history} onBackClick={() => history.goBack()}/>}/>

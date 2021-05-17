@@ -5,14 +5,11 @@ $dkgray: #413f3f;
 
 .main-view {
   background-color: $bgcolor;
+  min-height: 100%;
   margin: 0
 }
 
 .navbar {
   background-color: $bgcolor;
-  width: 100%;
-  margin-left: 0;
-  margin-right: 0;
-  padding-left: 0;
-  padding-right:0
+  width: 100%
 }

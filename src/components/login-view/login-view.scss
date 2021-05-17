@@ -1,5 +1,14 @@
-$txtcolor: white;
+$bdtxt: #fff;
+$bgcolor: #09518b;
 
 .login {
-  color: $txtcolor;
+  color: $bdtxt;
+  background-color: $bgcolor;
+  padding-left: 15px;
+  height: 100vh
 }
+
+h1, .btn-blk {
+  padding-top: 10px
+}
+
