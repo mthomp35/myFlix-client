@@ -40771,7 +40771,7 @@ try {
               return movies.map(function (m) {
                 return (
                   /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Col, {
-                    md: 3,
+                    md: 4,
                     key: m._id
                   }, /*#__PURE__*/_react["default"].createElement(_movieCard.MovieCard, {
                     movie: m
@@ -46984,7 +46984,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","prop-types":"4dfy5","../movie-card/movie-card":"7v6h3","../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6fW6i","./director-view.scss":"4ddkX","react-bootstrap":"4n7hB"}],"4ddkX":[function() {},{}],"6FLqj":[function(require,module,exports) {
+},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","../movie-card/movie-card":"7v6h3","./director-view.scss":"4ddkX","../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6fW6i"}],"4ddkX":[function() {},{}],"6FLqj":[function(require,module,exports) {
 "use strict";
 var helpers = require("../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
@@ -47140,7 +47140,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6fW6i","./genre-view.scss":"4iHPp"}],"4iHPp":[function() {},{}],"3CncI":[function(require,module,exports) {
+},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","./genre-view.scss":"4iHPp","../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6fW6i"}],"4iHPp":[function() {},{}],"3CncI":[function(require,module,exports) {
 "use strict";
 var helpers = require("../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;

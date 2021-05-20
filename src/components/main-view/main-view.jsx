@@ -121,7 +121,7 @@ export class MainView extends React.Component {
               </Col>
               if (!movies.length) return <div className='main-view'>{message}</div>;
               return movies.map(m => (
-                <Col md={3} key={m._id}>
+                <Col md={4} key={m._id}>
                   <MovieCard movie={m}/>
                 </Col>
               ))
