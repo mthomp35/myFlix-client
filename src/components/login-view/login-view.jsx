@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 import PropTypes from 'prop-types';
-import { Form, Button, Col } from 'react-bootstrap';
+import { Button, Col, Form } from 'react-bootstrap';
+import Config from '../../config';
 
 import './login-view.scss';
 
@@ -9,15 +12,28 @@ export function LoginView(props) {
   const [ password, setPassword ] = useState('');
 
   const handleSubmit = (e) => {
+    // prevent default behavior when submitting a form
     e.preventDefault();
+    // Send a request to the server for authentication
     console.log(username, password);
-    props.onLoggedIn(username, password);
+    axios.post(`${Config.API_URL}/login`, {
+      Username: username,
+      Password: password
+    })
+    .then(response => {
+      const data = response.data;
+      props.onLoggedIn(data);
+    })
+    .catch(e => {
+      console.log(`${e} User does not exist`)
+    });
   };
 
   return (
+   
     <Form className='login'>
       <Form.Row>
-        <h1>Welcome to Movie Mania!</h1>
+        <h1>Welcome back to M's Movie Mania!</h1>
       </Form.Row>
       <Form.Row>
         <p>Please log in to to continue.</p>
@@ -45,12 +61,14 @@ export function LoginView(props) {
           Password must contain: At least 10 characters, a combination of uppercase and lowercase letters (A-z), numbers (0-9), and special characters (e.g. ! @ # ? ] ).
         </Form.Text>
       </Form.Group>
-      <Form.Row>
+      <Form.Row className='btn-blk'>
         <Col md={6}>
           <Button type='submit' variant='secondary' onClick={handleSubmit}>Submit</Button>
         </Col>
         <Col md={6}>
-          <Button type='button' variance='link'>New to Movie Mania? Click here to register (Reminder: link this to log in registration page)</Button>
+          <Link to={'/register'}>
+            <Button type='button' variant='link'>New to M's Movie Mania? Click here to register</Button>
+          </Link>
         </Col>
       </Form.Row>
     </Form>

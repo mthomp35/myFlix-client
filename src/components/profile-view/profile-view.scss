@@ -1,0 +1,21 @@
+$bdtxt: #fff;
+$bgcolor: #09518b;
+
+.profile, 
+.fav,
+.buttons {
+  color: $bdtxt;
+  background-color: $bgcolor
+}
+
+h3, .fav-label {
+  padding: 15px
+}
+
+.no-fav {
+  font-size: 16px
+}
+
+.fav-mv {
+  max-width: 150px;
+}
