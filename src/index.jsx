@@ -18,9 +18,11 @@ const store = createStore(moviesApp);
 class MyFlixApplication extends React.Component {
   render() {
     return (
-      <Container fluid className='my-flix'>
-        <MainView/>
-      </Container>
+      <Provider store={store}>
+        <Container fluid className='my-flix'>
+          <MainView/>
+        </Container>
+      </Provider>
     )
   }
 }
