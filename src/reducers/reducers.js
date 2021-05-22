@@ -10,3 +10,28 @@ function visibilityFilter(state = '', action) {
       return state;
   }
 }
+
+function movies(state = [], action) {
+  switch (action.type) {
+    case SET_MOVIES:
+      return action.value;
+    default:
+      return state;
+  }
+}
+
+//one way to create a reducer that combines reducers
+// function moviesApp(state = {}, action) {
+//   return {
+//     visibilityFilter: visibilityFilter(state.visibilityFilter, action),
+//     movies: movies(state.movies, action)
+//   }
+// }
+
+//using the built in "combineReducers" function
+const moviesApp = combineReducers({
+  visibilityFilter,
+  movies
+});
+
+export default moviesApp;
