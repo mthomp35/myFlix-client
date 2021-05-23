@@ -1,6 +1,6 @@
 import React from 'react';
-import { Col } from 'react-bootstrap';
 import { connect } from 'react-redux';
+import { Col } from 'react-bootstrap';
 
 import { MovieCard } from '../movie-card/movie-card';
 
