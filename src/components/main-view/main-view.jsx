@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 
 import { setMovies } from '../../actions/actions';
-import { moviesList } from '../../movies-list/movies-list';
+import MoviesList from '../../movies-list/movies-list';
 
 import { Form, Nav, Navbar, Button, Col, Row } from 'react-bootstrap';
 import Config from '../../config';
@@ -122,11 +122,9 @@ class MainView extends React.Component {
                 <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
               </Col>
               if (!movies.length) return <div className='main-view'>{message}</div>;
-              return movies.map(m => (
-                <Col md={4} key={m._id}>
-                  <MovieCard movie={m}/>
-                </Col>
-              ))
+              return <Col md={4}>
+                <MoviesList movies={movies}/>
+              </Col>
             }}/>
             
             <Route path='/register' render={() => {
