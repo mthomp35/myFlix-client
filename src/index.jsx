@@ -8,7 +8,8 @@ import { Provider } from 'react-redux';
 import moviesApp from './reducers/reducers';
 import { devToolsEnhancer } from 'redux-devtools-extension';
 
-import { MainView } from './components/main-view/main-view';
+//curly brackets are no longer required because MainView was exported as default
+import MainView from './components/main-view/main-view';
 
 // Import statement to indicate that you need to bundle `./index.scss`
 import './index.scss';
