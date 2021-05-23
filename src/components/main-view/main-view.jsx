@@ -70,10 +70,8 @@ class MainView extends React.Component {
       headers: { Authorization: `Bearer ${token}`}
     })
     .then(response => {
-      // Assign the result to the state
-      this.setState({
-        movies: response.data
-      });
+      // Assign the result to setMovies
+      this.props.setMovies(response.data);
     })
     .catch(function (error) {
       console.log(error);
@@ -85,7 +83,8 @@ class MainView extends React.Component {
 
   render() {
     //If the state isn't initialized, this will throw on runtime before the data is initially loaded
-    const { movies, user, message } = this.state;
+    const { user, message } = this.state;
+    const { movies } = this.props;
 
     //before the movies have been loaded
     /* If there is no user, the LoginView is rendered. If there is a user logged in, the user details are passed as a prop to the LoginView*/
