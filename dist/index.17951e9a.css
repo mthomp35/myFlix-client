@@ -1,0 +1,93 @@
+.movie-card {
+  margin: 15px;
+  max-width: 20rem;
+  border: 2px solid #fff;
+}
+
+/*.movie-card_img {
+  height: 40%
+}*/
+.movie-card_text {
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.btn-blk:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.registration {
+  color: #fff;
+}
+
+.btn-blk {
+  padding-top: 30px;
+}
+.login {
+  color: #fff;
+  background-color: #09518b;
+  padding-left: 15px;
+  height: 100vh;
+}
+
+h1, .btn-blk {
+  padding-top: 10px;
+}
+.mv {
+  background-color: #09518b;
+  min-height: 100vh;
+}
+
+.label {
+  font-weight: bold;
+}
+.dv {
+  margin: 10px;
+  padding-top: 10px;
+  background-color: #09518b;
+  color: #fff;
+}
+.genre-view {
+  padding-top: 10px;
+  background-color: #09518b;
+  min-height: 100vh;
+  color: #fff;
+}
+.profile,
+.fav,
+.buttons {
+  color: #fff;
+  background-color: #09518b;
+}
+
+h3, .fav-label {
+  padding: 15px;
+}
+
+.no-fav {
+  font-size: 16px;
+}
+.main-view {
+  background-color: #09518b;
+  min-height: 100%;
+  margin: 0;
+}
+
+.navbar {
+  background-color: #09518b;
+  width: 100%;
+}
+/*.app-container {
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0;
+  padding-right:0
+}
+
+.my-flix {
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0;
+  padding-right:0
+}*/
+/*# sourceMappingURL=index.17951e9a.css.map */

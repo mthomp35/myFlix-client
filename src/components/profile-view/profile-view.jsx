@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Col, Form, Row} from 'react-bootstrap';
+import { Button, Card, Col, Container, Form, Row} from 'react-bootstrap';
 import axios from 'axios';
 import Config from '../../config';
 import './profile-view.scss';
@@ -160,7 +160,7 @@ export class ProfileView extends React.Component {
     const favMovies = movies.filter(movie => favoriteMovies.includes(movie._id));
 
     return(
-      <div>
+      <React.Fragment>
         <Row className='profile'>
         
         <Col md={12}>
@@ -199,7 +199,6 @@ export class ProfileView extends React.Component {
               type='date'
               value={DOB}
               onChange={e => this.setNew('DOB', e.target.value)}
-              //pattern='Enter date of birth (month/day/year)'
             />
           </Form.Group>
 
@@ -213,8 +212,7 @@ export class ProfileView extends React.Component {
               placeholder='Enter New Password'
             />
             <Form.Text id='passwordHelpBlock'>
-              Password must contain: At least 10 characters, a combination of uppercase and lowercase letters (A-z), 
-              numbers (0-9), and special characters (e.g. ! @ # ? ] ).
+              Password must contain: At least 10 alphanumeric characters.
             </Form.Text>
           </Form.Group>
 
@@ -233,31 +231,39 @@ export class ProfileView extends React.Component {
         </Form>
         </Col>
         </Row>
-        <Row className='fav'>
-          <Col md={4}>
-            <div className='fav-label'>Favorite Movies:
-              {favMovies.map((fav, index) => {
-                if(!favMovies) return <p className='no-fav'>You have no favorite movies. Go add some!</p>;
-                return(
-                <div key={index}>
-                  <img className='fav-mv' src={fav.ImagePath}/>
-                  <Button variant='light' onClick={() => this.removeFav(fav)}>Remove movie</Button>
-                </div>
-                )
-              }
-              )}
-            </div>
-          </Col>
-        </Row>
-        <Row className='buttons'>
-          <Col md={4}>
-            <Button variant ='warning' onClick={() => history.push('/')}>Go back</Button>
-          </Col>
-          <Col md={{ span: 4, offset: 4 }}>
-            <Button variant='dark' onClick={() => this.deleteUser()}>Delete account</Button>
-          </Col>
-        </Row>
-        </div>
+        <Container className='fav'>
+          <Row>
+            <p className='fav-label'>Your Favorite Movies:</p>
+          </Row>
+          <Row md={4}>
+              
+                {favMovies.map((fav, index) => {
+                  if(!favMovies) return <p className='no-fav'>You have no favorite movies. Go add some!</p>;
+                  return(
+                  <Col md={4}>
+                    <Card style={{ width: '10rem' }} key={index}>
+                      <Card.Img className='fav-mv' variant='top' src={fav.ImagePath} />
+                      <Button variant='light' onClick={() => this.removeFav(fav)}>Remove movie</Button>
+                    </Card>
+                    </Col>
+                  )
+                }
+                )}
+              
+          </Row>
+        </Container>
+
+        <Container>
+          <Row className='buttons'>
+            <Col md={4}>
+              <Button variant ='warning' onClick={() => history.push('/')}>Go back</Button>
+            </Col>
+            <Col md={{ span: 4, offset: 4 }}>
+              <Button variant='dark' onClick={() => this.deleteUser()}>Delete account</Button>
+            </Col>
+          </Row>
+        </Container>
+      </React.Fragment>
       
     );
   }
