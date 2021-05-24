@@ -3,7 +3,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 
-import { setMovies } from '../../actions/actions';
+import { setMovies, setUser } from '../../actions/actions';
 import MoviesList from '../movies-list/movies-list';
 
 import { Form, Nav, Navbar, Button, Col, Row } from 'react-bootstrap';
@@ -11,7 +11,6 @@ import Config from '../../config';
 
 import { RegistrationView } from '../registration-view/registration-view';
 import { LoginView } from '../login-view/login-view';
-//import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 import { DirectorView } from '../director-view/director-view';
 import { GenreView } from '../genre-view/genre-view';
@@ -25,7 +24,6 @@ class MainView extends React.Component {
     super();
 
     this.state = {
-      user: null,
       message: 'Loading'
     };
   }
@@ -33,32 +31,25 @@ class MainView extends React.Component {
   componentDidMount(){
     let accessToken = localStorage.getItem('token');
     if (accessToken !== null) {
-      //Assign the result to the state
-      this.setState({
-        user: localStorage.getItem('user'),
-        token: accessToken
-      });
+      this.props.setUser(localStorage.getItem('user'));
       this.getMovies(accessToken);
     }
   }
 
-  // When a user successfully logs in, this function updates the `user` property in state to that particular user
+  // When a user successfully logs in, this function updates the `user` property state to that particular user
   onLoggedIn(authData) {
     console.log(authData);
-    this.setState({
-      user: authData.user.Username
-    });
+    this.props.setUser(authData.user.Username);
 
     localStorage.setItem('token', authData.token);
     localStorage.setItem('user', authData.user.Username);
+
     console.log('user', this.state.user);
     this.getMovies(authData.token);
   }
 
   onLogOut() {
-    this.setState({
-      user: null
-    });
+    this.props.setUser(null);
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     alert('Thanks for visiting Movie Mania! You have successfully logged out.');
@@ -83,8 +74,8 @@ class MainView extends React.Component {
 
   render() {
     //If the state isn't initialized, this will throw on runtime before the data is initially loaded
-    const { user, message } = this.state;
-    const { movies } = this.props;
+    const { message } = this.state;
+    const { movies, user } = this.props;
 
     //before the movies have been loaded
     /* If there is no user, the LoginView is rendered. If there is a user logged in, the user details are passed as a prop to the LoginView*/
@@ -108,10 +99,6 @@ class MainView extends React.Component {
                     <Nav.Link onClick={() => this.onLogOut()}>Log Out</Nav.Link>
                   </Nav.Item> 
                 </Nav>
-                <Form inline>
-                  <Form.Control type="text" placeholder="Search" className="mr-sm-2" />
-                  <Button variant="outline-success">Search</Button>
-                </Form>
               </Navbar.Collapse>
             </Navbar>
           
