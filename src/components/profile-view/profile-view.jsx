@@ -1,8 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { Button, Card, Col, Container, Form, Row} from 'react-bootstrap';
 import axios from 'axios';
 import Config from '../../config';
+import { Link } from 'react-router-dom';
+
+import { Button, Card, Col, Container, Form, Row} from 'react-bootstrap';
 import './profile-view.scss';
 
 // does this need to be a class?
@@ -244,7 +245,9 @@ export class ProfileView extends React.Component {
               return(
               <Col>
                 <Card style={{ width: '10rem' }} key={index}>
-                  <Card.Img className='fav-mv' variant='top' src={fav.ImagePath} />
+                  <Link to={`/movies/${fav._id}`}>
+                    <Card.Img className='fav-mv' variant='top' src={fav.ImagePath} />
+                  </Link>
                   <Button variant='light' onClick={() => this.removeFav(fav)}>Remove movie</Button>
                 </Card>
                 </Col>

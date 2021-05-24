@@ -49442,10 +49442,10 @@ try {
   });
   exports.ProfileView = void 0;
   var _react = _interopRequireDefault(require("react"));
-  var _propTypes = _interopRequireDefault(require("prop-types"));
-  var _reactBootstrap = require("react-bootstrap");
   var _axios = _interopRequireDefault(require("axios"));
   var _config = _interopRequireDefault(require("../../config"));
+  var _reactRouterDom = require("react-router-dom");
+  var _reactBootstrap = require("react-bootstrap");
   require("./profile-view.scss");
   function _interopRequireDefault(obj) {
     return obj && obj.__esModule ? obj : {
@@ -49833,11 +49833,13 @@ try {
                   width: '10rem'
                 },
                 key: index
+              }, /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Link, {
+                to: ("/movies/").concat(fav._id)
               }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card.Img, {
                 className: "fav-mv",
                 variant: "top",
                 src: fav.ImagePath
-              }), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
+              })), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
                 variant: "light",
                 onClick: function onClick() {
                   return _this5.removeFav(fav);
@@ -49876,6 +49878,6 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","axios":"7rA65","../../config":"5yJJr","./profile-view.scss":"3kYjk","../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6fW6i"}],"3kYjk":[function() {},{}],"3X8QW":[function() {},{}],"5iJih":[function() {},{}]},["1j6wU","68WUB","1DVjT"], "1DVjT", "parcelRequire427e")
+},{"react":"3b2NM","react-bootstrap":"4n7hB","axios":"7rA65","../../config":"5yJJr","./profile-view.scss":"3kYjk","../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6fW6i","react-router-dom":"1PMSK"}],"3kYjk":[function() {},{}],"3X8QW":[function() {},{}],"5iJih":[function() {},{}]},["1j6wU","68WUB","1DVjT"], "1DVjT", "parcelRequire427e")
 
 //# sourceMappingURL=index.02675e63.js.map
