@@ -49020,21 +49020,22 @@ try {
             className: "label"
           }, "Genre: "), /*#__PURE__*/_react["default"].createElement("span", {
             className: "value"
-          }, movie.Genre.Name), /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Link, {
+          }, movie.Genre.Name), /*#__PURE__*/_react["default"].createElement("span", null, /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Link, {
+            variant: "link",
             to: ("/genres/").concat(movie.Genre.Name)
           }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
             variant: "link"
-          }, "Genre"))), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card.Text, {
+          }, "Genre")))), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card.Text, {
             className: "movie-director"
           }, /*#__PURE__*/_react["default"].createElement("span", {
             className: "label"
           }, "Director: "), /*#__PURE__*/_react["default"].createElement("span", {
             className: "value"
-          }, movie.Director.Name), /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Link, {
+          }, movie.Director.Name), /*#__PURE__*/_react["default"].createElement("span", null, /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Link, {
             to: ("/directors/").concat(movie.Director.Name)
           }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
             variant: "link"
-          }, "Director Details")))), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
+          }, "Director Details"))))), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
             variant: "warning",
             onClick: function onClick() {
               return _this3.addFav(movie);
@@ -49045,7 +49046,7 @@ try {
             onClick: function onClick() {
               return history.push('/');
             }
-          }, "Return Home"))))
+          }, "Return To Movies List"))))
         );
       }
     }]);
