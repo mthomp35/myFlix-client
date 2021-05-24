@@ -49744,13 +49744,13 @@ try {
         return (
           /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Container, {
             fluid: true,
-            expand: true,
             className: "form"
           }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Row, {
             className: "form-rw"
-          }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Col, {
+          }, /*#__PURE__*/_react["default"].createElement("h3", null, ("Hi ").concat(FirstName, "! Enter new details below to edit your profile.")), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Col, {
+            className: "form-col",
             md: 12
-          }, /*#__PURE__*/_react["default"].createElement("h3", null, ("Hi ").concat(FirstName, "! Enter new details below to edit your profile.")), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form, {
+          }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form, {
             className: "update-profile"
           }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Group, {
             controlId: "formFirstName"

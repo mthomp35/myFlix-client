@@ -162,11 +162,11 @@ export class ProfileView extends React.Component {
 
     return(
       <React.Fragment>
-        <Container fluid expand className='form'>
+        <Container fluid className='form'>
           <Row className='form-rw'>
-          
-            <Col md={12}>
             <h3>{`Hi ${FirstName}! Enter new details below to edit your profile.`}</h3>
+            <Col className='form-col' md={12}>
+            
             <Form className='update-profile'>
               <Form.Group controlId='formFirstName'>
                 <Form.Label>First Name:</Form.Label>
@@ -243,14 +243,12 @@ export class ProfileView extends React.Component {
             {favMovies.map((fav, index) => {
               if(!favMovies) return <p className='no-fav'>You have no favorite movies. Go add some!</p>;
               return(
-              
                 <Card className='fav-cd' style={{ width: '12rem' }} key={index}>
                   <Link to={`/movies/${fav._id}`}>
                     <Card.Img className='fav-mv' variant='top' src={fav.ImagePath} />
                   </Link>
                     <Button className='text-center' variant='light' onClick={() => this.removeFav(fav)}>Remove movie</Button>
                 </Card>
-                
               )
             }
             )}

@@ -62,8 +62,12 @@ h1, .btn-blk {
   background-color: #09518b;
 }
 
+.update-profile {
+  margin: 0 30px;
+}
+
 h3 {
-  padding: 15px 0 15px 0;
+  padding: 15px 0;
 }
 
 .fav-label {
