@@ -1068,7 +1068,7 @@ try {
   var _reactRedux = require("react-redux");
   var _reducers = _interopRequireDefault(require("./reducers/reducers"));
   var _reduxDevtoolsExtension = require("redux-devtools-extension");
-  var _mainView = require("./components/main-view/main-view");
+  var _mainView = _interopRequireDefault(require("./components/main-view/main-view"));
   require("./index.scss");
   function _interopRequireDefault(obj) {
     return obj && obj.__esModule ? obj : {
@@ -1174,7 +1174,7 @@ try {
           }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Container, {
             fluid: true,
             className: "my-flix"
-          }, /*#__PURE__*/_react["default"].createElement(_mainView.MainView, null)))
+          }, /*#__PURE__*/_react["default"].createElement(_mainView["default"], null)))
         );
       }
     }]);
@@ -42787,16 +42787,17 @@ try {
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  exports.MainView = void 0;
+  exports["default"] = void 0;
   var _react = _interopRequireDefault(require("react"));
   var _axios = _interopRequireDefault(require("axios"));
   var _reactRedux = require("react-redux");
-  var _reactBootstrap = require("react-bootstrap");
   var _reactRouterDom = require("react-router-dom");
+  var _actions = require("../../actions/actions");
+  var _moviesList = _interopRequireDefault(require("../movies-list/movies-list"));
+  var _reactBootstrap = require("react-bootstrap");
   var _config = _interopRequireDefault(require("../../config"));
   var _registrationView = require("../registration-view/registration-view");
   var _loginView = require("../login-view/login-view");
-  var _movieCard = require("../movie-card/movie-card");
   var _movieView = require("../movie-view/movie-view");
   var _directorView = require("../director-view/director-view");
   var _genreView = require("../genre-view/genre-view");
@@ -42897,9 +42898,7 @@ try {
       _classCallCheck(this, MainView);
       _this = _super.call(this);
       _this.state = {
-        movies: [],
         user: null,
-        token: null,
         message: 'Loading'
       };
       return _this;
@@ -42950,10 +42949,8 @@ try {
             Authorization: ("Bearer ").concat(token)
           }
         }).then(function (response) {
-          // Assign the result to the state
-          _this2.setState({
-            movies: response.data
-          });
+          // Assign the result to setMovies
+          _this2.props.setMovies(response.data);
         })["catch"](function (error) {
           console.log(error);
           this.setState({
@@ -42966,7 +42963,8 @@ try {
       value: function render() {
         var _this3 = this;
         // If the state isn't initialized, this will throw on runtime before the data is initially loaded
-        var _this$state = this.state, movies = _this$state.movies, user = _this$state.user, token = _this$state.token, message = _this$state.message;
+        var _this$state = this.state, user = _this$state.user, message = _this$state.message;
+        var movies = this.props.movies;
         // before the movies have been loaded
         /*If there is no user, the LoginView is rendered. If there is a user logged in, the user details are passed as a prop to the LoginView*/
         // if (!movies.length) return <div className='main-view'>{message}</div>; <Row className='nav-bar_row' sticky='top' > <Row className='main-view justify-content-md-center'>
@@ -43028,16 +43026,11 @@ try {
                   className: "main-view"
                 }, message)
               );
-              return movies.map(function (m) {
-                return (
-                  /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Col, {
-                    md: 4,
-                    key: m._id
-                  }, /*#__PURE__*/_react["default"].createElement(_movieCard.MovieCard, {
-                    movie: m
-                  }))
-                );
-              });
+              return (
+                /*#__PURE__*/_react["default"].createElement(_moviesList["default"], {
+                  movies: movies
+                })
+              );
             }
           }), /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Route, {
             path: "/register",
@@ -43150,14 +43143,22 @@ try {
     }]);
     return MainView;
   })(_react["default"].Component);
-  exports.MainView = MainView;
+  var mapStateToProps = function mapStateToProps(state) {
+    return {
+      movies: state.movies
+    };
+  };
+  var _default = (0, _reactRedux.connect)(mapStateToProps, {
+    setMovies: _actions.setMovies
+  })(MainView);
+  exports["default"] = _default;
   helpers.postlude(module);
 } finally {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","axios":"7rA65","react-bootstrap":"4n7hB","react-router-dom":"1PMSK","../../config":"5yJJr","../registration-view/registration-view":"7gvH2","../login-view/login-view":"6M7fu","../movie-card/movie-card":"7v6h3","../movie-view/movie-view":"3xBbr","../director-view/director-view":"7HF27","../genre-view/genre-view":"6FLqj","../profile-view/profile-view":"3CncI","./main-view.scss":"3X8QW","../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6fW6i","react-redux":"7GDa4"}],"7rA65":[function(require,module,exports) {
+},{"react":"3b2NM","axios":"7rA65","react-redux":"7GDa4","react-router-dom":"1PMSK","../../actions/actions":"5S6cN","react-bootstrap":"4n7hB","../../config":"5yJJr","../registration-view/registration-view":"7gvH2","../login-view/login-view":"6M7fu","../movie-view/movie-view":"3xBbr","../director-view/director-view":"7HF27","../genre-view/genre-view":"6FLqj","../profile-view/profile-view":"3CncI","./main-view.scss":"3X8QW","../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6fW6i","../movies-list/movies-list":"3Biek"}],"7rA65":[function(require,module,exports) {
 module.exports = require('./lib/axios');
 },{"./lib/axios":"4qfhW"}],"4qfhW":[function(require,module,exports) {
 'use strict';
@@ -48526,174 +48527,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","react-router-dom":"1PMSK","axios":"7rA65","prop-types":"4dfy5","react-bootstrap":"4n7hB","../../config":"5yJJr","./login-view.scss":"3ueKO","../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6fW6i"}],"3ueKO":[function() {},{}],"7v6h3":[function(require,module,exports) {
-"use strict";
-var helpers = require("../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-helpers.prelude(module);
-try {
-  function _typeof(obj) {
-    "@babel/helpers - typeof";
-    if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
-      _typeof = function _typeof(obj) {
-        return typeof obj;
-      };
-    } else {
-      _typeof = function _typeof(obj) {
-        return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-      };
-    }
-    return _typeof(obj);
-  }
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.MovieCard = void 0;
-  var _react = _interopRequireDefault(require("react"));
-  var _propTypes = _interopRequireDefault(require("prop-types"));
-  var _reactBootstrap = require("react-bootstrap");
-  var _reactRouterDom = require("react-router-dom");
-  require("./movie-card.scss");
-  function _interopRequireDefault(obj) {
-    return obj && obj.__esModule ? obj : {
-      "default": obj
-    };
-  }
-  function _classCallCheck(instance, Constructor) {
-    if (!(instance instanceof Constructor)) {
-      throw new TypeError("Cannot call a class as a function");
-    }
-  }
-  function _defineProperties(target, props) {
-    for (var i = 0; i < props.length; i++) {
-      var descriptor = props[i];
-      descriptor.enumerable = descriptor.enumerable || false;
-      descriptor.configurable = true;
-      if (("value" in descriptor)) descriptor.writable = true;
-      Object.defineProperty(target, descriptor.key, descriptor);
-    }
-  }
-  function _createClass(Constructor, protoProps, staticProps) {
-    if (protoProps) _defineProperties(Constructor.prototype, protoProps);
-    if (staticProps) _defineProperties(Constructor, staticProps);
-    return Constructor;
-  }
-  function _inherits(subClass, superClass) {
-    if (typeof superClass !== "function" && superClass !== null) {
-      throw new TypeError("Super expression must either be null or a function");
-    }
-    subClass.prototype = Object.create(superClass && superClass.prototype, {
-      constructor: {
-        value: subClass,
-        writable: true,
-        configurable: true
-      }
-    });
-    if (superClass) _setPrototypeOf(subClass, superClass);
-  }
-  function _setPrototypeOf(o, p) {
-    _setPrototypeOf = Object.setPrototypeOf || (function _setPrototypeOf(o, p) {
-      o.__proto__ = p;
-      return o;
-    });
-    return _setPrototypeOf(o, p);
-  }
-  function _createSuper(Derived) {
-    var hasNativeReflectConstruct = _isNativeReflectConstruct();
-    return function _createSuperInternal() {
-      var Super = _getPrototypeOf(Derived), result;
-      if (hasNativeReflectConstruct) {
-        var NewTarget = _getPrototypeOf(this).constructor;
-        result = Reflect.construct(Super, arguments, NewTarget);
-      } else {
-        result = Super.apply(this, arguments);
-      }
-      return _possibleConstructorReturn(this, result);
-    };
-  }
-  function _possibleConstructorReturn(self, call) {
-    if (call && (_typeof(call) === "object" || typeof call === "function")) {
-      return call;
-    }
-    return _assertThisInitialized(self);
-  }
-  function _assertThisInitialized(self) {
-    if (self === void 0) {
-      throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-    }
-    return self;
-  }
-  function _isNativeReflectConstruct() {
-    if (typeof Reflect === "undefined" || !Reflect.construct) return false;
-    if (Reflect.construct.sham) return false;
-    if (typeof Proxy === "function") return true;
-    try {
-      Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {}));
-      return true;
-    } catch (e) {
-      return false;
-    }
-  }
-  function _getPrototypeOf(o) {
-    _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
-      return o.__proto__ || Object.getPrototypeOf(o);
-    };
-    return _getPrototypeOf(o);
-  }
-  var MovieCard = /*#__PURE__*/(function (_React$Component) {
-    _inherits(MovieCard, _React$Component);
-    var _super = _createSuper(MovieCard);
-    function MovieCard() {
-      _classCallCheck(this, MovieCard);
-      return _super.apply(this, arguments);
-    }
-    _createClass(MovieCard, [{
-      key: "render",
-      value: function render() {
-        var movie = this.props.movie;
-        return (
-          /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card, {
-            bg: "light",
-            className: "movie-card text-center"
-          }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card.Img, {
-            className: "movie-img",
-            variant: "top",
-            src: movie.ImagePath
-          }), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card.Title, {
-            className: "movie-title"
-          }, movie.Title), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card.Text, {
-            className: "movie-text"
-          }, movie.Description)), /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Link, {
-            to: ("/movies/").concat(movie._id)
-          }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card.Footer, {
-            className: "text-center btn-blk"
-          }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
-            variant: "Link"
-          }, "Learn More"))))
-        );
-      }
-    }]);
-    return MovieCard;
-  })(_react["default"].Component);
-  exports.MovieCard = MovieCard;
-  MovieCard.propTypes = {
-    movie: _propTypes["default"].shape({
-      Title: _propTypes["default"].string.isRequired,
-      Description: _propTypes["default"].string.isRequired,
-      ImagePath: _propTypes["default"].string.isRequired,
-      Genre: _propTypes["default"].shape({
-        Name: _propTypes["default"].string.isRequired
-      })
-    }).isRequired
-  };
-  helpers.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-
-},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","react-router-dom":"1PMSK","./movie-card.scss":"43n4t","../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6fW6i"}],"43n4t":[function() {},{}],"3xBbr":[function(require,module,exports) {
+},{"react":"3b2NM","react-router-dom":"1PMSK","axios":"7rA65","prop-types":"4dfy5","react-bootstrap":"4n7hB","../../config":"5yJJr","./login-view.scss":"3ueKO","../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6fW6i"}],"3ueKO":[function() {},{}],"3xBbr":[function(require,module,exports) {
 "use strict";
 var helpers = require("../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
@@ -49139,7 +48973,174 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","../movie-card/movie-card":"7v6h3","./director-view.scss":"4ddkX","../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6fW6i"}],"4ddkX":[function() {},{}],"6FLqj":[function(require,module,exports) {
+},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","../movie-card/movie-card":"7v6h3","./director-view.scss":"4ddkX","../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6fW6i"}],"7v6h3":[function(require,module,exports) {
+"use strict";
+var helpers = require("../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+try {
+  function _typeof(obj) {
+    "@babel/helpers - typeof";
+    if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+      _typeof = function _typeof(obj) {
+        return typeof obj;
+      };
+    } else {
+      _typeof = function _typeof(obj) {
+        return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+      };
+    }
+    return _typeof(obj);
+  }
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.MovieCard = void 0;
+  var _react = _interopRequireDefault(require("react"));
+  var _propTypes = _interopRequireDefault(require("prop-types"));
+  var _reactBootstrap = require("react-bootstrap");
+  var _reactRouterDom = require("react-router-dom");
+  require("./movie-card.scss");
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+      "default": obj
+    };
+  }
+  function _classCallCheck(instance, Constructor) {
+    if (!(instance instanceof Constructor)) {
+      throw new TypeError("Cannot call a class as a function");
+    }
+  }
+  function _defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];
+      descriptor.enumerable = descriptor.enumerable || false;
+      descriptor.configurable = true;
+      if (("value" in descriptor)) descriptor.writable = true;
+      Object.defineProperty(target, descriptor.key, descriptor);
+    }
+  }
+  function _createClass(Constructor, protoProps, staticProps) {
+    if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+    if (staticProps) _defineProperties(Constructor, staticProps);
+    return Constructor;
+  }
+  function _inherits(subClass, superClass) {
+    if (typeof superClass !== "function" && superClass !== null) {
+      throw new TypeError("Super expression must either be null or a function");
+    }
+    subClass.prototype = Object.create(superClass && superClass.prototype, {
+      constructor: {
+        value: subClass,
+        writable: true,
+        configurable: true
+      }
+    });
+    if (superClass) _setPrototypeOf(subClass, superClass);
+  }
+  function _setPrototypeOf(o, p) {
+    _setPrototypeOf = Object.setPrototypeOf || (function _setPrototypeOf(o, p) {
+      o.__proto__ = p;
+      return o;
+    });
+    return _setPrototypeOf(o, p);
+  }
+  function _createSuper(Derived) {
+    var hasNativeReflectConstruct = _isNativeReflectConstruct();
+    return function _createSuperInternal() {
+      var Super = _getPrototypeOf(Derived), result;
+      if (hasNativeReflectConstruct) {
+        var NewTarget = _getPrototypeOf(this).constructor;
+        result = Reflect.construct(Super, arguments, NewTarget);
+      } else {
+        result = Super.apply(this, arguments);
+      }
+      return _possibleConstructorReturn(this, result);
+    };
+  }
+  function _possibleConstructorReturn(self, call) {
+    if (call && (_typeof(call) === "object" || typeof call === "function")) {
+      return call;
+    }
+    return _assertThisInitialized(self);
+  }
+  function _assertThisInitialized(self) {
+    if (self === void 0) {
+      throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+    }
+    return self;
+  }
+  function _isNativeReflectConstruct() {
+    if (typeof Reflect === "undefined" || !Reflect.construct) return false;
+    if (Reflect.construct.sham) return false;
+    if (typeof Proxy === "function") return true;
+    try {
+      Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {}));
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+  function _getPrototypeOf(o) {
+    _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
+      return o.__proto__ || Object.getPrototypeOf(o);
+    };
+    return _getPrototypeOf(o);
+  }
+  var MovieCard = /*#__PURE__*/(function (_React$Component) {
+    _inherits(MovieCard, _React$Component);
+    var _super = _createSuper(MovieCard);
+    function MovieCard() {
+      _classCallCheck(this, MovieCard);
+      return _super.apply(this, arguments);
+    }
+    _createClass(MovieCard, [{
+      key: "render",
+      value: function render() {
+        var movie = this.props.movie;
+        return (
+          /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card, {
+            bg: "light",
+            className: "movie-card text-center"
+          }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card.Img, {
+            className: "movie-img",
+            variant: "top",
+            src: movie.ImagePath
+          }), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card.Title, {
+            className: "movie-title"
+          }, movie.Title), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card.Text, {
+            className: "movie-text"
+          }, movie.Description)), /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Link, {
+            to: ("/movies/").concat(movie._id)
+          }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card.Footer, {
+            className: "text-center btn-blk"
+          }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
+            variant: "Link"
+          }, "Learn More"))))
+        );
+      }
+    }]);
+    return MovieCard;
+  })(_react["default"].Component);
+  exports.MovieCard = MovieCard;
+  MovieCard.propTypes = {
+    movie: _propTypes["default"].shape({
+      Title: _propTypes["default"].string.isRequired,
+      Description: _propTypes["default"].string.isRequired,
+      ImagePath: _propTypes["default"].string.isRequired,
+      Genre: _propTypes["default"].shape({
+        Name: _propTypes["default"].string.isRequired
+      })
+    }).isRequired
+  };
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+
+},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","react-router-dom":"1PMSK","./movie-card.scss":"43n4t","../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6fW6i"}],"43n4t":[function() {},{}],"4ddkX":[function() {},{}],"6FLqj":[function(require,module,exports) {
 "use strict";
 var helpers = require("../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
@@ -49745,6 +49746,121 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","axios":"7rA65","../../config":"5yJJr","./profile-view.scss":"3kYjk","../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6fW6i"}],"3kYjk":[function() {},{}],"3X8QW":[function() {},{}],"5iJih":[function() {},{}]},["1j6wU","68WUB","1DVjT"], "1DVjT", "parcelRequire427e")
+},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","axios":"7rA65","../../config":"5yJJr","./profile-view.scss":"3kYjk","../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6fW6i"}],"3kYjk":[function() {},{}],"3X8QW":[function() {},{}],"3Biek":[function(require,module,exports) {
+"use strict";
+var helpers = require("../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+try {
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports["default"] = void 0;
+  var _react = _interopRequireDefault(require("react"));
+  var _reactRedux = require("react-redux");
+  var _reactBootstrap = require("react-bootstrap");
+  var _visibilityFilterInput = _interopRequireDefault(require("../visibility-filter-input/visibility-filter-input"));
+  var _movieCard = require("../movie-card/movie-card");
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+      "default": obj
+    };
+  }
+  var mapStateToProps = function mapStateToProps(state) {
+    var visibilityFilter = state.visibilityFilter;
+    return {
+      visibilityFilter: visibilityFilter
+    };
+  };
+  function MoviesList(props) {
+    var movies = props.movies, visibilityFilter = props.visibilityFilter;
+    var filteredMovies = movies;
+    if (visibilityFilter !== '') {
+      filteredMovies = movies.filter(function (m) {
+        return m.Title.toLowerCase().includes(visibilityFilter.toLowerCase());
+      });
+    }
+    if (!movies) return (
+      /*#__PURE__*/_react["default"].createElement("div", {
+        className: "main-view"
+      }, "Oh no! Where did all the movies go?")
+    );
+    return (
+      /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Col, {
+        md: 12,
+        style: {
+          margin: '1em'
+        }
+      }, /*#__PURE__*/_react["default"].createElement(_visibilityFilterInput["default"], {
+        visibilityFilter: visibilityFilter
+      })), filteredMovies.map(function (m) {
+        return (
+          /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Col, {
+            md: 3,
+            key: m._id
+          }, /*#__PURE__*/_react["default"].createElement(_movieCard.MovieCard, {
+            movie: m
+          }))
+        );
+      }), ";")
+    );
+  }
+  _c = MoviesList;
+  var _default = (0, _reactRedux.connect)(mapStateToProps)(MoviesList);
+  exports["default"] = _default;
+  var _c;
+  $RefreshReg$(_c, "MoviesList");
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+
+},{"react":"3b2NM","react-redux":"7GDa4","react-bootstrap":"4n7hB","../visibility-filter-input/visibility-filter-input":"3SRLP","../movie-card/movie-card":"7v6h3","../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6fW6i"}],"3SRLP":[function(require,module,exports) {
+"use strict";
+var helpers = require("../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+try {
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports["default"] = void 0;
+  var _react = _interopRequireDefault(require("react"));
+  var _reactRedux = require("react-redux");
+  var _reactBootstrap = require("react-bootstrap");
+  var _actions = require("../../actions/actions");
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+      "default": obj
+    };
+  }
+  function VisibilityFilterInput(props) {
+    return (
+      /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Control, {
+        onChange: function onChange(e) {
+          return props.setFilter(e.target.value);
+        },
+        value: props.visibilityFilter,
+        placeholder: "filter"
+      })
+    );
+  }
+  _c = VisibilityFilterInput;
+  var _default = (0, _reactRedux.connect)(null, {
+    setFilter: _actions.setFilter
+  })(VisibilityFilterInput);
+  exports["default"] = _default;
+  var _c;
+  $RefreshReg$(_c, "VisibilityFilterInput");
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+
+},{"react":"3b2NM","react-redux":"7GDa4","react-bootstrap":"4n7hB","../../actions/actions":"5S6cN","../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6fW6i"}],"5iJih":[function() {},{}]},["1j6wU","68WUB","1DVjT"], "1DVjT", "parcelRequire427e")
 
 //# sourceMappingURL=index.02675e63.js.map
