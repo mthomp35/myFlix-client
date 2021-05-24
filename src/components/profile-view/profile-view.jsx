@@ -231,7 +231,7 @@ export class ProfileView extends React.Component {
         </Form>
         </Col>
         </Row>
-        <Container className='fav'>
+        
           <Row>
             <p className='fav-label'>Your Favorite Movies:</p>
           </Row>
@@ -251,7 +251,7 @@ export class ProfileView extends React.Component {
                 )}
               
           </Row>
-        </Container>
+       
 
         <Container>
           <Row className='buttons'>

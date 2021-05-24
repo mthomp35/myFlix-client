@@ -49809,9 +49809,7 @@ try {
             type: "submit",
             variant: "secondary",
             onClick: this.updateProfile
-          }, "Update Profile")))), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Container, {
-            className: "fav"
-          }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Row, null, /*#__PURE__*/_react["default"].createElement("p", {
+          }, "Update Profile")))), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Row, null, /*#__PURE__*/_react["default"].createElement("p", {
             className: "fav-label"
           }, "Your Favorite Movies:")), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Row, {
             md: 4
@@ -49840,7 +49838,7 @@ try {
                 }
               }, "Remove movie")))
             );
-          }))), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Container, null, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Row, {
+          })), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Container, null, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Row, {
             className: "buttons"
           }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Col, {
             md: 4
