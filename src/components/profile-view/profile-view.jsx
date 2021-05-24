@@ -161,95 +161,96 @@ export class ProfileView extends React.Component {
 
     return(
       <React.Fragment>
-        <Row className='profile'>
+        <Container fluid expand className='form'>
+          <Row className='form-rw'>
+          
+            <Col md={12}>
+            <h3>{`Hi ${FirstName}! Enter new details below to edit your profile.`}</h3>
+            <Form className='update-profile'>
+              <Form.Group controlId='formFirstName'>
+                <Form.Label>First Name:</Form.Label>
+                <Form.Control
+                  type='text'
+                  value={FirstName}
+                  onChange={e => this.setNew('FirstName', e.target.value)}
+                />
+              </Form.Group>
+          
+              <Form.Group controlId='formLastName'>
+                <Form.Label>Last Name:</Form.Label>
+                <Form.Control
+                  type='text'
+                  value={LastName}
+                  onChange={e => this.setNew('LastName', e.target.value)}
+                />
+              </Form.Group>
+              
+              <Form.Group controlId='formEmail'>
+                <Form.Label>Email:</Form.Label>
+                <Form.Control
+                  type='Email'
+                  value={Email}
+                  onChange={e => this.setNew('Email', e.target.value)}
+                />
+              </Form.Group>
+              
+              <Form.Group controlId='formDOB'>
+                <Form.Label>Birthday:</Form.Label>
+                <Form.Control
+                  type='date'
+                  value={DOB}
+                  onChange={e => this.setNew('DOB', e.target.value)}
+                />
+              </Form.Group>
+
+              <Form.Group controlId='formPassword'>
+                <Form.Label>Password:</Form.Label>
+                <Form.Control
+                  type='Password'
+                  value={Password}
+                  aria-describedby='passwordHelpBlock'
+                  onChange={e => this.setNew('Password', e.target.value)}
+                  placeholder='Enter New Password'
+                />
+                <Form.Text id='passwordHelpBlock'>
+                  Password must contain: At least 10 alphanumeric characters.
+                </Form.Text>
+              </Form.Group>
+
+              <Form.Group controlId='formConfirmPassword'>
+                <Form.Label>Confirm Password:</Form.Label>
+                <Form.Control
+                  type='Password'
+                  value={ConfirmPassword}
+                  onChange={e => this.setNew('ConfirmPassword', e.target.value)}
+                  placeholder='Confirm Password'
+                  sr_only='Re-enter password to confirm'
+                />
+              </Form.Group>
+
+              <Button type='submit' variant='secondary' onClick={this.updateProfile}>Update Profile</Button>
+            </Form>
+            </Col>
+          </Row>
+        </Container>
         
-        <Col md={12}>
-        <h3>{`Hi ${FirstName}! Enter new details below to edit your profile.`}</h3>
-        <Form className='update-profile'>
-          <Form.Group controlId='formFirstName'>
-            <Form.Label>First Name:</Form.Label>
-            <Form.Control
-              type='text'
-              value={FirstName}
-              onChange={e => this.setNew('FirstName', e.target.value)}
-            />
-          </Form.Group>
-      
-          <Form.Group controlId='formLastName'>
-            <Form.Label>Last Name:</Form.Label>
-            <Form.Control
-              type='text'
-              value={LastName}
-              onChange={e => this.setNew('LastName', e.target.value)}
-            />
-          </Form.Group>
-          
-          <Form.Group controlId='formEmail'>
-            <Form.Label>Email:</Form.Label>
-            <Form.Control
-              type='Email'
-              value={Email}
-              onChange={e => this.setNew('Email', e.target.value)}
-            />
-          </Form.Group>
-          
-          <Form.Group controlId='formDOB'>
-            <Form.Label>Birthday:</Form.Label>
-            <Form.Control
-              type='date'
-              value={DOB}
-              onChange={e => this.setNew('DOB', e.target.value)}
-            />
-          </Form.Group>
-
-          <Form.Group controlId='formPassword'>
-            <Form.Label>Password:</Form.Label>
-            <Form.Control
-              type='Password'
-              value={Password}
-              aria-describedby='passwordHelpBlock'
-              onChange={e => this.setNew('Password', e.target.value)}
-              placeholder='Enter New Password'
-            />
-            <Form.Text id='passwordHelpBlock'>
-              Password must contain: At least 10 alphanumeric characters.
-            </Form.Text>
-          </Form.Group>
-
-          <Form.Group controlId='formConfirmPassword'>
-            <Form.Label>Confirm Password:</Form.Label>
-            <Form.Control
-              type='Password'
-              value={ConfirmPassword}
-              onChange={e => this.setNew('ConfirmPassword', e.target.value)}
-              placeholder='Confirm Password'
-              sr_only='Re-enter password to confirm'
-            />
-          </Form.Group>
-
-          <Button type='submit' variant='secondary' onClick={this.updateProfile}>Update Profile</Button>
-        </Form>
-        </Col>
-        </Row>
-        <Container className='fav'>
-          <Row>
+        <Container fluid className='fav'>
+          <Row className='fav-rw'>
             <p className='fav-label'>Your Favorite Movies:</p>
           </Row>
-          <Row md={4}>
-              
-                {favMovies.map((fav, index) => {
-                  if(!favMovies) return <p className='no-fav'>You have no favorite movies. Go add some!</p>;
-                  return(
-                  <Col md={4}>
-                    <Card style={{ width: '10rem' }} key={index}>
-                      <Card.Img className='fav-mv' variant='top' src={fav.ImagePath} />
-                      <Button variant='light' onClick={() => this.removeFav(fav)}>Remove movie</Button>
-                    </Card>
-                    </Col>
-                  )
-                }
-                )}
-              
+          <Row>
+            {favMovies.map((fav, index) => {
+              if(!favMovies) return <p className='no-fav'>You have no favorite movies. Go add some!</p>;
+              return(
+              <Col>
+                <Card style={{ width: '10rem' }} key={index}>
+                  <Card.Img className='fav-mv' variant='top' src={fav.ImagePath} />
+                  <Button variant='light' onClick={() => this.removeFav(fav)}>Remove movie</Button>
+                </Card>
+                </Col>
+              )
+            }
+            )}
           </Row>
         </Container>
 

@@ -102,7 +102,7 @@ class MainView extends React.Component {
               </Navbar.Collapse>
             </Navbar>
           
-        <Container fluid>
+        <Container fluid className='cont-mv'>
         <Row className='main-view justify-content-md-center'>
           <Route exact path='/' render={() => {
               if (!user) return <Col>

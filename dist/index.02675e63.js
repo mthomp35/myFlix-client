@@ -43010,7 +43010,8 @@ try {
               return _this3.onLogOut();
             }
           }, "Log Out"))))), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Container, {
-            fluid: true
+            fluid: true,
+            className: "cont-mv"
           }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Row, {
             className: "main-view justify-content-md-center"
           }, /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Route, {
@@ -49745,8 +49746,12 @@ try {
           return favoriteMovies.includes(movie._id);
         });
         return (
-          /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Row, {
-            className: "profile"
+          /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Container, {
+            fluid: true,
+            expand: true,
+            className: "form"
+          }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Row, {
+            className: "form-rw"
           }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Col, {
             md: 12
           }, /*#__PURE__*/_react["default"].createElement("h3", null, ("Hi ").concat(FirstName, "! Enter new details below to edit your profile.")), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form, {
@@ -49809,22 +49814,21 @@ try {
             type: "submit",
             variant: "secondary",
             onClick: this.updateProfile
-          }, "Update Profile")))), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Container, {
+          }, "Update Profile"))))), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Container, {
+            fluid: true,
             className: "fav"
-          }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Row, null, /*#__PURE__*/_react["default"].createElement("p", {
+          }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Row, {
+            className: "fav-rw"
+          }, /*#__PURE__*/_react["default"].createElement("p", {
             className: "fav-label"
-          }, "Your Favorite Movies:")), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Row, {
-            md: 4
-          }, favMovies.map(function (fav, index) {
+          }, "Your Favorite Movies:")), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Row, null, favMovies.map(function (fav, index) {
             if (!favMovies) return (
               /*#__PURE__*/_react["default"].createElement("p", {
                 className: "no-fav"
               }, "You have no favorite movies. Go add some!")
             );
             return (
-              /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Col, {
-                md: 4
-              }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card, {
+              /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Col, null, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card, {
                 style: {
                   width: '10rem'
                 },

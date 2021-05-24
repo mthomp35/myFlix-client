@@ -1,15 +1,23 @@
 $bdtxt: #fff;
 $bgcolor: #09518b;
 
-.profile, 
+.form,
+.form-rw, 
 .fav,
+.fav-rw,
 .buttons {
   color: $bdtxt;
   background-color: $bgcolor
 }
 
-h3, .fav-label {
-  padding: 15px
+h3 {
+  padding: 15px 0 15px 0
+}
+
+.fav-label {
+  margin-top: 25px;
+  
+  font-size: 18px;
 }
 
 .no-fav {
