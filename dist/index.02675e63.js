@@ -47953,7 +47953,8 @@ try {
           margin: '1em'
         }
       }, /*#__PURE__*/_react["default"].createElement(_visibilityFilterInput["default"], {
-        visibilityFilter: visibilityFilter
+        visibilityFilter: visibilityFilter,
+        className: "vf"
       })), filteredMovies.map(function (m) {
         return (
           /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Col, {
@@ -48314,9 +48315,7 @@ try {
             src: movie.ImagePath
           }), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card.Title, {
             className: "movie-title"
-          }, movie.Title), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card.Text, {
-            className: "movie-text"
-          }, movie.Description)), /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Link, {
+          }, movie.Title)), /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Link, {
             to: ("/movies/").concat(movie._id)
           }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card.Footer, {
             className: "text-center btn-blk"
@@ -48332,11 +48331,7 @@ try {
   MovieCard.propTypes = {
     movie: _propTypes["default"].shape({
       Title: _propTypes["default"].string.isRequired,
-      Description: _propTypes["default"].string.isRequired,
-      ImagePath: _propTypes["default"].string.isRequired,
-      Genre: _propTypes["default"].shape({
-        Name: _propTypes["default"].string.isRequired
-      })
+      ImagePath: _propTypes["default"].string.isRequired
     }).isRequired
   };
   helpers.postlude(module);
@@ -49822,16 +49817,19 @@ try {
             className: "fav-rw"
           }, /*#__PURE__*/_react["default"].createElement("p", {
             className: "fav-label"
-          }, "Your Favorite Movies:")), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Row, null, favMovies.map(function (fav, index) {
+          }, "Your Favorite Movies:")), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Row, {
+            className: "justify-content-sm-start"
+          }, favMovies.map(function (fav, index) {
             if (!favMovies) return (
               /*#__PURE__*/_react["default"].createElement("p", {
                 className: "no-fav"
               }, "You have no favorite movies. Go add some!")
             );
             return (
-              /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Col, null, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card, {
+              /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card, {
+                className: "fav-cd",
                 style: {
-                  width: '10rem'
+                  width: '12rem'
                 },
                 key: index
               }, /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Link, {
@@ -49841,11 +49839,12 @@ try {
                 variant: "top",
                 src: fav.ImagePath
               })), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
+                className: "text-center",
                 variant: "light",
                 onClick: function onClick() {
                   return _this5.removeFav(fav);
                 }
-              }, "Remove movie")))
+              }, "Remove movie"))
             );
           }))), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Container, null, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Row, {
             className: "buttons"

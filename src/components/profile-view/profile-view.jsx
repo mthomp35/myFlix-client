@@ -239,18 +239,18 @@ export class ProfileView extends React.Component {
           <Row className='fav-rw'>
             <p className='fav-label'>Your Favorite Movies:</p>
           </Row>
-          <Row>
+          <Row className='justify-content-sm-start'>
             {favMovies.map((fav, index) => {
               if(!favMovies) return <p className='no-fav'>You have no favorite movies. Go add some!</p>;
               return(
-              <Col>
-                <Card style={{ width: '10rem' }} key={index}>
+              
+                <Card className='fav-cd' style={{ width: '12rem' }} key={index}>
                   <Link to={`/movies/${fav._id}`}>
                     <Card.Img className='fav-mv' variant='top' src={fav.ImagePath} />
                   </Link>
-                  <Button variant='light' onClick={() => this.removeFav(fav)}>Remove movie</Button>
+                    <Button className='text-center' variant='light' onClick={() => this.removeFav(fav)}>Remove movie</Button>
                 </Card>
-                </Col>
+                
               )
             }
             )}

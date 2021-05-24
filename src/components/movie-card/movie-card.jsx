@@ -16,7 +16,6 @@ export class MovieCard extends React.Component {
           <Card.Img className='movie-img' variant='top' src={movie.ImagePath} />  
           <Card.Body>
             <Card.Title className='movie-title'>{movie.Title}</Card.Title>
-            <Card.Text className='movie-text'>{movie.Description}</Card.Text>
           </Card.Body>
           <Link to={`/movies/${movie._id}`}>
             <Card.Footer className='text-center btn-blk'>
@@ -32,10 +31,6 @@ export class MovieCard extends React.Component {
 MovieCard.propTypes = {
   movie: PropTypes.shape({
     Title: PropTypes.string.isRequired,
-    Description: PropTypes.string.isRequired,
-    ImagePath: PropTypes.string.isRequired,
-    Genre: PropTypes.shape({
-      Name: PropTypes.string.isRequired
-    })
+    ImagePath: PropTypes.string.isRequired
   }).isRequired
 };
