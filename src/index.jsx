@@ -21,9 +21,7 @@ class MyFlixApplication extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <Container fluid className='my-flix'>
-          <MainView/>
-        </Container>
+        <MainView/>
       </Provider>
     )
   }

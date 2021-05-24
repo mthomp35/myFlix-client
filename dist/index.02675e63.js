@@ -1171,10 +1171,7 @@ try {
         return (
           /*#__PURE__*/_react["default"].createElement(_reactRedux.Provider, {
             store: store
-          }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Container, {
-            fluid: true,
-            className: "my-flix"
-          }, /*#__PURE__*/_react["default"].createElement(_mainView["default"], null)))
+          }, /*#__PURE__*/_react["default"].createElement(_mainView["default"], null))
         );
       }
     }]);
