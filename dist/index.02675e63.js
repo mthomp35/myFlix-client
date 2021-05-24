@@ -43009,7 +43009,9 @@ try {
             onClick: function onClick() {
               return _this3.onLogOut();
             }
-          }, "Log Out"))))), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Row, {
+          }, "Log Out"))))), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Container, {
+            fluid: true
+          }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Row, {
             className: "main-view justify-content-md-center"
           }, /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Route, {
             exact: true,
@@ -43138,7 +43140,7 @@ try {
                 })
               );
             }
-          }))
+          })))
         );
       }
     }]);

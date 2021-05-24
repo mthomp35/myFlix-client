@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import { setMovies, setUser } from '../../actions/actions';
 import MoviesList from '../movies-list/movies-list';
 
-import { Form, Nav, Navbar, Button, Col, Row } from 'react-bootstrap';
+import { Form, Nav, Navbar, Button, Col, Container, Row } from 'react-bootstrap';
 import Config from '../../config';
 
 import { RegistrationView } from '../registration-view/registration-view';
@@ -102,7 +102,7 @@ class MainView extends React.Component {
               </Navbar.Collapse>
             </Navbar>
           
-        
+        <Container fluid>
         <Row className='main-view justify-content-md-center'>
           <Route exact path='/' render={() => {
               if (!user) return <Col>
@@ -146,7 +146,7 @@ class MainView extends React.Component {
               }} />
             </Row>
             <Route path='/users/:Username' render={(history) => <ProfileView movies={movies} history={history} onBackClick={() => history.goBack()}/>}/>
-          
+            </Container>
       </Router>
     );
   }
