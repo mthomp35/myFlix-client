@@ -13,38 +13,27 @@ export class DirectorView extends React.Component {
 
   render() {
     const { director, movies } = this.props;
-    //const directedMovies = movies.filter(m => m.Director.Name === director.Name);
 
     return (
-      <div>
-        <Row className='justify-content-center'>
-        <Col md={10}>
-          <div className='dv'>
-            <div className='dv-name'>{director.Name}</div>
-            <div className='dv-bio'>
-              <span className='label'>Bio: </span>
-              <span className='value'>{director.Bio}</span>
-            </div>
-            <div className='dv-birth'>
-              <span className='label'>Date of Birth: </span>
-              <span className='value'>{director.Birth}</span>
-            </div>
-            <div className='dv-death'>
-              <span className='label'>Date of Death: </span>
-              <span className='value'>{director.Death || 'N/A'}</span>
-            </div>
-            </div>       
-        </Col>
-        </Row>
-        <Row>
-          
-            <div className='dv-movies'>
-              <div className='label'>Movies directed by {director.Name}: </div>
-              <div>
-              {movies.map(movie => <MovieCard key={movie._id} movie={movie}/>)}
-              </div>
-            </div>
-          
+      <div className='dv'>
+        <div className='dv-info'>
+        <h3 className='dv-name'>{director.Name}</h3>
+          <div className='dv-bio'>
+            <span className='label'>Bio: </span>
+            <span className='value'>{director.Bio}</span>
+          </div>
+          <div className='dv-birth'>
+            <span className='label'>Date of Birth: </span>
+            <span className='value'>{director.Birth || 'N/A'}</span>
+          </div>
+          <div className='dv-death'>
+            <span className='label'>Date of Death: </span>
+            <span className='value'>{director.Death || 'N/A'}</span>
+          </div>
+        </div>
+        <p className='dv-movies-label'>Movies directed by {director.Name}: </p>
+        <Row className='dv-movies' md={5}>
+          {movies.map(movie => <MovieCard key={movie._id} movie={movie}/>)}
         </Row>
       </div>
     );
@@ -54,7 +43,6 @@ export class DirectorView extends React.Component {
 DirectorView.propTypes = {
   director: PropTypes.shape({
     Name: PropTypes.string.isRequired,
-    Bio: PropTypes.string.isRequired,
-    Birth: PropTypes.string.isRequired
+    Bio: PropTypes.string.isRequired
   })
 };
