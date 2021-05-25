@@ -235,10 +235,10 @@ export class ProfileView extends React.Component {
         </Container>
         
         <Container fluid className='fav'>
-          <Row className='fav-rw'>
+          <Row className='fav-rw_1'>
             <p className='fav-label'>Your Favorite Movies:</p>
           </Row>
-          <Row className='justify-content-sm-start'>
+          <Row className='justify-content-sm-start fav-rw_2'>
             {favMovies.map((fav, index) => {
               if(!favMovies) return <p className='no-fav'>You have no favorite movies. Go add some!</p>;
               return(
