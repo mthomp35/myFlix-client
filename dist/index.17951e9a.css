@@ -42,18 +42,29 @@ h1, .btn-blk {
   margin: 10px;
   padding-top: 10px;
   background-color: #09518b;
+}
+
+.dv-info,
+.dv-movies-label {
   color: #fff;
+}
+
+.dv-movies-label {
+  padding-top: 30px;
+  font-size: 20px;
 }
 .genre-view {
   padding-top: 10px;
   background-color: #09518b;
   min-height: 100vh;
+}
+
+.gv {
   color: #fff;
 }
 .form,
 .form-rw,
 .fav,
-.fav-rw,
 .buttons {
   color: #fff;
   background-color: #09518b;

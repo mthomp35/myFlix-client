@@ -43094,6 +43094,9 @@ try {
                   md: 10
                 }, /*#__PURE__*/_react["default"].createElement(_genreView.GenreView, {
                   history: history,
+                  movies: movies.filter(function (m) {
+                    return m.Genre.Name === match.params.name;
+                  }),
                   genre: movies.find(function (m) {
                     return m.Genre.Name === match.params.name;
                   }).Genre
@@ -49198,15 +49201,12 @@ try {
       key: "render",
       value: function render() {
         var _this$props = this.props, director = _this$props.director, movies = _this$props.movies;
-        // const directedMovies = movies.filter(m => m.Director.Name === director.Name);
         return (
-          /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Row, {
-            className: "justify-content-center"
-          }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Col, {
-            md: 10
-          }, /*#__PURE__*/_react["default"].createElement("div", {
+          /*#__PURE__*/_react["default"].createElement("div", {
             className: "dv"
           }, /*#__PURE__*/_react["default"].createElement("div", {
+            className: "dv-info"
+          }, /*#__PURE__*/_react["default"].createElement("h3", {
             className: "dv-name"
           }, director.Name), /*#__PURE__*/_react["default"].createElement("div", {
             className: "dv-bio"
@@ -49220,24 +49220,25 @@ try {
             className: "label"
           }, "Date of Birth: "), /*#__PURE__*/_react["default"].createElement("span", {
             className: "value"
-          }, director.Birth)), /*#__PURE__*/_react["default"].createElement("div", {
+          }, director.Birth || 'N/A')), /*#__PURE__*/_react["default"].createElement("div", {
             className: "dv-death"
           }, /*#__PURE__*/_react["default"].createElement("span", {
             className: "label"
           }, "Date of Death: "), /*#__PURE__*/_react["default"].createElement("span", {
             className: "value"
-          }, director.Death || 'N/A'))))), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Row, null, /*#__PURE__*/_react["default"].createElement("div", {
-            className: "dv-movies"
-          }, /*#__PURE__*/_react["default"].createElement("div", {
-            className: "label"
-          }, "Movies directed by ", director.Name, ": "), /*#__PURE__*/_react["default"].createElement("div", null, movies.map(function (movie) {
+          }, director.Death || 'N/A'))), /*#__PURE__*/_react["default"].createElement("p", {
+            className: "dv-movies-label"
+          }, "Movies directed by ", director.Name, ": "), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Row, {
+            className: "dv-movies",
+            md: 5
+          }, movies.map(function (movie) {
             return (
               /*#__PURE__*/_react["default"].createElement(_movieCard.MovieCard, {
                 key: movie._id,
                 movie: movie
               })
             );
-          })))))
+          })))
         );
       }
     }]);
@@ -49247,8 +49248,7 @@ try {
   DirectorView.propTypes = {
     director: _propTypes["default"].shape({
       Name: _propTypes["default"].string.isRequired,
-      Bio: _propTypes["default"].string.isRequired,
-      Birth: _propTypes["default"].string.isRequired
+      Bio: _propTypes["default"].string.isRequired
     })
   };
   helpers.postlude(module);
@@ -49283,6 +49283,7 @@ try {
   exports.GenreView = void 0;
   var _react = _interopRequireDefault(require("react"));
   var _propTypes = _interopRequireDefault(require("prop-types"));
+  var _movieCard = require("../movie-card/movie-card");
   var _reactBootstrap = require("react-bootstrap");
   require("./genre-view.scss");
   function _interopRequireDefault(obj) {
@@ -49384,7 +49385,7 @@ try {
     _createClass(GenreView, [{
       key: "render",
       value: function render() {
-        var genre = this.props.genre;
+        var _this$props = this.props, genre = _this$props.genre, movies = _this$props.movies;
         return (
           /*#__PURE__*/_react["default"].createElement("div", {
             className: "genre-view"
@@ -49394,7 +49395,16 @@ try {
             className: "gv-name"
           }, genre.Name), /*#__PURE__*/_react["default"].createElement("p", {
             className: "gv-txt"
-          }, genre.Description)))
+          }, genre.Description)), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Row, {
+            md: 5
+          }, movies.map(function (movie) {
+            return (
+              /*#__PURE__*/_react["default"].createElement(_movieCard.MovieCard, {
+                key: movie._id,
+                movie: movie
+              })
+            );
+          })))
         );
       }
     }]);
@@ -49413,7 +49423,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","./genre-view.scss":"4iHPp","../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6fW6i"}],"4iHPp":[function() {},{}],"3CncI":[function(require,module,exports) {
+},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","./genre-view.scss":"4iHPp","../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6fW6i","../movie-card/movie-card":"7v6h3"}],"4iHPp":[function() {},{}],"3CncI":[function(require,module,exports) {
 "use strict";
 var helpers = require("../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
@@ -49813,11 +49823,11 @@ try {
             fluid: true,
             className: "fav"
           }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Row, {
-            className: "fav-rw"
+            className: "fav-rw_1"
           }, /*#__PURE__*/_react["default"].createElement("p", {
             className: "fav-label"
           }, "Your Favorite Movies:")), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Row, {
-            className: "justify-content-sm-start"
+            className: "justify-content-sm-start fav-rw_2"
           }, favMovies.map(function (fav, index) {
             if (!favMovies) return (
               /*#__PURE__*/_react["default"].createElement("p", {
