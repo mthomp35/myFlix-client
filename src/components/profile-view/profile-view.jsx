@@ -55,7 +55,6 @@ export class ProfileView extends React.Component {
         Email: data.Email,
         DOB: this.changeDate(data.Birth),
         Username: data.Username,
-        Password: data.Password,
         favoriteMovies: data.FavoriteMovies
       });
     })

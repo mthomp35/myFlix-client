@@ -49676,7 +49676,6 @@ try {
             Email: data.Email,
             DOB: _this2.changeDate(data.Birth),
             Username: data.Username,
-            Password: data.Password,
             favoriteMovies: data.FavoriteMovies
           });
         })["catch"](function (e) {
