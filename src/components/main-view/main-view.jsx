@@ -133,7 +133,7 @@ class MainView extends React.Component {
               </Col>
               if (!movies.length) return <div className='main-view'>{message}</div>;
               return <Col md={10}>
-                <GenreView history={history} genre={movies.find(m => m.Genre.Name === match.params.name).Genre}/>
+                <GenreView history={history} movies={movies.filter(m => m.Genre.Name === match.params.name)} genre={movies.find(m => m.Genre.Name === match.params.name).Genre}/>
               </Col>
             }} />
             
