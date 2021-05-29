@@ -13,7 +13,7 @@ Heroku and Netlify were both used as hosts for this project.
 
 Main view
 * Returns a list of ALL movies to the user (each listed item with an image, title, and description)
-* Sorting and filtering
+* Allows sorting and filtering based on movie title
 * Ability to select a movie for more details
 
 Single movie view
@@ -21,12 +21,12 @@ Single movie view
 * Allows users to add a movie to their list of favorites
 
 Genre view
-● Returns data about a genre, with a name and description
-● Displays example movies
+* Returns data about a genre, with a name and description
+* Displays example movies
 
 Director view
-● Returns data about a director (name, bio, birth year, death year)
-● Displays example movies
+* Returns data about a director (name, bio, birth year, death year)
+* Displays example movies
 
 Profile view
 * Allows users to view and update their personal information
