@@ -62,12 +62,12 @@ export function LoginView(props) {
         </Form.Text>
       </Form.Group>
       <Form.Row className='btn-blk'>
-        <Col md={6}>
+        <Col md={1}>
           <Button type='submit' variant='secondary' onClick={handleSubmit}>Submit</Button>
         </Col>
         <Col md={6}>
           <Link to={'/register'}>
-            <Button type='button' variant='link'>New to M's Movie Mania? Click here to register</Button>
+            <Button className='reg-btn' type='button' variant='link'>New to M's Movie Mania? Click here to register</Button>
           </Link>
         </Col>
       </Form.Row>

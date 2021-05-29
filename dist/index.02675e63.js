@@ -48781,7 +48781,7 @@ try {
       }, "Password must contain: At least 10 characters, a combination of uppercase and lowercase letters (A-z), numbers (0-9), and special characters (e.g. ! @ # ? ] ).")), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Row, {
         className: "btn-blk"
       }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Col, {
-        md: 6
+        md: 1
       }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
         type: "submit",
         variant: "secondary",
@@ -48791,6 +48791,7 @@ try {
       }, /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Link, {
         to: '/register'
       }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
+        className: "reg-btn",
         type: "button",
         variant: "link"
       }, "New to M's Movie Mania? Click here to register")))))
