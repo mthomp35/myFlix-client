@@ -49685,7 +49685,6 @@ try {
             Username: data.Username,
             favoriteMovies: data.FavoriteMovies
           });
-          console.log(_this2.changeDate(data.Birth));
           console.log(_this2.state.Username);
         })["catch"](function (e) {
           (console.log(e), _this2.setState({
@@ -49696,9 +49695,9 @@ try {
     }, {
       key: "removeFav",
       value: // remove movie from favorites - watchout -- if user can change username then code will break; create Config file for url vs hardcoding url, must export default to use it
-      function removeFav(movie) {
+      function removeFav(fav) {
         var _this3 = this;
-        _axios["default"]["delete"](("").concat(_config["default"].API_URL, "/users/").concat(localStorage.getItem('user'), "/Movies/").concat(movie._id), {
+        _axios["default"]["delete"](("").concat(_config["default"].API_URL, "/users/").concat(localStorage.getItem('user'), "/Movies/").concat(fav._id), {
           headers: {
             Authorization: ("Bearer ").concat(localStorage.getItem('token'))
           }
@@ -49707,7 +49706,7 @@ try {
           alert(("").concat(movie.Title, " has been successfully removed from your favorites."));
           // clone of favorite movies. the "..." spread operator allows you to clone an array
           var tempArray = _toConsumableArray(_this3.state.favoriteMovies);
-          tempArray.splice(tempArray.indexOf(movie._id), 1);
+          tempArray.splice(tempArray.indexOf(fav._id), 1);
           // all array methods either mutate actual array or create new array
           _this3.setState({
             favoriteMovies: tempArray

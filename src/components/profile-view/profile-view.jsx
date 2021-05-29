@@ -58,7 +58,6 @@ export class ProfileView extends React.Component {
         Username: data.Username,
         favoriteMovies: data.FavoriteMovies
       });
-      console.log(this.changeDate(data.Birth));
       console.log(this.state.Username);
     })
     .catch(e => {
@@ -70,8 +69,8 @@ export class ProfileView extends React.Component {
   }
 
   // remove movie from favorites - watchout -- if user can change username then code will break; create Config file for url vs hardcoding url, must export default to use it
-  removeFav(movie) {
-    axios.delete(`${Config.API_URL}/users/${localStorage.getItem('user')}/Movies/${movie._id}`, {
+  removeFav(fav) {
+    axios.delete(`${Config.API_URL}/users/${localStorage.getItem('user')}/Movies/${fav._id}`, {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
     })
     .then(response => {
@@ -80,7 +79,7 @@ export class ProfileView extends React.Component {
 
       // clone of favorite movies. the "..." spread operator allows you to clone an array
       let tempArray = [...this.state.favoriteMovies];
-      tempArray.splice(tempArray.indexOf(movie._id), 1); //all array methods either mutate actual array or create new array
+      tempArray.splice(tempArray.indexOf(fav._id), 1); //all array methods either mutate actual array or create new array
       this.setState({
         favoriteMovies: tempArray
       });
