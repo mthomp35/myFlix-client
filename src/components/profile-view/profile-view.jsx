@@ -230,6 +230,9 @@ export class ProfileView extends React.Component {
               </Form.Group>
 
               <Button type='submit' variant='secondary' onClick={this.updateProfile}>Update Profile</Button>
+              <Col md={{ span: 4, offset: 4 }}>
+                <Button variant='dark' onClick={() => this.deleteUser()}>Delete account</Button>
+              </Col>
             </Form>
             </Col>
           </Row>
@@ -259,9 +262,6 @@ export class ProfileView extends React.Component {
           <Row className='buttons'>
             <Col md={4}>
               <Button variant ='warning' onClick={() => history.push('/')}>Go back</Button>
-            </Col>
-            <Col md={{ span: 4, offset: 4 }}>
-              <Button variant='dark' onClick={() => this.deleteUser()}>Delete account</Button>
             </Col>
           </Row>
         </Container>
