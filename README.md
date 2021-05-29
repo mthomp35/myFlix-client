@@ -9,7 +9,7 @@ The myFlix application uses full-stack JavaScript technologies - the MERN tech s
 
 Heroku and Netlify were both used as hosts for this project.
 
-#### myFlix Features:
+### myFlix Features:
 
 Main view
 * Returns a list of ALL movies to the user (each listed item with an image, title, and description)
