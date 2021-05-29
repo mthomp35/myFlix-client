@@ -49423,7 +49423,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","./genre-view.scss":"4iHPp","../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6fW6i","../movie-card/movie-card":"7v6h3"}],"4iHPp":[function() {},{}],"3CncI":[function(require,module,exports) {
+},{"react":"3b2NM","prop-types":"4dfy5","../movie-card/movie-card":"7v6h3","react-bootstrap":"4n7hB","./genre-view.scss":"4iHPp","../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6fW6i"}],"4iHPp":[function() {},{}],"3CncI":[function(require,module,exports) {
 "use strict";
 var helpers = require("../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
@@ -49750,6 +49750,7 @@ try {
         var favMovies = movies.filter(function (movie) {
           return favoriteMovies.includes(movie._id);
         });
+        // utilize <> as <React.Fragment> to wrap profile
         return (
           /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Container, {
             fluid: true,
@@ -49887,6 +49888,6 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","react-bootstrap":"4n7hB","axios":"7rA65","../../config":"5yJJr","./profile-view.scss":"3kYjk","../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6fW6i","react-router-dom":"1PMSK"}],"3kYjk":[function() {},{}],"3X8QW":[function() {},{}],"5iJih":[function() {},{}]},["1j6wU","68WUB","1DVjT"], "1DVjT", "parcelRequire427e")
+},{"react":"3b2NM","axios":"7rA65","../../config":"5yJJr","react-router-dom":"1PMSK","react-bootstrap":"4n7hB","./profile-view.scss":"3kYjk","../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6fW6i"}],"3kYjk":[function() {},{}],"3X8QW":[function() {},{}],"5iJih":[function() {},{}]},["1j6wU","68WUB","1DVjT"], "1DVjT", "parcelRequire427e")
 
 //# sourceMappingURL=index.02675e63.js.map

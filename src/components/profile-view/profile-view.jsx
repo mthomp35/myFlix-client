@@ -159,8 +159,9 @@ export class ProfileView extends React.Component {
     const { movies, history } = this.props;
     const favMovies = movies.filter(movie => favoriteMovies.includes(movie._id));
 
+    //utilize <> as <React.Fragment> to wrap profile
     return(
-      <React.Fragment>
+      <>
         <Container fluid className='form'>
           <Row className='form-rw'>
             <h3>{`Hi ${FirstName}! Enter new details below to edit your profile.`}</h3>
@@ -264,7 +265,7 @@ export class ProfileView extends React.Component {
             </Col>
           </Row>
         </Container>
-      </React.Fragment>
+      </>
       
     );
   }
