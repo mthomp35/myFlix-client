@@ -42937,7 +42937,6 @@ try {
         this.props.setUser(authData.user.Username);
         localStorage.setItem('token', authData.token);
         localStorage.setItem('user', authData.user.Username);
-        console.log('user', this.state.user);
         this.getMovies(authData.token);
       }
     }, {
@@ -48010,7 +48009,7 @@ try {
           return props.setFilter(e.target.value);
         },
         value: props.visibilityFilter,
-        placeholder: "Filter"
+        placeholder: "Filter movies by title"
       })
     );
   }
@@ -49815,11 +49814,25 @@ try {
             },
             placeholder: "Confirm Password",
             sr_only: "Re-enter password to confirm"
-          })), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
+          })), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Row, null, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Col, {
+            md: 4
+          }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
+            className: "form-btn",
             type: "submit",
             variant: "secondary",
             onClick: this.updateProfile
-          }, "Update Profile"))))), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Container, {
+          }, "Update Profile")), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Col, {
+            md: {
+              span: 3,
+              offset: 5
+            }
+          }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
+            className: "form-btn",
+            variant: "danger",
+            onClick: function onClick() {
+              return _this5.deleteUser();
+            }
+          }, "Delete account"))))))), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Container, {
             fluid: true,
             className: "fav"
           }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Row, {
@@ -49864,17 +49877,7 @@ try {
             onClick: function onClick() {
               return history.push('/');
             }
-          }, "Go back")), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Col, {
-            md: {
-              span: 4,
-              offset: 4
-            }
-          }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
-            variant: "dark",
-            onClick: function onClick() {
-              return _this5.deleteUser();
-            }
-          }, "Delete account")))))
+          }, "Go back")))))
         );
       }
     }]);

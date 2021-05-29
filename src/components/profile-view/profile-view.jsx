@@ -228,11 +228,14 @@ export class ProfileView extends React.Component {
                   sr_only='Re-enter password to confirm'
                 />
               </Form.Group>
-
-              <Button type='submit' variant='secondary' onClick={this.updateProfile}>Update Profile</Button>
-              <Col md={{ span: 4, offset: 4 }}>
-                <Button variant='dark' onClick={() => this.deleteUser()}>Delete account</Button>
-              </Col>
+              <Form.Row>
+                <Col md={4}>
+                  <Button className='form-btn' type='submit' variant='secondary' onClick={this.updateProfile}>Update Profile</Button>
+                </Col>
+                <Col md={{ span: 3, offset: 5 }}>
+                  <Button className='form-btn' variant='danger' onClick={() => this.deleteUser()}>Delete account</Button>
+                </Col>
+              </Form.Row>
             </Form>
             </Col>
           </Row>
