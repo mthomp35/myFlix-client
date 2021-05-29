@@ -48781,20 +48781,18 @@ try {
       }, "Password must contain: At least 10 characters, a combination of uppercase and lowercase letters (A-z), numbers (0-9), and special characters (e.g. ! @ # ? ] ).")), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Row, {
         className: "btn-blk"
       }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Col, {
-        md: 1
+        md: 2
       }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
         type: "submit",
         variant: "secondary",
         onClick: handleSubmit
       }, "Submit")), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Col, {
+        className: "reg-col",
         md: 6
       }, /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Link, {
-        to: '/register'
-      }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
-        className: "reg-btn",
-        type: "button",
-        variant: "link"
-      }, "New to M's Movie Mania? Click here to register")))))
+        to: '/register',
+        className: "reg-btn"
+      }, "New to M's Movie Mania? Click here to register"))))
     );
   }
   _s2(LoginView, "9FY2cPL9VBDmuhjwpF2ik6flsHs=");

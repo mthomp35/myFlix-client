@@ -30,6 +30,19 @@
 h1, .btn-blk {
   padding-top: 10px;
 }
+
+.reg-col {
+  padding-top: 7px;
+}
+
+.reg-btn {
+  color: #fff;
+}
+
+.reg-btn:hover {
+  color: #fff;
+  text-decoration: underline;
+}
 .mv {
   background-color: #09518b;
   min-height: 100vh;
