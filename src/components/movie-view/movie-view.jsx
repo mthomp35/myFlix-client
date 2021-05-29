@@ -25,8 +25,6 @@ export class MovieView extends React.Component {
   // add movie to favorites
   addFav(movie) {
     const token = localStorage.getItem('token');
-    console.log(token);
-    console.log(localStorage.getItem('user'));
     axios.post(`${Config.API_URL}/users/${localStorage.getItem('user')}/Movies/${movie._id}`, {}, 
     {
       headers: { Authorization: `Bearer ${token}`}

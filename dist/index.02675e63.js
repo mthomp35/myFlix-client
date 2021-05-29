@@ -48955,8 +48955,6 @@ try {
       function addFav(movie) {
         var _this2 = this;
         var token = localStorage.getItem('token');
-        console.log(token);
-        console.log(localStorage.getItem('user'));
         _axios["default"].post(("").concat(_config["default"].API_URL, "/users/").concat(localStorage.getItem('user'), "/Movies/").concat(movie._id), {}, {
           headers: {
             Authorization: ("Bearer ").concat(token)
@@ -49677,7 +49675,8 @@ try {
             Authorization: ("Bearer ").concat(localStorage.getItem('token'))
           }
         }).then(function (response) {
-          console.log('this is getuser');
+          console.log('this is getUser');
+          console.log(("username ").concat(_this2.state.Username));
           console.log(response);
           // should I pull this as one prop, then pull out the pieces when used?
           var data = response.data;
@@ -49700,10 +49699,9 @@ try {
       value: // remove movie from favorites - watchout -- if user can change username then code will break; create Config file for url vs hardcoding url, must export default to use it
       function removeFav(movie) {
         var _this3 = this;
-        var token = localStorage.getItem('token');
-        _axios["default"]["delete"](("").concat(_config["default"].API_URL, "/users/").concat(this.state.Username, "/Movies/").concat(movie._id), {
+        _axios["default"]["delete"](("").concat(_config["default"].API_URL, "/users/").concat(localStorage.getItem('user'), "/Movies/").concat(movie._id), {
           headers: {
-            Authorization: ("Bearer ").concat(token)
+            Authorization: ("Bearer ").concat(localStorage.getItem('token'))
           }
         }).then(function (response) {
           console.log(response);
