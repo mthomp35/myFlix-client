@@ -9,6 +9,11 @@ The myFlix application uses full-stack JavaScript technologies - the MERN tech s
 
 Heroku and Netlify were both used as hosts for this project.
 
+Redux and Flux were used to manage the application’s state in order to make the project more scalable in future. States managed include:
+* GET_MOVIES
+* FILTER_MOVIES
+* GET_USER
+
 ### myFlix Features:
 
 Main view
