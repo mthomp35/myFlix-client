@@ -46,7 +46,8 @@ export class ProfileView extends React.Component {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
     })
     .then(response => {
-      console.log('this is getuser');
+      console.log('this is getUser');
+      console.log(`username ${this.state.Username}`);
       console.log(response); // should I pull this as one prop, then pull out the pieces when used?
       let data = response.data;
       this.setState({
@@ -68,9 +69,8 @@ export class ProfileView extends React.Component {
 
   // remove movie from favorites - watchout -- if user can change username then code will break; create Config file for url vs hardcoding url, must export default to use it
   removeFav(movie) {
-    const token = localStorage.getItem('token');
-    axios.delete(`${Config.API_URL}/users/${this.state.Username}/Movies/${movie._id}`, {
-      headers: { Authorization: `Bearer ${token}`}
+    axios.delete(`${Config.API_URL}/users/${localStorage.getItem('user')}/Movies/${movie._id}`, {
+      headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
     })
     .then(response => {
       console.log(response);
