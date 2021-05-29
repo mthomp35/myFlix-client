@@ -49627,7 +49627,7 @@ try {
             FirstName: response.data.FirstName,
             LastName: response.data.LastName,
             Email: response.data.Email,
-            DOB: _this.changeDate(response.data.Birth),
+            DOB: response.data.Birth,
             Password: '',
             ConfirmPassword: ''
           });
@@ -49650,15 +49650,13 @@ try {
         this.setState(obj);
       }
     }, {
-      key: "changeDate",
-      value: function changeDate(string) {
-        return string ? string.slice(0, string.indexOf('T')) : '1111-11-11';
-      }
-    }, {
       key: "componentDidMount",
-      value: function componentDidMount() {
+      value: /*used to change date to correct format when retrieved as UTC format. Updated backend to make date a string and prevent errors when different date styles get sent to client - keep this as reference
+      changeDate(string) {
+      return string ? string.slice(0,string.indexOf('T')) : '1111-11-11';
+      }*/
+      function componentDidMount() {
         var accessToken = localStorage.getItem('token');
-        // let accessToken = this.props.token;
         if (accessToken !== null) {
           this.getUser(accessToken);
         }
@@ -49683,10 +49681,12 @@ try {
             FirstName: data.FirstName,
             LastName: data.LastName,
             Email: data.Email,
-            DOB: _this2.changeDate(data.Birth),
+            DOB: data.Birth,
             Username: data.Username,
             favoriteMovies: data.FavoriteMovies
           });
+          console.log(_this2.changeDate(data.Birth));
+          console.log(_this2.state.Username);
         })["catch"](function (e) {
           (console.log(e), _this2.setState({
             message: 'We were unable to load your information.'

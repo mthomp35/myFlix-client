@@ -27,13 +27,13 @@ export class ProfileView extends React.Component {
     this.setState(obj)
   }
 
+  /* used to change date to correct format when retrieved as UTC format. Updated backend to make date a string and prevent errors when different date styles get sent to client - keep this as reference
   changeDate(string) {
     return string ? string.slice(0,string.indexOf('T')) : '1111-11-11';
-  }
+  } */
 
   componentDidMount(){
     let accessToken = localStorage.getItem('token');
-    //let accessToken = this.props.token;
     if (accessToken !== null) {
       this.getUser(accessToken);
     }
@@ -54,10 +54,12 @@ export class ProfileView extends React.Component {
         FirstName: data.FirstName,
         LastName: data.LastName,
         Email: data.Email,
-        DOB: this.changeDate(data.Birth),
+        DOB: data.Birth,
         Username: data.Username,
         favoriteMovies: data.FavoriteMovies
       });
+      console.log(this.changeDate(data.Birth));
+      console.log(this.state.Username);
     })
     .catch(e => {
       console.log(e),
@@ -119,7 +121,7 @@ export class ProfileView extends React.Component {
         FirstName: response.data.FirstName,
         LastName: response.data.LastName,
         Email: response.data.Email,
-        DOB: this.changeDate(response.data.Birth),
+        DOB: response.data.Birth,
         Password: '',
         ConfirmPassword: ''
       });
