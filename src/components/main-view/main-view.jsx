@@ -82,8 +82,11 @@ class MainView extends React.Component {
     //if (!movies.length) return <div className='main-view'>{message}</div>; <Row className='nav-bar_row' sticky='top' > <Row className='main-view justify-content-md-center'>
     return (
         <Router className='router-mv'>
-        
             <Navbar bg='light' variant='light' expand='md' sticky='top' className='navbar'>
+              {!user ? (
+              <Navbar.Brand href='/'>M's</Navbar.Brand>
+              ) : (
+              <>
               <Navbar.Brand href='/'>M's</Navbar.Brand>
               <Navbar.Toggle aria-controls='basic-navbar-nav' />
               <Navbar.Collapse id='basic-navbar-nav'>
@@ -100,6 +103,8 @@ class MainView extends React.Component {
                   </Nav.Item> 
                 </Nav>
               </Navbar.Collapse>
+              </>
+              )}
             </Navbar>
           
         <Container fluid className='cont-mv'>

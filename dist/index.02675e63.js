@@ -42986,7 +42986,9 @@ try {
             expand: "md",
             sticky: "top",
             className: "navbar"
-          }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Navbar.Brand, {
+          }, !user ? /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Navbar.Brand, {
+            href: "/"
+          }, "M's") : /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Navbar.Brand, {
             href: "/"
           }, "M's"), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Navbar.Toggle, {
             "aria-controls": "basic-navbar-nav"
@@ -43009,7 +43011,7 @@ try {
             onClick: function onClick() {
               return _this3.onLogOut();
             }
-          }, "Log Out"))))), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Container, {
+          }, "Log Out")))))), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Container, {
             fluid: true,
             className: "cont-mv"
           }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Row, {
