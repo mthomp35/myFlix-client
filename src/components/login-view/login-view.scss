@@ -1,5 +1,6 @@
 $bdtxt: #fff;
 $bgcolor: #09518b;
+$link: #ffc400;
 
 .login {
   color: $bdtxt;
@@ -17,11 +18,11 @@ h1, .btn-blk {
 }
 
 .reg-btn {
-  color: $bdtxt
+  color: $link
 }
 
 .reg-btn:hover {
-  color: $bdtxt;
+  color: $link;
   text-decoration: underline
 
 }

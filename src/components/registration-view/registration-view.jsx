@@ -42,10 +42,8 @@ export function RegistrationView() {
     <Form className='registration'>
       <h1>Welcome to M's Movie Mania!</h1>
       <p>Please register here to access the site.</p>
-      <p>Already registered? 
-        <Link to={'/'}>
-            <Button type='button' variant='link'>Login here</Button>
-        </Link>
+      <p>
+        <Link className='login-link' to={'/'}>Already registered? Login here.</Link>
       </p>
       <Form.Group controlId='formFirstName'>
         <Form.Label>First Name:</Form.Label>

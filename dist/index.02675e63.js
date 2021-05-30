@@ -48510,12 +48510,10 @@ try {
     return (
       /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form, {
         className: "registration"
-      }, /*#__PURE__*/_react["default"].createElement("h1", null, "Welcome to M's Movie Mania!"), /*#__PURE__*/_react["default"].createElement("p", null, "Please register here to access the site."), /*#__PURE__*/_react["default"].createElement("p", null, "Already registered?", /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Link, {
+      }, /*#__PURE__*/_react["default"].createElement("h1", null, "Welcome to M's Movie Mania!"), /*#__PURE__*/_react["default"].createElement("p", null, "Please register here to access the site."), /*#__PURE__*/_react["default"].createElement("p", null, /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Link, {
+        className: "login-link",
         to: '/'
-      }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
-        type: "button",
-        variant: "link"
-      }, "Login here"))), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Group, {
+      }, "Already registered? Login here.")), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Group, {
         controlId: "formFirstName"
       }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Label, null, "First Name:"), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Control, {
         type: "text",

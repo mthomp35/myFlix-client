@@ -20,6 +20,15 @@
 .btn-blk {
   padding-top: 30px;
 }
+
+.login-link {
+  color: #ffc400;
+}
+
+.login-link:hover {
+  color: #ffc400;
+  text-decoration: underline;
+}
 .login {
   color: #fff;
   background-color: #09518b;
@@ -36,11 +45,11 @@ h1, .btn-blk {
 }
 
 .reg-btn {
-  color: #fff;
+  color: #ffc400;
 }
 
 .reg-btn:hover {
-  color: #fff;
+  color: #ffc400;
   text-decoration: underline;
 }
 .mv {

@@ -1,9 +1,19 @@
 $bdtxt: #fff;
+$link: #ffc400;
 
 .registration {
-  color: $bdtxt;
+  color: $bdtxt
 }
 
 .btn-blk {
   padding-top: 30px
+}
+
+.login-link {
+  color: $link
+}
+
+.login-link:hover {
+  color: $link;
+  text-decoration: underline
 }
