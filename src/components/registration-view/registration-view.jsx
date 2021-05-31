@@ -20,17 +20,25 @@ export function RegistrationView() {
   const handleRegister = (e) => {
     e.preventDefault();
     console.log(FirstName, LastName, Username, Password, Email, DOB);
-    axios.post(`${Config.API_URL}/users`, {
+    let regData = {
       FirstName: FirstName,
       LastName: LastName,
       Email: Email,
       Birth: DOB,
-      Username: Username,
-      Password: Password
-    })
+      Username: Username
+    }
+    if(Password === ConfirmPassword && Password !== '') {
+      regData.Password = Password
+    } else if(Password !== ConfirmPassword) {
+      alert('Your passwords must match and cannot be blank');
+      return; //put statement will never get hit after the return statement
+    }
+    axios.post(`${Config.API_URL}/users`, regData
+    )
     .then(response => {
       const data = response.data;
       console.log(data);
+      alert('Thank you for registering. Please log in using your username and password.');
       window.open('/', '_self'); // the argument '_self' is necessary so that the page will open in the current tab
     })
     .catch(e => {
@@ -73,7 +81,6 @@ export function RegistrationView() {
           value={Email}
           onChange={e => setEmail(e.target.value)}
           placeholder='Enter Email'
-          //srOnly='Enter email address'
         />
       </Form.Group>
       
@@ -84,7 +91,6 @@ export function RegistrationView() {
           value={DOB}
           onChange={e => setDOB(e.target.value)}
           placeholder='Enter Date of Birth'
-          //srOnly='Enter date of birth (month/day/year)'
         />
       </Form.Group>
 
