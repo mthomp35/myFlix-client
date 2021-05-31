@@ -43138,10 +43138,7 @@ try {
               return (
                 /*#__PURE__*/_react["default"].createElement(_profileView.ProfileView, {
                   movies: movies,
-                  history: history,
-                  onBackClick: function onBackClick() {
-                    return history.goBack();
-                  }
+                  history: history
                 })
               );
             }
@@ -43151,6 +43148,7 @@ try {
     }]);
     return MainView;
   })(_react["default"].Component);
+  // onBackClick={() => history.goBack()}
   var mapStateToProps = function mapStateToProps(state) {
     return {
       movies: state.movies,
@@ -49873,16 +49871,7 @@ try {
                 }
               }, "Remove movie"))
             );
-          }))), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Container, null, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Row, {
-            className: "buttons"
-          }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Col, {
-            md: 4
-          }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
-            variant: "warning",
-            onClick: function onClick() {
-              return history.push('/');
-            }
-          }, "Go back")))))
+          }))))
         );
       }
     }]);

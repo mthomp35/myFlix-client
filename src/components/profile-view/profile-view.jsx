@@ -261,14 +261,6 @@ export class ProfileView extends React.Component {
             )}
           </Row>
         </Container>
-
-        <Container>
-          <Row className='buttons'>
-            <Col md={4}>
-              <Button variant ='warning' onClick={() => history.push('/')}>Go back</Button>
-            </Col>
-          </Row>
-        </Container>
       </>
       
     );
