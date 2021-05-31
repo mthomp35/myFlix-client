@@ -48575,7 +48575,7 @@ try {
         placeholder: "Enter Password"
       }), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Text, {
         id: "passwordHelpBlock"
-      }, "Password must contain: At least 10 characters, a combination of uppercase and lowercase letters (A-z), numbers (0-9), and special characters (e.g. ! @ # ? ] ).")), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Group, {
+      }, "Password must contain at least 10 characters.")), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Group, {
         controlId: "formConfirmPassword"
       }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Label, null, "Confirm Password:"), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Control, {
         type: "Password",
@@ -48596,6 +48596,7 @@ try {
   }
   _s2(RegistrationView, "GM8HzfSR5FA0O2wlLfshkGfL6Es=");
   _c = RegistrationView;
+  // Ideal password requirements: Password must contain: At least 10 characters, a combination of uppercase and lowercase letters (A-z), numbers (0-9), and special characters (e.g. ! @ # ? ] ).
   RegistrationView.propTypes = {
     register: _propTypes["default"].shape({
       FirstName: _propTypes["default"].string.isRequired,
@@ -48783,7 +48784,7 @@ try {
         placeholder: "Enter Password"
       }), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Text, {
         id: "passwordHelpBlock"
-      }, "Password must contain: At least 10 characters, a combination of uppercase and lowercase letters (A-z), numbers (0-9), and special characters (e.g. ! @ # ? ] ).")), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Row, {
+      }, "Password must contain at least 10 characters.")), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Row, {
         className: "btn-blk"
       }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Col, {
         md: 2
@@ -48802,6 +48803,7 @@ try {
   }
   _s2(LoginView, "9FY2cPL9VBDmuhjwpF2ik6flsHs=");
   _c = LoginView;
+  // Ideal password requirements: Password must contain: At least 10 characters, a combination of uppercase and lowercase letters (A-z), numbers (0-9), and special characters (e.g. ! @ # ? ] ).
   LoginView.propTypes = {
     user: _propTypes["default"].shape({
       username: _propTypes["default"].string.isRequired,
@@ -49701,7 +49703,7 @@ try {
       value: // remove movie from favorites - watchout -- if user can change username then code will break; create Config file for url vs hardcoding url, must export default to use it
       function removeFav(fav) {
         var _this3 = this;
-        _axios["default"]["delete"](("").concat(_config["default"].API_URL, "/users/").concat(localStorage.getItem('user'), "/Movies/").concat(fav._id), {
+        _axios["default"]["delete"](("").concat(_config["default"].API_URL, "/users/").concat(this.state.Username, "/Movies/").concat(fav._id), {
           headers: {
             Authorization: ("Bearer ").concat(localStorage.getItem('token'))
           }
@@ -49747,7 +49749,7 @@ try {
       value: function render() {
         var _this5 = this;
         var _this$state = this.state, FirstName = _this$state.FirstName, LastName = _this$state.LastName, Email = _this$state.Email, DOB = _this$state.DOB, Password = _this$state.Password, ConfirmPassword = _this$state.ConfirmPassword, favoriteMovies = _this$state.favoriteMovies;
-        var _this$props = this.props, movies = _this$props.movies, history = _this$props.history;
+        var movies = this.props.movies;
         var favMovies = movies.filter(function (movie) {
           return favoriteMovies.includes(movie._id);
         });
@@ -49807,7 +49809,7 @@ try {
             placeholder: "Enter New Password"
           }), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Text, {
             id: "passwordHelpBlock"
-          }, "Password must contain: At least 10 alphanumeric characters.")), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Group, {
+          }, "Password must contain at least 10 characters.")), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Group, {
             controlId: "formConfirmPassword"
           }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Label, null, "Confirm Password:"), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Form.Control, {
             type: "Password",
@@ -49845,7 +49847,7 @@ try {
           }, "Your Favorite Movies:")), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Row, {
             className: "justify-content-sm-start fav-rw_2"
           }, favMovies.map(function (fav, index) {
-            if (fav.length = 0) {
+            if (fav.length === 0) {
               return (
                 /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Link, {
                   to: '/',

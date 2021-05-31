@@ -70,7 +70,7 @@ export class ProfileView extends React.Component {
 
   // remove movie from favorites - watchout -- if user can change username then code will break; create Config file for url vs hardcoding url, must export default to use it
   removeFav(fav) {
-    axios.delete(`${Config.API_URL}/users/${localStorage.getItem('user')}/Movies/${fav._id}`, {
+    axios.delete(`${Config.API_URL}/users/${this.state.Username}/Movies/${fav._id}`, {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
     })
     .then(response => {
@@ -157,7 +157,7 @@ export class ProfileView extends React.Component {
 
   render() {
     const { FirstName, LastName, Email, DOB, Password, ConfirmPassword, favoriteMovies } = this.state;
-    const { movies, history } = this.props;
+    const { movies } = this.props;
     const favMovies = movies.filter(movie => favoriteMovies.includes(movie._id));
 
     //utilize <> as <React.Fragment> to wrap profile
@@ -215,7 +215,7 @@ export class ProfileView extends React.Component {
                   placeholder='Enter New Password'
                 />
                 <Form.Text id='passwordHelpBlock'>
-                  Password must contain: At least 10 alphanumeric characters.
+                  Password must contain at least 10 characters.
                 </Form.Text>
               </Form.Group>
 
@@ -248,7 +248,7 @@ export class ProfileView extends React.Component {
           </Row>
           <Row className='justify-content-sm-start fav-rw_2'>
             {favMovies.map((fav, index) => {
-              if(fav.length = 0) { 
+              if(fav.length === 0) { 
                 return <Link to={'/'} className='no-fav' key={index}>You have no favorite movies. Go add some!</Link>
               } else {
                 return(

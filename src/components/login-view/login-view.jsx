@@ -59,7 +59,7 @@ export function LoginView(props) {
           placeholder='Enter Password'
         />
         <Form.Text id='passwordHelpBlock'>
-          Password must contain: At least 10 characters, a combination of uppercase and lowercase letters (A-z), numbers (0-9), and special characters (e.g. ! @ # ? ] ).
+        Password must contain at least 10 characters.
         </Form.Text>
       </Form.Group>
       <Form.Row className='btn-blk'>
@@ -73,6 +73,8 @@ export function LoginView(props) {
     </Form>
   );
 }
+
+// Ideal password requirements: Password must contain: At least 10 characters, a combination of uppercase and lowercase letters (A-z), numbers (0-9), and special characters (e.g. ! @ # ? ] ).
 
 LoginView.propTypes = {
   user: PropTypes.shape({

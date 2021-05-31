@@ -114,8 +114,7 @@ export function RegistrationView() {
           placeholder='Enter Password'
         />
         <Form.Text id='passwordHelpBlock'>
-          Password must contain: At least 10 characters, a combination of uppercase and lowercase letters (A-z), 
-          numbers (0-9), and special characters (e.g. ! @ # ? ] ).
+          Password must contain at least 10 characters.
         </Form.Text>
       </Form.Group>
 
@@ -135,6 +134,8 @@ export function RegistrationView() {
     </Form>
   );
 }
+
+// Ideal password requirements: Password must contain: At least 10 characters, a combination of uppercase and lowercase letters (A-z), numbers (0-9), and special characters (e.g. ! @ # ? ] ).
 
 RegistrationView.propTypes = {
   register: PropTypes.shape({
