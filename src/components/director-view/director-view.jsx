@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Col, Row } from 'react-bootstrap';
+import { Row } from 'react-bootstrap';
 import { MovieCard } from '../movie-card/movie-card';
 import './director-view.scss';
 

@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import { setMovies, setUser } from '../../actions/actions';
 import MoviesList from '../movies-list/movies-list';
 
-import { Form, Nav, Navbar, Button, Col, Container, Row } from 'react-bootstrap';
+import { Nav, Navbar, Col, Container, Row } from 'react-bootstrap';
 import Config from '../../config';
 
 import { RegistrationView } from '../registration-view/registration-view';
