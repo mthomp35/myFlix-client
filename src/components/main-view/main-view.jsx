@@ -148,13 +148,13 @@ class MainView extends React.Component {
               return <DirectorView history={history} movies={movies.filter(m => m.Director.Name === match.params.name)} director={movies.find(m => m.Director.Name === match.params.name).Director}/>
               }} />
             </Row>
-            <Route path='/users/:Username' render={(history) => <ProfileView movies={movies} history={history} onBackClick={() => history.goBack()}/>}/>
+            <Route path='/users/:Username' render={(history) => <ProfileView movies={movies} history={history}/>}/>
             </Container>
       </Router>
     );
   }
 }
-
+//onBackClick={() => history.goBack()}
 let mapStateToProps = state => {
   return { movies: state.movies, user: state.user }
 }
