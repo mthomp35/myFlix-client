@@ -48492,16 +48492,23 @@ try {
     var handleRegister = function handleRegister(e) {
       e.preventDefault();
       console.log(FirstName, LastName, Username, Password, Email, DOB);
-      _axios["default"].post(("").concat(_config["default"].API_URL, "/users"), {
+      var regData = {
         FirstName: FirstName,
         LastName: LastName,
         Email: Email,
         Birth: DOB,
-        Username: Username,
-        Password: Password
-      }).then(function (response) {
+        Username: Username
+      };
+      if (Password === ConfirmPassword && Password !== '') {
+        regData.Password = Password;
+      } else if (Password !== ConfirmPassword) {
+        alert('Your passwords must match and cannot be blank');
+        return;
+      }
+      _axios["default"].post(("").concat(_config["default"].API_URL, "/users"), regData).then(function (response) {
         var data = response.data;
         console.log(data);
+        alert('Thank you for registering. Please log in using your username and password.');
         window.open('/', '_self');
       })["catch"](function (e) {
         console.log('error registering the user');
@@ -48751,6 +48758,7 @@ try {
         props.onLoggedIn(data);
       })["catch"](function (e) {
         console.log(("").concat(e, " User does not exist"));
+        alert('Invalid username or password');
       });
     };
     return (
@@ -49701,7 +49709,7 @@ try {
           }
         }).then(function (response) {
           console.log(response);
-          alert(("").concat(movie.Title, " has been successfully removed from your favorites."));
+          alert(("").concat(fav.Title, " has been successfully removed from your favorites."));
           // clone of favorite movies. the "..." spread operator allows you to clone an array
           var tempArray = _toConsumableArray(_this3.state.favoriteMovies);
           tempArray.splice(tempArray.indexOf(fav._id), 1);
