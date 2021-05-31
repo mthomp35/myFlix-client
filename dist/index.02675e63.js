@@ -49845,32 +49845,37 @@ try {
           }, "Your Favorite Movies:")), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Row, {
             className: "justify-content-sm-start fav-rw_2"
           }, favMovies.map(function (fav, index) {
-            if (!favMovies) return (
-              /*#__PURE__*/_react["default"].createElement("p", {
-                className: "no-fav"
-              }, "You have no favorite movies. Go add some!")
-            );
-            return (
-              /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card, {
-                className: "fav-cd",
-                style: {
-                  width: '12rem'
-                },
-                key: index
-              }, /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Link, {
-                to: ("/movies/").concat(fav._id)
-              }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card.Img, {
-                className: "fav-mv",
-                variant: "top",
-                src: fav.ImagePath
-              })), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
-                className: "text-center",
-                variant: "light",
-                onClick: function onClick() {
-                  return _this5.removeFav(fav);
-                }
-              }, "Remove movie"))
-            );
+            if (fav.length = 0) {
+              return (
+                /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Link, {
+                  to: '/',
+                  className: "no-fav",
+                  key: index
+                }, "You have no favorite movies. Go add some!")
+              );
+            } else {
+              return (
+                /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card, {
+                  className: "fav-cd",
+                  style: {
+                    width: '12rem'
+                  },
+                  key: index
+                }, /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Link, {
+                  to: ("/movies/").concat(fav._id)
+                }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card.Img, {
+                  className: "fav-mv",
+                  variant: "top",
+                  src: fav.ImagePath
+                })), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
+                  className: "text-center",
+                  variant: "light",
+                  onClick: function onClick() {
+                    return _this5.removeFav(fav);
+                  }
+                }, "Remove movie"))
+              );
+            }
           }))))
         );
       }

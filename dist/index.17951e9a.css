@@ -111,6 +111,12 @@ h3 {
 
 .no-fav {
   font-size: 16px;
+  color: #ffc400;
+}
+
+.no-fav:hover {
+  color: #ffc400;
+  text-decoration: underline;
 }
 
 .fav-cd {

@@ -1,5 +1,6 @@
 $bdtxt: #fff;
 $bgcolor: #09518b;
+$link: #ffc400;
 
 .form,
 .form-rw, 
@@ -27,7 +28,13 @@ h3 {
 }
 
 .no-fav {
-  font-size: 16px
+  font-size: 16px;
+  color: $link
+}
+
+.no-fav:hover {
+  color: $link;
+  text-decoration: underline
 }
 
 .fav-cd {

@@ -106,7 +106,7 @@ export class ProfileView extends React.Component {
     }
     if(this.state.Password === this.state.ConfirmPassword && this.state.Password !== '') {
       data.Password = this.state.Password
-    } else if(this.state.Password !== this.state.ConfirmPassword){
+    } else if(this.state.Password !== this.state.ConfirmPassword) {
       alert('Your passwords do not match');
       return; //put statement will never get hit after the return statement
     }
@@ -248,15 +248,18 @@ export class ProfileView extends React.Component {
           </Row>
           <Row className='justify-content-sm-start fav-rw_2'>
             {favMovies.map((fav, index) => {
-              if(!favMovies) return <p className='no-fav'>You have no favorite movies. Go add some!</p>;
-              return(
-                <Card className='fav-cd' style={{ width: '12rem' }} key={index}>
-                  <Link to={`/movies/${fav._id}`}>
-                    <Card.Img className='fav-mv' variant='top' src={fav.ImagePath} />
-                  </Link>
-                    <Button className='text-center' variant='light' onClick={() => this.removeFav(fav)}>Remove movie</Button>
-                </Card>
-              )
+              if(fav.length = 0) { 
+                return <Link to={'/'} className='no-fav' key={index}>You have no favorite movies. Go add some!</Link>
+              } else {
+                return(
+                  <Card className='fav-cd' style={{ width: '12rem' }} key={index}>
+                    <Link to={`/movies/${fav._id}`}>
+                      <Card.Img className='fav-mv' variant='top' src={fav.ImagePath} />
+                    </Link>
+                      <Button className='text-center' variant='light' onClick={() => this.removeFav(fav)}>Remove movie</Button>
+                  </Card>
+                )
+              }
             }
             )}
           </Row>
