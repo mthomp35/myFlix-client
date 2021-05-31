@@ -75,7 +75,7 @@ export class ProfileView extends React.Component {
     })
     .then(response => {
       console.log(response);
-      alert(`${movie.Title} has been successfully removed from your favorites.`);
+      alert(`${fav.Title} has been successfully removed from your favorites.`);
 
       // clone of favorite movies. the "..." spread operator allows you to clone an array
       let tempArray = [...this.state.favoriteMovies];
