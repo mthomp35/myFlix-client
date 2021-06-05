@@ -60,6 +60,10 @@ h1, .btn-blk {
 .label {
   font-weight: bold;
 }
+
+.mv-card_img {
+  max-width: 400px;
+}
 .dv {
   margin: 10px;
   padding-top: 10px;

@@ -50,25 +50,25 @@ export class MovieView extends React.Component {
     return (
       <Row className='mv justify-content-center'>
         <Col md={4} className='mv-col col1'>
-          <Card className='mv-card'>
-            <Card.Img className='movie-img center' src={movie.ImagePath} />
+          <Card className='mv-card mv-card_img'>
+            <Card.Img className='mv-img center' src={movie.ImagePath} />
           </Card>
         </Col>
         <Col md={4} className='mv-col col2'>
           <Card className='mv-card' bg='light'>
             <Card.Body>
-              <Card.Title className='movie-title'>{movie.Title}</Card.Title>
-              <Card.Text className='movie-year'>
+              <Card.Title className='mv-title'>{movie.Title}</Card.Title>
+              <Card.Text className='mv-year'>
                 <span className='label'>Release Year: </span>
                 <span className='value'>{this.getYear(movie.Year)}</span>
               </Card.Text>
 
-              <Card.Text className='movie-description'>
+              <Card.Text className='mv-description'>
                 <span className='label'>Description: </span>
                 <span className='value'>{movie.Description}</span>
               </Card.Text>
 
-              <Card.Text className='movie-genre'>
+              <Card.Text className='mv-genre'>
                 <span className='label'>Genre: </span>
                 <span className='value'>{movie.Genre.Name}</span>
                 <span>

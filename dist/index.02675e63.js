@@ -48986,9 +48986,9 @@ try {
             md: 4,
             className: "mv-col col1"
           }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card, {
-            className: "mv-card"
+            className: "mv-card mv-card_img"
           }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card.Img, {
-            className: "movie-img center",
+            className: "mv-img center",
             src: movie.ImagePath
           }))), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Col, {
             md: 4,
@@ -48997,21 +48997,21 @@ try {
             className: "mv-card",
             bg: "light"
           }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card.Body, null, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card.Title, {
-            className: "movie-title"
+            className: "mv-title"
           }, movie.Title), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card.Text, {
-            className: "movie-year"
+            className: "mv-year"
           }, /*#__PURE__*/_react["default"].createElement("span", {
             className: "label"
           }, "Release Year: "), /*#__PURE__*/_react["default"].createElement("span", {
             className: "value"
           }, this.getYear(movie.Year))), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card.Text, {
-            className: "movie-description"
+            className: "mv-description"
           }, /*#__PURE__*/_react["default"].createElement("span", {
             className: "label"
           }, "Description: "), /*#__PURE__*/_react["default"].createElement("span", {
             className: "value"
           }, movie.Description)), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card.Text, {
-            className: "movie-genre"
+            className: "mv-genre"
           }, /*#__PURE__*/_react["default"].createElement("span", {
             className: "label"
           }, "Genre: "), /*#__PURE__*/_react["default"].createElement("span", {
