@@ -34988,7 +34988,7 @@ try {
             movie: m
           }))
         );
-      }), ";")
+      }))
     );
   }
   _c = MoviesList;
@@ -48987,12 +48987,7 @@ try {
             className: "mv-col col1"
           }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card, {
             className: "mv-card"
-          }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Button, {
-            variant: "warning",
-            onClick: function onClick() {
-              return _this3.addFav(movie);
-            }
-          }, "Add to favorites"), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card.Img, {
+          }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Card.Img, {
             className: "movie-img center",
             src: movie.ImagePath
           }))), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Col, {
@@ -49688,7 +49683,7 @@ try {
             Email: data.Email,
             DOB: data.Birth,
             Username: data.Username,
-            favoriteMovies: data.FavoriteMovies
+            favoriteMovies: data.FavoriteMovies.split(',')
           });
           console.log(_this2.state.Username);
         })["catch"](function (e) {
@@ -49709,7 +49704,7 @@ try {
         }).then(function (response) {
           console.log(response);
           alert(("").concat(fav.Title, " has been successfully removed from your favorites."));
-          // clone of favorite movies. the "..." spread operator allows you to clone an array
+          // clone of favorite movies. The "..." spread operator allows you to clone an array. Kept as reference for alt method to create a new array of movies
           var tempArray = _toConsumableArray(_this3.state.favoriteMovies);
           tempArray.splice(tempArray.indexOf(fav._id), 1);
           // all array methods either mutate actual array or create new array

@@ -111,7 +111,7 @@ class MainView extends React.Component {
               if (!user) return <Col>
                 <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
               </Col>
-              if (!movies.length) return <div className='main-view'>{message}</div>;
+              if (!movies.length) return <div className='main-view'>{message}</div>
               return <MoviesList movies={movies}/>
             }}/>
             
