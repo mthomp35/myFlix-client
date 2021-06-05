@@ -56,7 +56,7 @@ export class ProfileView extends React.Component {
         Email: data.Email,
         DOB: data.Birth,
         Username: data.Username,
-        favoriteMovies: data.FavoriteMovies
+        favoriteMovies: data.FavoriteMovies.split(',')
       });
       console.log(this.state.Username);
     })
