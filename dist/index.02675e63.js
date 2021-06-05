@@ -49456,33 +49456,6 @@ try {
       "default": obj
     };
   }
-  function _toConsumableArray(arr) {
-    return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();
-  }
-  function _nonIterableSpread() {
-    throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-  }
-  function _unsupportedIterableToArray(o, minLen) {
-    if (!o) return;
-    if (typeof o === "string") return _arrayLikeToArray(o, minLen);
-    var n = Object.prototype.toString.call(o).slice(8, -1);
-    if (n === "Object" && o.constructor) n = o.constructor.name;
-    if (n === "Map" || n === "Set") return Array.from(o);
-    if (n === "Arguments" || (/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/).test(n)) return _arrayLikeToArray(o, minLen);
-  }
-  function _iterableToArray(iter) {
-    if (typeof Symbol !== "undefined" && (Symbol.iterator in Object(iter))) return Array.from(iter);
-  }
-  function _arrayWithoutHoles(arr) {
-    if (Array.isArray(arr)) return _arrayLikeToArray(arr);
-  }
-  function _arrayLikeToArray(arr, len) {
-    if (len == null || len > arr.length) len = arr.length;
-    for (var i = 0, arr2 = new Array(len); i < len; i++) {
-      arr2[i] = arr[i];
-    }
-    return arr2;
-  }
   function _classCallCheck(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
       throw new TypeError("Cannot call a class as a function");
@@ -49705,11 +49678,12 @@ try {
           console.log(response);
           alert(("").concat(fav.Title, " has been successfully removed from your favorites."));
           // clone of favorite movies. The "..." spread operator allows you to clone an array. Kept as reference for alt method to create a new array of movies
-          var tempArray = _toConsumableArray(_this3.state.favoriteMovies);
-          tempArray.splice(tempArray.indexOf(fav._id), 1);
-          // all array methods either mutate actual array or create new array
+          // let tempArray = [...this.state.favoriteMovies];
+          // tempArray.splice(tempArray.indexOf(fav._id), 1); //all array methods either mutate actual array or create new array
           _this3.setState({
-            favoriteMovies: tempArray
+            favoriteMovies: _this3.state.favoriteMovies.filter(function (id) {
+              return id !== fav._id;
+            })
           });
         })["catch"](function (e) {
           (console.log(e), _this3.setState({

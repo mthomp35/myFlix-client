@@ -78,10 +78,10 @@ export class ProfileView extends React.Component {
       alert(`${fav.Title} has been successfully removed from your favorites.`);
 
       // clone of favorite movies. The "..." spread operator allows you to clone an array. Kept as reference for alt method to create a new array of movies
-      let tempArray = [...this.state.favoriteMovies];
-      tempArray.splice(tempArray.indexOf(fav._id), 1); //all array methods either mutate actual array or create new array
+      //let tempArray = [...this.state.favoriteMovies];
+      //tempArray.splice(tempArray.indexOf(fav._id), 1); //all array methods either mutate actual array or create new array
       this.setState({
-        favoriteMovies: tempArray
+        favoriteMovies: this.state.favoriteMovies.filter(id => id !== fav._id)
       });
     })
     .catch(e => {
