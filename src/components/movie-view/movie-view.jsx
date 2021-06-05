@@ -51,7 +51,6 @@ export class MovieView extends React.Component {
       <Row className='mv justify-content-center'>
         <Col md={4} className='mv-col col1'>
           <Card className='mv-card'>
-            <Button variant='warning' onClick={() => this.addFav(movie)}>Add to favorites</Button>
             <Card.Img className='movie-img center' src={movie.ImagePath} />
           </Card>
         </Col>
