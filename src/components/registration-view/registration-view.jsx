@@ -70,7 +70,6 @@ export function RegistrationView() {
           value={LastName}
           onChange={e => setLastName(e.target.value)}
           placeholder='Enter Last Name'
-          //srOnly='Enter Last Name'
         />
       </Form.Group>
       
