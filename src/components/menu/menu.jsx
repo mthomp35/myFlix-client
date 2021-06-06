@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Nav, Navbar, Col, Container, Row } from 'react-bootstrap';
+import { Nav, Navbar } from 'react-bootstrap';
 
 const mapStateToProps = state => {
   const { user } = state;
@@ -9,7 +9,7 @@ const mapStateToProps = state => {
 
 function Menu(props) {
   const { user } = props;
-  
+
   return(
     <Navbar bg='light' variant='light' expand='md' sticky='top' className='navbar'>
       {!user ? (
