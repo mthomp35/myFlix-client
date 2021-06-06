@@ -30030,9 +30030,7 @@ try {
                 }, message)
               );
               return (
-                /*#__PURE__*/_react["default"].createElement(_moviesList["default"], {
-                  movies: movies
-                })
+                /*#__PURE__*/_react["default"].createElement(_moviesList["default"], null)
               );
             }
           }), /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Route, {
@@ -30135,8 +30133,8 @@ try {
             render: function render(history) {
               return (
                 /*#__PURE__*/_react["default"].createElement(_profileView.ProfileView, {
-                  movies: movies,
-                  history: history
+                  history: history,
+                  movies: movies
                 })
               );
             }
@@ -34952,8 +34950,9 @@ try {
     };
   }
   var mapStateToProps = function mapStateToProps(state) {
-    var visibilityFilter = state.visibilityFilter;
+    var movies = state.movies, visibilityFilter = state.visibilityFilter;
     return {
+      movies: movies,
       visibilityFilter: visibilityFilter
     };
   };
