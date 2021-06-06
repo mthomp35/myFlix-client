@@ -47,7 +47,8 @@ class MainView extends React.Component {
     this.getMovies(authData.token);
   }
 
-  onLogOut() {
+  //onLogOut is being passed to a child, so can no longer be a regular function. Must be arrow function to preserve meaning of "this", otherwise "this.props" will return "undefined"
+  onLogOut = () => {
     this.props.setUser(null);
     localStorage.removeItem('token');
     localStorage.removeItem('user');

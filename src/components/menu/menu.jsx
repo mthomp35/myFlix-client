@@ -27,7 +27,7 @@ function Menu(props) {
       <Navbar.Toggle aria-controls='basic-navbar-nav' />
       <Navbar.Collapse id='basic-navbar-nav'>
       
-        <Nav className='mr-auto' variant='light'/* how to add activeKey='' that changes with the page*/>
+        <Nav className='mr-auto' variant='light'>
           <Nav.Item className='nav-link'>
             <Nav.Link href='/'>Home</Nav.Link>
           </Nav.Item>
