@@ -1,21 +1,14 @@
 import React from 'react';
 import axios from 'axios';
-import { connect } from 'react-redux';
 import Config from '../../config';
 import { Link } from 'react-router-dom';
 
 import { Button, Card, Col, Container, Form, Row} from 'react-bootstrap';
 import './profile-view.scss';
 
-const mapStateToProps = state => {
-  const { movies } = state;
-  return { movies };
-};
-
 // does this need to be a class?
-export class ProfileView extends React.Component {    
-  
-  // must declare state without "this." but must refer to state as "this.state"
+export class ProfileView extends React.Component {
+    // must declare state without "this." but must refer to state as "this.state"
     state = {
       FirstName: '',
       LastName: '',
@@ -276,5 +269,3 @@ export class ProfileView extends React.Component {
     );
   }
 }
-
-export default connect(mapStateToProps)(ProfileView);
