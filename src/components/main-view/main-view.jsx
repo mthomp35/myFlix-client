@@ -112,7 +112,7 @@ class MainView extends React.Component {
                 <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
               </Col>
               if (!movies.length) return <div className='main-view'>{message}</div>
-              return <MoviesList movies={movies}/>
+              return <MoviesList/>
             }}/>
             
             <Route path='/register' render={() => {
@@ -148,7 +148,7 @@ class MainView extends React.Component {
               return <DirectorView history={history} movies={movies.filter(m => m.Director.Name === match.params.name)} director={movies.find(m => m.Director.Name === match.params.name).Director}/>
               }} />
             </Row>
-            <Route path='/users/:Username' render={(history) => <ProfileView movies={movies} history={history}/>}/>
+            <Route path='/users/:Username' render={(history) => <ProfileView history={history}/>}/>
             </Container>
       </Router>
     );
