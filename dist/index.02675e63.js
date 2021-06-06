@@ -29818,6 +29818,8 @@ try {
   var _directorView = require("../director-view/director-view");
   var _genreView = require("../genre-view/genre-view");
   var _profileView = require("../profile-view/profile-view");
+  var _menu = _interopRequireDefault(require("../menu/menu"));
+  var _scrollToTop = require("../scroll/scrollToTop");
   require("./main-view.scss");
   function _interopRequireDefault(obj) {
     return obj && obj.__esModule ? obj : {
@@ -29905,6 +29907,19 @@ try {
     };
     return _getPrototypeOf(o);
   }
+  function _defineProperty(obj, key, value) {
+    if ((key in obj)) {
+      Object.defineProperty(obj, key, {
+        value: value,
+        enumerable: true,
+        configurable: true,
+        writable: true
+      });
+    } else {
+      obj[key] = value;
+    }
+    return obj;
+  }
   var MainView = /*#__PURE__*/(function (_React$Component) {
     _inherits(MainView, _React$Component);
     var _super = _createSuper(MainView);
@@ -29913,6 +29928,12 @@ try {
       var _this;
       _classCallCheck(this, MainView);
       _this = _super.call(this);
+      _defineProperty(_assertThisInitialized(_this), "onLogOut", function () {
+        _this.props.setUser(null);
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        alert('Thanks for visiting Movie Mania! You have successfully logged out.');
+      });
       _this.state = {
         message: 'Loading'
       };
@@ -29936,15 +29957,6 @@ try {
         localStorage.setItem('token', authData.token);
         localStorage.setItem('user', authData.user.Username);
         this.getMovies(authData.token);
-      }
-    }, {
-      key: "onLogOut",
-      value: function onLogOut() {
-        this.props.setUser(null);
-        localStorage.removeItem('token');
-        localStorage.removeItem('user');
-        alert('Thanks for visiting Movie Mania! You have successfully logged out.');
-        window.open('/', '_self');
       }
     }, {
       key: "getMovies",
@@ -29977,41 +29989,12 @@ try {
         return (
           /*#__PURE__*/_react["default"].createElement(_reactRouterDom.BrowserRouter, {
             className: "router-mv"
-          }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Navbar, {
-            bg: "light",
-            variant: "light",
-            expand: "md",
-            sticky: "top",
-            className: "navbar"
-          }, !user ? /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Navbar.Brand, {
-            href: "/"
-          }, "M's") : /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Navbar.Brand, {
-            href: "/"
-          }, "M's"), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Navbar.Toggle, {
-            "aria-controls": "basic-navbar-nav"
-          }), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Navbar.Collapse, {
-            id: "basic-navbar-nav"
-          }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Nav, {
-            className: "mr-auto",
-            variant: "light"
-          }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Nav.Item, {
-            className: "nav-link"
-          }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Nav.Link, {
-            href: "/"
-          }, "Home")), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Nav.Item, {
-            className: "nav-link"
-          }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Nav.Link, {
-            href: ("/users/").concat(user)
-          }, "Profile")), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Nav.Item, {
-            className: "nav-link justify-content-end"
-          }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Nav.Link, {
-            onClick: function onClick() {
-              return _this3.onLogOut();
-            }
-          }, "Log Out")))))), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Container, {
+          }, /*#__PURE__*/_react["default"].createElement(_menu["default"], {
+            onLogOut: this.onLogOut
+          }), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Container, {
             fluid: true,
             className: "cont-mv"
-          }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Row, {
+          }, /*#__PURE__*/_react["default"].createElement(_scrollToTop.ScrollToTop, null), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Row, {
             className: "main-view justify-content-md-center"
           }, /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Route, {
             exact: true,
@@ -30162,7 +30145,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","axios":"7rA65","react-redux":"7GDa4","react-router-dom":"1PMSK","../../actions/actions":"5S6cN","../movies-list/movies-list":"3Biek","react-bootstrap":"4n7hB","../../config":"5yJJr","../registration-view/registration-view":"7gvH2","../login-view/login-view":"6M7fu","../movie-view/movie-view":"3xBbr","../director-view/director-view":"7HF27","../genre-view/genre-view":"6FLqj","../profile-view/profile-view":"3CncI","./main-view.scss":"3X8QW","../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6fW6i"}],"7rA65":[function(require,module,exports) {
+},{"react":"3b2NM","axios":"7rA65","react-redux":"7GDa4","react-router-dom":"1PMSK","../../actions/actions":"5S6cN","../movies-list/movies-list":"3Biek","react-bootstrap":"4n7hB","../../config":"5yJJr","../registration-view/registration-view":"7gvH2","../login-view/login-view":"6M7fu","../movie-view/movie-view":"3xBbr","../director-view/director-view":"7HF27","../genre-view/genre-view":"6FLqj","../profile-view/profile-view":"3CncI","../menu/menu":"1Gh68","./main-view.scss":"3X8QW","../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6fW6i","../scroll/scrollToTop":"2qmnD"}],"7rA65":[function(require,module,exports) {
 module.exports = require('./lib/axios');
 },{"./lib/axios":"4qfhW"}],"4qfhW":[function(require,module,exports) {
 'use strict';
@@ -48843,10 +48826,10 @@ try {
   exports.MovieView = void 0;
   var _react = _interopRequireDefault(require("react"));
   var _propTypes = _interopRequireDefault(require("prop-types"));
-  var _reactBootstrap = require("react-bootstrap");
-  var _reactRouterDom = require("react-router-dom");
   var _axios = _interopRequireDefault(require("axios"));
+  var _reactRouterDom = require("react-router-dom");
   var _config = _interopRequireDefault(require("../../config"));
+  var _reactBootstrap = require("react-bootstrap");
   require("./movie-view.scss");
   function _interopRequireDefault(obj) {
     return obj && obj.__esModule ? obj : {
@@ -49858,6 +49841,122 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","axios":"7rA65","../../config":"5yJJr","react-router-dom":"1PMSK","react-bootstrap":"4n7hB","./profile-view.scss":"3kYjk","../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6fW6i"}],"3kYjk":[function() {},{}],"3X8QW":[function() {},{}],"5iJih":[function() {},{}]},["1j6wU","68WUB","1DVjT"], "1DVjT", "parcelRequire427e")
+},{"react":"3b2NM","axios":"7rA65","../../config":"5yJJr","react-router-dom":"1PMSK","react-bootstrap":"4n7hB","./profile-view.scss":"3kYjk","../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6fW6i"}],"3kYjk":[function() {},{}],"1Gh68":[function(require,module,exports) {
+"use strict";
+var helpers = require("../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+try {
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports["default"] = void 0;
+  var _react = _interopRequireDefault(require("react"));
+  var _reactRedux = require("react-redux");
+  var _reactRouterDom = require("react-router-dom");
+  var _reactBootstrap = require("react-bootstrap");
+  var _s = $RefreshSig$();
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+      "default": obj
+    };
+  }
+  var mapStateToProps = function mapStateToProps(state) {
+    var user = state.user;
+    return {
+      user: user
+    };
+  };
+  function Menu(props) {
+    _s();
+    var user = props.user, onLogOut = props.onLogOut;
+    var history = (0, _reactRouterDom.useHistory)();
+    function onLogOutHandler() {
+      onLogOut();
+      history.push('/');
+    }
+    return (
+      /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Navbar, {
+        bg: "light",
+        variant: "light",
+        expand: "md",
+        sticky: "top",
+        className: "navbar"
+      }, !user ? /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Navbar.Brand, {
+        href: "/"
+      }, "M's") : /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Navbar.Brand, {
+        href: "/"
+      }, "M's"), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Navbar.Toggle, {
+        "aria-controls": "basic-navbar-nav"
+      }), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Navbar.Collapse, {
+        id: "basic-navbar-nav"
+      }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Nav, {
+        className: "mr-auto",
+        variant: "light"
+      }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Nav.Item, {
+        className: "nav-link"
+      }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Nav.Link, {
+        href: "/"
+      }, "Home")), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Nav.Item, {
+        className: "nav-link"
+      }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Nav.Link, {
+        href: ("/users/").concat(user)
+      }, "Profile")), /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Nav.Item, {
+        className: "nav-link justify-content-end"
+      }, /*#__PURE__*/_react["default"].createElement(_reactBootstrap.Nav.Link, {
+        onClick: onLogOutHandler
+      }, "Log Out"))))))
+    );
+  }
+  _s(Menu, "9cZfZ04734qoCGIctmKX7+sX6eU=", false, function () {
+    return [_reactRouterDom.useHistory];
+  });
+  _c = Menu;
+  var _default = (0, _reactRedux.connect)(mapStateToProps)(Menu);
+  exports["default"] = _default;
+  var _c;
+  $RefreshReg$(_c, "Menu");
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+
+},{"react":"3b2NM","react-redux":"7GDa4","react-router-dom":"1PMSK","react-bootstrap":"4n7hB","../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6fW6i"}],"3X8QW":[function() {},{}],"2qmnD":[function(require,module,exports) {
+"use strict";
+var helpers = require("../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+try {
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.ScrollToTop = ScrollToTop;
+  var _react = require("react");
+  var _reactRouterDom = require("react-router-dom");
+  var _s = $RefreshSig$();
+  function ScrollToTop() {
+    _s();
+    var _useLocation = (0, _reactRouterDom.useLocation)(), pathname = _useLocation.pathname;
+    (0, _react.useEffect)(function () {
+      window.scrollTo(0, 0);
+    }, [pathname]);
+    return null;
+  }
+  _s(ScrollToTop, "+8VPq4+XDMjo/kjL3WLkbwU2Amg=", false, function () {
+    return [_reactRouterDom.useLocation];
+  });
+  _c = ScrollToTop;
+  var _c;
+  $RefreshReg$(_c, "ScrollToTop");
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+
+},{"react":"3b2NM","react-router-dom":"1PMSK","../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6fW6i"}],"5iJih":[function() {},{}]},["1j6wU","68WUB","1DVjT"], "1DVjT", "parcelRequire427e")
 
 //# sourceMappingURL=index.02675e63.js.map

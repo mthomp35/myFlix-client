@@ -15,7 +15,8 @@ import { MovieView } from '../movie-view/movie-view';
 import { DirectorView } from '../director-view/director-view';
 import { GenreView } from '../genre-view/genre-view';
 import { ProfileView } from '../profile-view/profile-view';
-import { Menu } from '../menu/menu';
+import Menu from '../menu/menu';
+import { ScrollToTop } from '../scroll/scrollToTop';
 
 import './main-view.scss';
 
@@ -81,9 +82,11 @@ class MainView extends React.Component {
     //if (!movies.length) return <div className='main-view'>{message}</div>; <Row className='nav-bar_row' sticky='top' > <Row className='main-view justify-content-md-center'>
     return (
       <Router className='router-mv'>
+
         <Menu onLogOut={this.onLogOut}/>
 
         <Container fluid className='cont-mv'>
+        <ScrollToTop />
           <Row className='main-view justify-content-md-center'>
             <Route exact path='/' render={() => {
                 if (!user) return <Col>
