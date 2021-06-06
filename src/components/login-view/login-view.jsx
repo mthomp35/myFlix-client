@@ -25,7 +25,8 @@ export function LoginView(props) {
       props.onLoggedIn(data);
     })
     .catch(e => {
-      console.log(`${e} User does not exist`)
+      console.log(`${e} User does not exist`);
+      alert('Invalid username or password');
     });
   };
 
@@ -58,22 +59,22 @@ export function LoginView(props) {
           placeholder='Enter Password'
         />
         <Form.Text id='passwordHelpBlock'>
-          Password must contain: At least 10 characters, a combination of uppercase and lowercase letters (A-z), numbers (0-9), and special characters (e.g. ! @ # ? ] ).
+        Password must contain at least 10 characters.
         </Form.Text>
       </Form.Group>
       <Form.Row className='btn-blk'>
-        <Col md={6}>
+        <Col md={2}>
           <Button type='submit' variant='secondary' onClick={handleSubmit}>Submit</Button>
         </Col>
-        <Col md={6}>
-          <Link to={'/register'}>
-            <Button type='button' variant='link'>New to M's Movie Mania? Click here to register</Button>
-          </Link>
+        <Col className='reg-col' md={6}>
+          <Link to={'/register'} className='reg-btn'>New to M's Movie Mania? Click here to register</Link>
         </Col>
       </Form.Row>
     </Form>
   );
 }
+
+// Ideal password requirements: Password must contain: At least 10 characters, a combination of uppercase and lowercase letters (A-z), numbers (0-9), and special characters (e.g. ! @ # ? ] ).
 
 LoginView.propTypes = {
   user: PropTypes.shape({

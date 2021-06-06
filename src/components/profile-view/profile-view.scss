@@ -1,21 +1,42 @@
 $bdtxt: #fff;
 $bgcolor: #09518b;
+$link: #ffc400;
 
-.profile, 
+.form,
+.form-rw, 
 .fav,
 .buttons {
   color: $bdtxt;
   background-color: $bgcolor
 }
 
-h3, .fav-label {
-  padding: 15px
+.update-profile {
+  margin: 0 30px;
+}
+
+h3 {
+  padding: 15px 0;
+}
+
+.form-btn {
+  margin: 10px 0;
+}
+
+.fav-label {
+  margin-top: 25px;
+  font-size: 22px
 }
 
 .no-fav {
-  font-size: 16px
+  font-size: 16px;
+  color: $link
 }
 
-.fav-mv {
-  max-width: 150px;
+.no-fav:hover {
+  color: $link;
+  text-decoration: underline
+}
+
+.fav-cd {
+  margin: 15px
 }

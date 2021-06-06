@@ -20,17 +20,25 @@ export function RegistrationView() {
   const handleRegister = (e) => {
     e.preventDefault();
     console.log(FirstName, LastName, Username, Password, Email, DOB);
-    axios.post(`${Config.API_URL}/users`, {
+    let regData = {
       FirstName: FirstName,
       LastName: LastName,
       Email: Email,
       Birth: DOB,
-      Username: Username,
-      Password: Password
-    })
+      Username: Username
+    }
+    if(Password === ConfirmPassword && Password !== '') {
+      regData.Password = Password
+    } else if(Password !== ConfirmPassword) {
+      alert('Your passwords must match and cannot be blank');
+      return; //put statement will never get hit after the return statement
+    }
+    axios.post(`${Config.API_URL}/users`, regData
+    )
     .then(response => {
       const data = response.data;
       console.log(data);
+      alert('Thank you for registering. Please log in using your username and password.');
       window.open('/', '_self'); // the argument '_self' is necessary so that the page will open in the current tab
     })
     .catch(e => {
@@ -42,10 +50,8 @@ export function RegistrationView() {
     <Form className='registration'>
       <h1>Welcome to M's Movie Mania!</h1>
       <p>Please register here to access the site.</p>
-      <p>Already registered? 
-        <Link to={'/'}>
-            <Button type='button' variant='link'>Login here</Button>
-        </Link>
+      <p>
+        <Link className='login-link' to={'/'}>Already registered? Login here.</Link>
       </p>
       <Form.Group controlId='formFirstName'>
         <Form.Label>First Name:</Form.Label>
@@ -64,7 +70,6 @@ export function RegistrationView() {
           value={LastName}
           onChange={e => setLastName(e.target.value)}
           placeholder='Enter Last Name'
-          //srOnly='Enter Last Name'
         />
       </Form.Group>
       
@@ -75,7 +80,6 @@ export function RegistrationView() {
           value={Email}
           onChange={e => setEmail(e.target.value)}
           placeholder='Enter Email'
-          //srOnly='Enter email address'
         />
       </Form.Group>
       
@@ -86,7 +90,6 @@ export function RegistrationView() {
           value={DOB}
           onChange={e => setDOB(e.target.value)}
           placeholder='Enter Date of Birth'
-          //srOnly='Enter date of birth (month/day/year)'
         />
       </Form.Group>
 
@@ -110,8 +113,7 @@ export function RegistrationView() {
           placeholder='Enter Password'
         />
         <Form.Text id='passwordHelpBlock'>
-          Password must contain: At least 10 characters, a combination of uppercase and lowercase letters (A-z), 
-          numbers (0-9), and special characters (e.g. ! @ # ? ] ).
+          Password must contain at least 10 characters.
         </Form.Text>
       </Form.Group>
 
@@ -131,6 +133,8 @@ export function RegistrationView() {
     </Form>
   );
 }
+
+// Ideal password requirements: Password must contain: At least 10 characters, a combination of uppercase and lowercase letters (A-z), numbers (0-9), and special characters (e.g. ! @ # ? ] ).
 
 RegistrationView.propTypes = {
   register: PropTypes.shape({

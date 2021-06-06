@@ -15,6 +15,14 @@
 h1, .btn-blk {
   padding-top: 10px;
 }
+.mv {
+  background-color: #09518b;
+  min-height: 100vh;
+}
+
+.label {
+  font-weight: bold;
+}
 .movie-card {
   margin: 15px;
   max-width: 20rem;
@@ -32,14 +40,6 @@ h1, .btn-blk {
 
 .btn-blk:hover {
   background-color: rgba(0, 0, 0, 0.1);
-}
-.mv {
-  background-color: #09518b;
-  min-height: 100vh;
-}
-
-.label {
-  font-weight: bold;
 }
 .dv {
   margin: 10px;

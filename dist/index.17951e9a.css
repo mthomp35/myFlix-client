@@ -1,0 +1,144 @@
+.movie-card {
+  margin: 15px;
+  max-width: 20rem;
+  border: 2px solid #fff;
+}
+
+.movie-card_text {
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.btn-blk:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.registration {
+  color: #fff;
+}
+
+.btn-blk {
+  padding-top: 30px;
+}
+
+.login-link {
+  color: #ffc400;
+}
+
+.login-link:hover {
+  color: #ffc400;
+  text-decoration: underline;
+}
+.login {
+  color: #fff;
+  background-color: #09518b;
+  padding-left: 15px;
+  height: 100vh;
+}
+
+h1, .btn-blk {
+  padding-top: 10px;
+}
+
+.reg-col {
+  padding-top: 7px;
+}
+
+.reg-btn {
+  color: #ffc400;
+}
+
+.reg-btn:hover {
+  color: #ffc400;
+  text-decoration: underline;
+}
+.mv {
+  background-color: #09518b;
+  min-height: 100vh;
+}
+
+.label {
+  font-weight: bold;
+}
+
+.mv-card_img {
+  max-width: 400px;
+}
+.dv {
+  margin: 10px;
+  padding-top: 10px;
+  background-color: #09518b;
+}
+
+.dv-info,
+.dv-movies-label {
+  color: #fff;
+}
+
+.dv-movies-label {
+  padding-top: 30px;
+  font-size: 20px;
+}
+.genre-view {
+  padding-top: 10px;
+  background-color: #09518b;
+  min-height: 100vh;
+}
+
+.gv {
+  color: #fff;
+}
+.form,
+.form-rw,
+.fav,
+.buttons {
+  color: #fff;
+  background-color: #09518b;
+}
+
+.update-profile {
+  margin: 0 30px;
+}
+
+h3 {
+  padding: 15px 0;
+}
+
+.form-btn {
+  margin: 10px 0;
+}
+
+.fav-label {
+  margin-top: 25px;
+  font-size: 22px;
+}
+
+.no-fav {
+  font-size: 16px;
+  color: #ffc400;
+}
+
+.no-fav:hover {
+  color: #ffc400;
+  text-decoration: underline;
+}
+
+.fav-cd {
+  margin: 15px;
+}
+.cont-mv,
+.main-view,
+.navbar {
+  background-color: #09518b;
+}
+
+.main-view {
+  min-height: 100%;
+  margin: 0;
+}
+
+.navbar {
+  width: 100%;
+}
+
+/*# sourceMappingURL=index.17951e9a.css.map */

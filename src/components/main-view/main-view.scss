@@ -3,13 +3,17 @@ $bdtxt: #fff;
 $ltgray: #f1eeee;
 $dkgray: #413f3f;
 
+.cont-mv,
+.main-view,
+.navbar {
+  background-color: $bgcolor
+}
+
 .main-view {
-  background-color: $bgcolor;
   min-height: 100%;
   margin: 0
 }
 
 .navbar {
-  background-color: $bgcolor;
   width: 100%
 }

@@ -4,6 +4,15 @@ $bdtxt: #fff;
 .dv {
   margin: 10px;
   padding-top: 10px;
-  background-color: $bgcolor;
+  background-color: $bgcolor
+}
+
+.dv-info, 
+.dv-movies-label {
   color: $bdtxt
+}
+
+.dv-movies-label {
+  padding-top: 30px;
+  font-size: 20px;
 }
