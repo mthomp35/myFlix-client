@@ -30030,9 +30030,7 @@ try {
                 }, message)
               );
               return (
-                /*#__PURE__*/_react["default"].createElement(_moviesList["default"], {
-                  movies: movies
-                })
+                /*#__PURE__*/_react["default"].createElement(_moviesList["default"], null)
               );
             }
           }), /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Route, {
@@ -30135,7 +30133,6 @@ try {
             render: function render(history) {
               return (
                 /*#__PURE__*/_react["default"].createElement(_profileView.ProfileView, {
-                  movies: movies,
                   history: history
                 })
               );
@@ -34952,8 +34949,9 @@ try {
     };
   }
   var mapStateToProps = function mapStateToProps(state) {
-    var visibilityFilter = state.visibilityFilter;
+    var movies = state.movies, visibilityFilter = state.visibilityFilter;
     return {
+      movies: movies,
       visibilityFilter: visibilityFilter
     };
   };
@@ -49444,9 +49442,10 @@ try {
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  exports.ProfileView = void 0;
+  exports["default"] = exports.ProfileView = void 0;
   var _react = _interopRequireDefault(require("react"));
   var _axios = _interopRequireDefault(require("axios"));
+  var _reactRedux = require("react-redux");
   var _config = _interopRequireDefault(require("../../config"));
   var _reactRouterDom = require("react-router-dom");
   var _reactBootstrap = require("react-bootstrap");
@@ -49550,6 +49549,12 @@ try {
     }
     return obj;
   }
+  var mapStateToProps = function mapStateToProps(state) {
+    var movies = state.movies;
+    return {
+      movies: movies
+    };
+  };
   // does this need to be a class?
   var ProfileView = /*#__PURE__*/(function (_React$Component) {
     _inherits(ProfileView, _React$Component);
@@ -49853,12 +49858,14 @@ try {
     return ProfileView;
   })(_react["default"].Component);
   exports.ProfileView = ProfileView;
+  var _default = (0, _reactRedux.connect)(mapStateToProps)(ProfileView);
+  exports["default"] = _default;
   helpers.postlude(module);
 } finally {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","axios":"7rA65","../../config":"5yJJr","react-router-dom":"1PMSK","react-bootstrap":"4n7hB","./profile-view.scss":"3kYjk","../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6fW6i"}],"3kYjk":[function() {},{}],"3X8QW":[function() {},{}],"5iJih":[function() {},{}]},["1j6wU","68WUB","1DVjT"], "1DVjT", "parcelRequire427e")
+},{"react":"3b2NM","axios":"7rA65","../../config":"5yJJr","react-router-dom":"1PMSK","react-bootstrap":"4n7hB","./profile-view.scss":"3kYjk","../../../../.npm/_npx/b4a9aa12c0cf34a6/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"6fW6i","react-redux":"7GDa4"}],"3kYjk":[function() {},{}],"3X8QW":[function() {},{}],"5iJih":[function() {},{}]},["1j6wU","68WUB","1DVjT"], "1DVjT", "parcelRequire427e")
 
 //# sourceMappingURL=index.02675e63.js.map
