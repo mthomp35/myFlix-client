@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { Nav, Navbar } from 'react-bootstrap';
 
 const mapStateToProps = state => {
@@ -8,7 +9,13 @@ const mapStateToProps = state => {
 };
 
 function Menu(props) {
-  const { user } = props;
+  const { user, onLogOut } = props;
+  let history = useHistory();
+
+  function onLogOutHandler() {
+    onLogOut();
+    history.push('/');
+  }
 
   return(
     <Navbar bg='light' variant='light' expand='md' sticky='top' className='navbar'>
@@ -28,7 +35,7 @@ function Menu(props) {
             <Nav.Link href={`/users/${user}`}>Profile</Nav.Link>
           </Nav.Item>
           <Nav.Item className='nav-link justify-content-end'> 
-            <Nav.Link onClick={() => this.onLogOut()}>Log Out</Nav.Link>
+            <Nav.Link onClick={onLogOutHandler}>Log Out</Nav.Link>
           </Nav.Item> 
         </Nav>
       </Navbar.Collapse>
