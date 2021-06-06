@@ -1,7 +1,4 @@
 {
-  "version": "1.0.0",
-  "description": "This repo is for the client-side of the myFlix app.",
-  "main": "src/index.html",
   "dependencies": {
     "axios": "^0.21.1",
     "prop-types": "^15.7.2",
