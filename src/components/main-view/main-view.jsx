@@ -79,32 +79,7 @@ class MainView extends React.Component {
     /* If there is no user, the LoginView is rendered. If there is a user logged in, the user details are passed as a prop to the LoginView*/
     //if (!movies.length) return <div className='main-view'>{message}</div>; <Row className='nav-bar_row' sticky='top' > <Row className='main-view justify-content-md-center'>
     return (
-        <Router className='router-mv'>
-            <Navbar bg='light' variant='light' expand='md' sticky='top' className='navbar'>
-              {!user ? (
-              <Navbar.Brand href='/'>M's</Navbar.Brand>
-              ) : (
-              <>
-              <Navbar.Brand href='/'>M's</Navbar.Brand>
-              <Navbar.Toggle aria-controls='basic-navbar-nav' />
-              <Navbar.Collapse id='basic-navbar-nav'>
-              
-                <Nav className='mr-auto' variant='light'/* how to add activeKey='' that changes with the page*/>
-                  <Nav.Item className='nav-link'>
-                    <Nav.Link href='/'>Home</Nav.Link>
-                  </Nav.Item>
-                  <Nav.Item className='nav-link'>
-                    <Nav.Link href={`/users/${user}`}>Profile</Nav.Link>
-                  </Nav.Item>
-                  <Nav.Item className='nav-link justify-content-end'> 
-                    <Nav.Link onClick={() => this.onLogOut()}>Log Out</Nav.Link>
-                  </Nav.Item> 
-                </Nav>
-              </Navbar.Collapse>
-              </>
-              )}
-            </Navbar>
-          
+      <Router className='router-mv'>
         <Container fluid className='cont-mv'>
         <Row className='main-view justify-content-md-center'>
           <Route exact path='/' render={() => {
