@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Card, Col, Row } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import Config from '../../config';
+
+import { Button, Card, Col, Row } from 'react-bootstrap';
 
 import './movie-view.scss';
 
@@ -49,6 +50,7 @@ export class MovieView extends React.Component {
 
     return (
       <Row className='mv justify-content-center'>
+        
         <Col md={4} className='mv-col col1'>
           <Card className='mv-card mv-card_img'>
             <Card.Img className='mv-img center' src={movie.ImagePath} />
